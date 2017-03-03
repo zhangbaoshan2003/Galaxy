@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Galaxy.DAL.Model
 {
+      [Serializable]
     public class SecurityInfo
     {
         [Column(Order = 0),Key]

@@ -22,13 +22,15 @@ namespace Galaxy.DAL.DataContext
 
         public DbSet<InducstryInfo> InducstryList{ get; set; }
 
+        public DbSet<ProductNetValue> ProductNetValues { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
 
         public GalaxyDB()
-            : base("GalaxyDBServer")
+            : base("GalaxyDB")
         {
         }
     }

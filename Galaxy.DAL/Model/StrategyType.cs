@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Galaxy.DAL.Model
 {
+      [Serializable]
     public class StrategyType
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Galaxy.DAL.Model
 {
+      [Serializable]
     public class InducstryInfo
     {
         public int ID { get; set; }

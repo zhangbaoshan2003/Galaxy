@@ -91,7 +91,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
-    <Compile Include="GalaxyDBTest.cs" />
+    <Compile Include="Database\GalaxyDBTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />

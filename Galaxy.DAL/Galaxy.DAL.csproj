@@ -55,10 +55,12 @@
     <Compile Include="Model\Consultant.cs" />
     <Compile Include="Model\InducstryInfo.cs" />
     <Compile Include="Model\Product.cs" />
+    <Compile Include="Model\ProductNetValue.cs" />
     <Compile Include="Model\ProductType.cs" />
     <Compile Include="Model\SecurityInfo.cs" />
     <Compile Include="Model\StrategyType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

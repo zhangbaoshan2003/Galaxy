@@ -9,8 +9,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Galaxy.DAL.Model
 {
+    [Serializable]
     public class Product
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
 
         [Required]
@@ -74,7 +76,5 @@ namespace Galaxy.DAL.Model
         public virtual StrategyType StrategyType { get; set; }
 
         public String Mem { get; set; }
-
-
     }
 }
