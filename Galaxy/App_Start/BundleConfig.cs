@@ -11,27 +11,27 @@ namespace Galaxy
 
             RegisterShared(bundles);
 
-            RegisterAccount(bundles);
+            //RegisterAccount(bundles);
 
-            RegisterHome(bundles);
+            //RegisterHome(bundles);
 
-            RegisterCharts(bundles);
+            //RegisterCharts(bundles);
 
-            RegisterWidgets(bundles);
+            //RegisterWidgets(bundles);
 
-            RegisterElements(bundles);
+            //RegisterElements(bundles);
 
-            RegisterForms(bundles);
+            //RegisterForms(bundles);
 
-            RegisterTables(bundles);
+            //RegisterTables(bundles);
 
-            RegisterCalendar(bundles);
+            //RegisterCalendar(bundles);
 
-            RegisterMailbox(bundles);
+            //RegisterMailbox(bundles);
 
-            RegisterExamples(bundles);
+            //RegisterExamples(bundles);
 
-            RegisterDocumentation(bundles);
+            //RegisterDocumentation(bundles);
         }
 
         private static void RegisterDocumentation(BundleCollection bundles)
@@ -226,8 +226,10 @@ namespace Galaxy
 
         private static void RegisterShared(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/Scripts/Shared/_Layout").Include(
+            bundles.Add(new ScriptBundle("~/Scripts/Shared/").Include(
                 "~/Scripts/Shared/_Layout.js"));
+            bundles.Add(new ScriptBundle("~/Scripts/Shared/").Include(
+                "~/Scripts/Shared/highstock.js"));
         }
 
         private static void RegisterLayout(BundleCollection bundles)

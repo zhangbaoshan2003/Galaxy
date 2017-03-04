@@ -13,11 +13,19 @@
     @Styles.Render("~/AdminLTE/dist/css")
     @Styles.Render("~/AdminLTE/dist/css/skins")
 
+    @Scripts.Render("~/AdminLTE/plugins/jquery/js")
+    @RenderSection("menu", required: false)
+    @Scripts.Render("~/AdminLTE/bootstrap/js")
+    @Scripts.Render("~/AdminLTE/plugins/slimscroll/js")
+    @Scripts.Render("~/Scripts/Shared/")
+    @Scripts.Render("~/AdminLTE/dist/js")
+    @RenderSection("scripts", required: false)
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini fixed">
     <div class="wrapper">
         <header class="main-header ">
-            <a href="@Url.Action("DashboardV1", "Home")" class="logo">
+            <a href="@Url.Action("Index", "Product")" class="logo">
                 <span class="logo-mini"><b>机构部</b></span>
                 <span class="logo-lg"><b>机构金融信息平台</b></span>
             </a>
@@ -190,8 +198,8 @@
                 <ul class="sidebar-menu">
                     <li class="header">主菜单栏</li>
                     
-                    <li id="left-sidebar-menu-widgets">
-                        <a href="@Url.Action("Index", "Widgets")">
+                    <li id="left-sidebar-menu-product">
+                        <a href="@Url.Action("Index", "Product")">
                             <i class="fa fa-th"></i> <span>产品信息</span>
                             <small class="label pull-right bg-green">4</small>
                         </a>
@@ -253,8 +261,8 @@
                     <small>@ViewBag.SubTitle</small>
                 </h1>
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i>@ViewBag.SubTitle</a></li>
-                    <li class="active">@ViewBag.Title</li>
+                    <li><a href="#"><i class="fa fa-dashboard"></i>@ViewBag.Title</a></li>
+                    <li class="active">@ViewBag.SubTitle</li>
                 </ol>
             </section>
             <section class="content">
@@ -309,12 +317,6 @@
         <div class="control-sidebar-bg"></div>
     </div>
 
-    @Scripts.Render("~/AdminLTE/plugins/jquery/js")
-    @RenderSection("menu", required: false)
-    @Scripts.Render("~/AdminLTE/bootstrap/js")
-    @Scripts.Render("~/AdminLTE/plugins/slimscroll/js")
-    @Scripts.Render("~/Scripts/Shared/_Layout")
-    @Scripts.Render("~/AdminLTE/dist/js")
-    @RenderSection("scripts", required: false)
+
 </body>
 </html>

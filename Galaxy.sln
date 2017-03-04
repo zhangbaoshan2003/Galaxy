@@ -9,6 +9,27 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Galaxy.Tests", "Galaxy.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Galaxy.DAL", "Galaxy.DAL\Galaxy.DAL.csproj", "{F297EA8A-9495-4BB9-8D6A-E05098F741A6}"
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Highstock-5.0.7(1)", "http://localhost:8627", "{22270974-6DC1-48EA-BBBF-89FF68A6A15F}"
+	ProjectSection(WebsiteProperties) = preProject
+		UseIISExpress = "true"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_8627"
+		Debug.AspNetCompiler.PhysicalPath = "Highstock-5.0.7\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_8627\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_8627"
+		Release.AspNetCompiler.PhysicalPath = "Highstock-5.0.7\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_8627\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "Highstock-5.0.7\"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +48,10 @@ Global
 		{F297EA8A-9495-4BB9-8D6A-E05098F741A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F297EA8A-9495-4BB9-8D6A-E05098F741A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F297EA8A-9495-4BB9-8D6A-E05098F741A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22270974-6DC1-48EA-BBBF-89FF68A6A15F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22270974-6DC1-48EA-BBBF-89FF68A6A15F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22270974-6DC1-48EA-BBBF-89FF68A6A15F}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{22270974-6DC1-48EA-BBBF-89FF68A6A15F}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
