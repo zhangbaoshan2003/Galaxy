@@ -13,169 +13,372 @@
 @Styles.Render("~/AdminLTE/plugins/bootstrap-wysihtml5/css")
 
 <div class="row">
-    <section class="col-lg-7 connectedSortable ">
-        <div class="box box-solid box-success">
-            <div class="box-header">
-                <i class="fa fa-th"></i>
-                <h5 class="box-title">产品详情</h5>
-                <div class="box-tools pull-right">
-                    <button type="button" class="btn  btn-sm bg-green-gradient" data-widget="collapse">
-                        <i class="fa fa-minus "></i>
-                    </button>
+    <div class="nav-tabs-custom tab-danger ">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab_1" data-toggle="tab">产品详情</a></li>
+            <li><a href="#tab_2" data-toggle="tab">净值分析</a></li>
+            <li><a href="#tab_3" data-toggle="tab">股票持仓管理</a></li>
+            <li><a href="#tab_3" data-toggle="tab">持仓分析</a></li>
+        </ul>
+        <div class="tab-content" >
+            <div class="tab-pane active" id="tab_1">
+                <div class="box box-solid box-success">
+                    <div class="box-body border-radius-none ">
+                        <table class="table table-bordered table-striped table-hover table-condensed">
+                            <tr>
+                                <th style="width:200px">产品名称</th>
+                                <td>元达信资本-履泰2期证券投资基金</td>
+                            </tr>
+                            <tr>
+                                <th>管理人</th>
+                                <td>元达信资本</td>
+                            </tr>
+                            <tr>
+                                <th>投资顾问</th>
+                                <td>天津履泰投资有限公司</td>
+                            </tr>
+                            <tr>
+                                <th>产品类型</th>
+                                <td>风险缓冲转管理型</td>
+                            </tr>
+                            <tr>
+                                <th>托管银行</th>
+                                <td>中信建投证券</td>
+                            </tr>
+                            <tr>
+                                <th>证券经纪商</th>
+                                <td>中信建投证券</td>
+                            </tr>
+                            <tr>
+                                <th>拟发行时间</th>
+                                <td>2016/6/1</td>
+                            </tr>
+                            <tr>
+                                <th>存续期限</th>
+                                <td>10年</td>
+                            </tr>
+                            <tr>
+                                <th>初始规模</th>
+                                <td>1亿</td>
+                            </tr>
+                            <tr>
+                                <th>投顾跟投比例</th>
+                                <td>15%</td>
+                            </tr>
+                            <tr>
+                                <th>基金管理人跟投资金是否优先承担亏损</th>
+                                <td>是（投顾指定投资者跟投资金对在本基金初始募集期内认购并持有至第一个开放日的客户提供有限保本：即该客户持有至第一个开放日赎回时，若赎回单位净值小于1，则以投顾指定投资者跟投部分将其补足到1；如果投顾指定投资者跟投部分不足以将基金净值补足到1，则以投顾指定投资者所有跟投部分为限对其作出补偿。）</td>
+                            </tr>
+                            <tr>
+                                <th>认购门槛</th>
+                                <td>100万，步长10万</td>
+                            </tr>
+                            <tr>
+                                <th>封闭期</th>
+                                <td>1年，第一个开放日之后，产品转为管理型</td>
+                            </tr>
+                            <tr>
+                                <th>开放日</th>
+                                <td>封闭期后每季度X日开放，可申购赎回。（遇节假日顺延）</td>
+                            </tr>
+                            <tr>
+                                <th>认购费/参与费</th>
+                                <td>0%</td>
+                            </tr>
+                            <tr>
+                                <th>赎回费</th>
+                                <td>封闭期内不接受赎回申请，封闭期届满后的开放日，赎回费为0</td>
+                            </tr>
+                            <tr>
+                                <th>管理费</th>
+                                <td>基金管理费0.3%、托管费0.1%、投资顾问费1%、券商1%</td>
+                            </tr>
+                            <tr>
+                                <th>管理费计提及结算方式</th>
+                                <td>按照前一日的计划资产净值，按日计提，按季支付</td>
+                            </tr>
+                            <tr>
+                                <th>基金管理人业绩计提标准</th>
+                                <td>封闭期届满后的第一个开放日，计提净值超过1以上的30%，转管理型后提取超额业绩的20%</td>
+                            </tr>
+                            <tr>
+                                <th>基金管理人业绩计提比例及结算方式</th>
+                                <td>逢开放日/产品终止清算日计提</td>
+                            </tr>
+                            <tr>
+                                <th>投资者分红方式</th>
+                                <td>无</td>
+                            </tr>
+                            <tr>
+                                <th>预警线</th>
+                                <td>0.90（产品净值触及预警线或在预警线以下，投顾指定投资者可追加增强资金，使产品净值回到预警线以上，若投顾方选择不追加增强资金或追加增强资金后产品净值仍低于0.95，管理人会将风险资产仓位控制在50%以下）</td>
+                            </tr>
+                            <tr>
+                                <th>投资标的</th>
+                                <td>主要投资于沪、深交易所A股股票、沪港通、基金、债券、新股申购（网下新股申购除外）、银行存款等。</td>
+                            </tr>
+                            <tr>
+                                <th>投资限定</th>
+                                <td>
+                                    <div>
+                                        <ul>
+                                            <li>本基金投资于一家上市公司所发行的股票，不得超过该上市公司总股本的4.99%，同时不得超过该上市公司流通股本的10%；</li>
+                                            <li>购买单一非创业板公司股票不超过基金总资产的40％；购买单一创业板公司股票不超过基金总资产的20％，所有投于创业板的股票不超过基金总资产的30%。</li>
+                                            <li>不得投资于ST、*ST、S类股票；</li>
+                                            <li>不得投资于权证。</li>
+                                            <li>不得购买管理人自身发行的股票以及与管理人存在关联关系的上市公司股票。</li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>投资策略</th>
+                                <td></td>
+                            </tr>
+                        </table>
+                        <div class="footer">备注：</div>
+                    </div>
                 </div>
             </div>
-            <div class="box-body border-radius-none ">
-                <table class="table table-bordered table-striped table-hover table-condensed">
-                    <thead>
-                        <tr style="width:50%"></tr>
-                    </thead>
-                    <tr>
-                        <th style="width:100px">产品名称</th>
-                        <td>元达信资本-履泰2期证券投资基金</td>
-                    </tr>
-                    <tr>
-                        <th>管理人</th>
-                        <td>元达信资本</td>
-                    </tr>
-                    <tr>
-                        <th>投资顾问</th>
-                        <td>天津履泰投资有限公司</td>
-                    </tr>
-                    <tr>
-                        <th>产品类型</th>
-                        <td>风险缓冲转管理型</td>
-                    </tr>
-                    <tr>
-                        <th>托管银行</th>
-                        <td>中信建投证券</td>
-                    </tr>
-                    <tr>
-                        <th>证券经纪商</th>
-                        <td>中信建投证券</td>
-                    </tr>
-                    <tr>
-                        <th>拟发行时间</th>
-                        <td>2016/6/1</td>
-                    </tr>
-                    <tr>
-                        <th>存续期限</th>
-                        <td>10年</td>
-                    </tr>
-                    <tr>
-                        <th>初始规模</th>
-                        <td>1亿</td>
-                    </tr>
-                    <tr>
-                        <th>投顾跟投比例</th>
-                        <td>15%</td>
-                    </tr>
-                    <tr>
-                        <th>基金管理人跟投资金是否优先承担亏损</th>
-                        <td>是（投顾指定投资者跟投资金对在本基金初始募集期内认购并持有至第一个开放日的客户提供有限保本：即该客户持有至第一个开放日赎回时，若赎回单位净值小于1，则以投顾指定投资者跟投部分将其补足到1；如果投顾指定投资者跟投部分不足以将基金净值补足到1，则以投顾指定投资者所有跟投部分为限对其作出补偿。）</td>
-                    </tr>
-                    <tr>
-                        <th>认购门槛</th>
-                        <td>100万，步长10万</td>
-                    </tr>
-                    <tr>
-                        <th>封闭期</th>
-                        <td>1年，第一个开放日之后，产品转为管理型</td>
-                    </tr>
-                    <tr>
-                        <th>开放日</th>
-                        <td>封闭期后每季度X日开放，可申购赎回。（遇节假日顺延）</td>
-                    </tr>
-                    <tr>
-                        <th>认购费/参与费</th>
-                        <td>0%</td>
-                    </tr>
-                    <tr>
-                        <th>赎回费</th>
-                        <td>封闭期内不接受赎回申请，封闭期届满后的开放日，赎回费为0</td>
-                    </tr>
-                    <tr>
-                        <th>管理费</th>
-                        <td>基金管理费0.3%、托管费0.1%、投资顾问费1%、券商1%</td>
-                    </tr>
-                    <tr>
-                        <th>管理费计提及结算方式</th>
-                        <td>按照前一日的计划资产净值，按日计提，按季支付</td>
-                    </tr>
-                    <tr>
-                        <th>基金管理人业绩计提标准</th>
-                        <td>封闭期届满后的第一个开放日，计提净值超过1以上的30%，转管理型后提取超额业绩的20%</td>
-                    </tr>
-                    <tr>
-                        <th>基金管理人业绩计提比例及结算方式</th>
-                        <td>逢开放日/产品终止清算日计提</td>
-                    </tr>
-                    <tr>
-                        <th>投资者分红方式</th>
-                        <td>无</td>
-                    </tr>
-                    <tr>
-                        <th>预警线</th>
-                        <td>0.90（产品净值触及预警线或在预警线以下，投顾指定投资者可追加增强资金，使产品净值回到预警线以上，若投顾方选择不追加增强资金或追加增强资金后产品净值仍低于0.95，管理人会将风险资产仓位控制在50%以下）</td>
-                    </tr>
-                    <tr>
-                        <th>投资标的</th>
-                        <td>主要投资于沪、深交易所A股股票、沪港通、基金、债券、新股申购（网下新股申购除外）、银行存款等。</td>
-                    </tr>
-                    <tr>
-                        <th>投资限定</th>
-                        <td>
-                          <div>
-                              <ul>
-                                  <li>本基金投资于一家上市公司所发行的股票，不得超过该上市公司总股本的4.99%，同时不得超过该上市公司流通股本的10%；</li>
-                                  <li>购买单一非创业板公司股票不超过基金总资产的40％；购买单一创业板公司股票不超过基金总资产的20％，所有投于创业板的股票不超过基金总资产的30%。</li>
-                                  <li>不得投资于ST、*ST、S类股票；</li>
-                                  <li>不得投资于权证。</li>
-                                  <li>不得购买管理人自身发行的股票以及与管理人存在关联关系的上市公司股票。</li>
-                              </ul>
-                          </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>投资策略</th>
-                        <td></td>
-                    </tr>
-                </table>
-                <div class="footer">备注：</div>
-            </div>
-          
-        </div>
-    </section>
-    <section class="col-lg-5 connectedSortable no-padding">
-        <div class="box box-solid box-warning">
-            <div class="box-header">
-                <i class="fa fa-th"></i>
-                <h3 class="box-title">产品净值图</h3>
-                <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
-                        <i class="fa fa-minus"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="box-body border-radius-none">
-                <div class="chart" id="netvalueChartContainer" style="height: 250px;"></div>
-            </div>
-        </div>
+            <div class="tab-pane" id="tab_2">
+                <section class="col-lg-7 connectedSortable pad ">
+                    <div class="box box-solid box-success" >
+                        <div class="box-header" id="netValueDiv">
+                            <i class="fa fa-th"></i>
+                            <h3 class="box-title">产品净值图</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-sm bg-green-gradient" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body border-radius-none">
+                            <div id="netvalueChartContainer" class="chart"></div>
+                        </div>
+                    </div>
 
-        <div class="box box-solid box-warning">
-            <div class="box-header">
-                <i class="fa fa-th"></i>
-                <h3 class="box-title">资产配置（2016-12-1）</h3>
-                <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
-                        <i class="fa fa-minus"></i>
-                    </button>
+                    <div class="box box-solid box-success">
+                        <div class="box-header">
+                            <i class="fa fa-th"></i>
+                            <h3 class="box-title">最大回撤分布</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-sm bg-green-gradient" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body border-radius-none">
+                            <div id="pigbackRateChartContainer" class="chart"></div>
+                        </div>
+                    </div>
+
+                </section>
+                <section class="col-lg-5 connectedSortable pad">
+                    <div class="box box-solid box-warning">
+                        <div class="box-header">
+                            <i class="fa fa-th"></i>
+                            <h3 class="box-title">大朴进取1期（2013-1-1）</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body border-radius-none">
+                            <table class="table table-bordered table-striped table-hover table-condensed">
+                                <tr>
+                                    <th>收益率</th>
+                                    <td>5.4%</td>
+                                </tr>
+                                <tr>
+                                    <th>年化收益率</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>相对收益率</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>Beta</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>波动率</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>最大回撤</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>夏普率</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>风险收益比</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>与大盘指数相关性</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>通策略收益率排名</th>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="box-body border-radius-none">
+                            <div class="chart" id="earningYieldChartContainer"></div>
+                            <div class="chart" id="pnlDistChartContainer"></div>
+                        </div>
+                    </div>
+
+                </section>
+            </div>
+            <div class="tab-pane" id="tab_3">
+                <div class="box box-solid box-warning">
+                    <div class="box-header">
+                        <i class="fa fa-th"></i>
+                        <h3 class="box-title">资产配置（2016-12-1）</h3>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="box-body border-radius-none">
+                        <div class="chart" id="assetDistChartContainer" style="height: 250px;"></div>
+                    </div>
+                </div>
+
+                <div class="box box-solid box-info">
+                    <div class="box-header">
+                        <i class="fa fa-th"></i>
+                        <h3 class="box-title">重仓债券（2016-12-1）</h3>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-sm bg-light-blue-gradient" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="box-body border-radius-none">
+                        <table class="table table-bordered table-striped table-hover table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>证券名称</th>
+                                    <th>占净值比</th>
+                                    <th>近月涨跌</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>白云转债</td>
+                                    <td>
+                                        -
+                                    </td>
+                                    <td>-4.68%</td>
+                                </tr>
+                                <tr>
+                                    <td>白云转债</td>
+                                    <td>
+                                        -
+                                    </td>
+                                    <td>-4.68%</td>
+                                </tr>
+                                <tr>
+                                    <td>白云转债</td>
+                                    <td>
+                                        -
+                                    </td>
+                                    <td>-4.68%</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>合计</th>
+                                    <th>10%</th>
+                                    <th></th>
+                                </tr>
+
+                            </tfoot>
+                        </table>
+                    </div>
                 </div>
             </div>
-            <div class="box-body border-radius-none">
-                <div class="chart" id="assetDistChartContainer" style="height: 250px;"></div>
+            <div class="tab-pane" id="tab_4">
+                <div class="box box-solid box-warning">
+                    <div class="box-header">
+                        <i class="fa fa-th"></i>
+                        <h3 class="box-title">资产配置（2016-12-1）</h3>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="box-body border-radius-none">
+                        <div class="chart" id="assetDistChartContainer" style="height: 250px;"></div>
+                    </div>
+                </div>
+
+                <div class="box box-solid box-info">
+                    <div class="box-header">
+                        <i class="fa fa-th"></i>
+                        <h3 class="box-title">重仓债券（2016-12-1）</h3>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-sm bg-light-blue-gradient" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="box-body border-radius-none">
+                        <table id="productListTable" class="table table-bordered table-striped table-hover table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>证券名称</th>
+                                    <th>占净值比</th>
+                                    <th>近月涨跌</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>白云转债</td>
+                                    <td>
+                                        -
+                                    </td>
+                                    <td>-4.68%</td>
+                                </tr>
+                                <tr>
+                                    <td>白云转债</td>
+                                    <td>
+                                        -
+                                    </td>
+                                    <td>-4.68%</td>
+                                </tr>
+                                <tr>
+                                    <td>白云转债</td>
+                                    <td>
+                                        -
+                                    </td>
+                                    <td>-4.68%</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>合计</th>
+                                    <th>10%</th>
+                                    <th></th>
+                                </tr>
+
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+
 </div>
 
 @section Scripts {
@@ -184,4 +387,5 @@
         $.widget.bridge('uibutton', $.ui.button);
     </script>
     @Scripts.Render("~/Scripts/Product/productChart.js")
+    @Scripts.Render("~/Scripts/Product/productBtn.js")
 }
