@@ -1,4 +1,4 @@
-﻿using Galaxy.App_Start;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +18,7 @@ namespace Galaxy
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            GlobalConfiguration.Configure(WebApiConfig.Register);
+        
         }
     }
 }

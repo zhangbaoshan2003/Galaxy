@@ -1,8 +1,45 @@
 ﻿var Global_NetValue_Chart;
 
+function netvalueChartBuilder(data, chart) {
+    this.data = data;
+    this.chart = chart;
+    this.dataPoints = [];
+    this.chartName = "";
+
+    this.processData = function () {
+        this.dataPoints = [];
+
+        if (data.length == 0) {
+            alert("No data found!");
+            return;
+        }
+        this.chartName = data[0].Name;
+
+        $.each(data, function (idx, value) {
+            this.dataPoints.push()
+        });
+    }
+
+    this.refresh = function () {
+        var series = this.chart.series;
+        while (series.length > 0) {
+            series[0].remove(false);
+        }
+
+        this.chart.addSeries({
+            name: this.chartName,
+            data: this.dataPoints,
+            tooltip: {
+                valueDecimals: 2
+            }
+        });
+        this.chart.redraw();
+    }
+};
+
 $(function () {
-    var realVal = $('#tab_2').width();
-    //alert(realVal)
+
+    var realVal = $('#netValueDiv').width();
 
     Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
         return {
@@ -35,40 +72,66 @@ $(function () {
             downloadSVG: '下载SVG格式'
         }
     });
+
    
-    $.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=aapl-c.json&callback=?', function (data) {
-        // Create the chart
-        Global_NetValue_Chart = Highcharts.stockChart('netvalueChartContainer', {
-            credits: {
-                enabled: false
-            },
-            chart: {
-                // Edit chart spacing
-                spacingBottom: 5,
-                spacingTop: 5,
-                spacingLeft: 5,
-                spacingRight: 5,
-                backgroundColor :null,
+    Global_NetValue_Chart = new Highcharts.stockChart({
+        chart: {
+            // Edit chart spacing
+            spacingBottom: 5,
+            spacingTop: 5,
+            spacingLeft: 5,
+            spacingRight: 5,
+            //backgroundColor: null,
+            renderTo: 'netvalueChartContainer',
 
-                // Explicitly tell the width and height of a chart
-                width: realVal+100,
-                //width:400,
-                height: null
-            },
+            // Explicitly tell the width and height of a chart
+            width: null,
+            //width:400,
+            height: null
+        },
 
-            rangeSelector: {
-                selected: 1
-            },
+        rangeSelector: {
+            selected: 1
+        },
 
-            series: [{
-                name: '履泰2期',
-                data: data,
-                tooltip: {
-                    valueDecimals: 2
-                }
-            }]
-        });
+        credits: {
+            enabled: false
+        }
     });
+
+    //$.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=aapl-c.json&callback=?', function (data) {
+    //    // Create the chart
+    //    Global_NetValue_Chart = Highcharts.stockChart('netvalueChartContainer', {
+    //        credits: {
+    //            enabled: false
+    //        },
+    //        chart: {
+    //            // Edit chart spacing
+    //            spacingBottom: 5,
+    //            spacingTop: 5,
+    //            spacingLeft: 5,
+    //            spacingRight: 5,
+    //            backgroundColor :null,
+
+    //            // Explicitly tell the width and height of a chart
+    //            width: realVal+100,
+    //            //width:400,
+    //            height: null
+    //        },
+
+    //        rangeSelector: {
+    //            selected: 1
+    //        },
+
+    //        series: [{
+    //            name: '履泰2期',
+    //            data: data,
+    //            tooltip: {
+    //                valueDecimals: 2
+    //            }
+    //        }]
+    //    });
+    //});
 
      new Highcharts.chart('assetDistChartContainer', {
         credits: {
