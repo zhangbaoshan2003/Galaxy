@@ -1,4 +1,5 @@
 ﻿$(function () {
+    //initialize data table 
     $('#productListTable').DataTable({
         "paging": true,
         "lengthChange": false,

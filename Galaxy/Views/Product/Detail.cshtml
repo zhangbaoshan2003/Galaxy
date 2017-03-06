@@ -147,6 +147,9 @@
                             <i class="fa fa-th"></i>
                             <h3 class="box-title">产品净值图</h3>
                             <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-sm bg-green-gradient" id="netValueChartCtrlBtn">
+                                    <i class="fa fa-eye"></i>
+                                </button>
                                 <button type="button" class="btn btn-sm bg-green-gradient" data-widget="collapse">
                                     <i class="fa fa-minus"></i>
                                 </button>
@@ -155,7 +158,6 @@
                         <div class="box-body border-radius-none">
                             <div id="netvalueChartContainer" class="chart"></div>
                         </div>
-                        <div class="btn" id="netValueChartCtrlBtn"> ajax </div>
                     </div>
 
                     <div class="box box-solid box-success">
@@ -163,6 +165,9 @@
                             <i class="fa fa-th"></i>
                             <h3 class="box-title">最大回撤分布</h3>
                             <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-sm bg-green-gradient" id="piggybackBtn">
+                                    <i class="fa fa-eye"></i>
+                                </button>
                                 <button type="button" class="btn btn-sm bg-green-gradient" data-widget="collapse">
                                     <i class="fa fa-minus"></i>
                                 </button>
@@ -172,7 +177,6 @@
                             <div id="pigbackRateChartContainer" class="chart"></div>
                         </div>
                     </div>
-
                 </section>
                 <section class="col-lg-5 connectedSortable pad">
                     <div class="box box-solid box-warning">
@@ -229,13 +233,50 @@
                                 </tr>
                             </table>
                         </div>
-                        <div class="box-body border-radius-none">
-                            <div class="chart" id="earningYieldChartContainer"></div>
-                            <div class="chart" id="pnlDistChartContainer"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="box box-warning direct-chat direct-chat-warning">
+                                <div class="box-header ">
+                                    <h3 class="box-title">周收益分布图</h3>
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-sm bg-yellow-gradient" id="returnDisBtn">
+                                            <i class="fa fa-eye"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="box-body">
+                                    <div class="chart" id="returnDistChartContainer"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 no-padding">
+                            <div class="box box-danger box-warning">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">正负收益周数</h3>
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-sm bg-yellow-gradient" id="pnlDistBtn">
+                                            <i class="fa fa-eye"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="box-body no-padding">
+                                    <div class="chart" id="pnlDistChart"></div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
 
                 </section>
+                
             </div>
             <div class="tab-pane" id="tab_3">
                 <div class="box box-solid box-warning">

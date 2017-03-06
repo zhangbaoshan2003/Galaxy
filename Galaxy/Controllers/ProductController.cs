@@ -1,4 +1,7 @@
-﻿using Galaxy.Models;
+﻿using Galaxy.BAL;
+using Galaxy.BAL.Interface;
+using Galaxy.BAL.ViewModel;
+using Galaxy.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +12,8 @@ namespace Galaxy.Controllers
 {
     public class ProductController : Controller
     {
-        Random R = new Random();
-
+        private IProdcutInfo prodcutInfoFetcher = new DummyProdcutInfoFetcher();
+        
         //
         // GET: /Product/
         public ActionResult Index()
@@ -25,18 +28,50 @@ namespace Galaxy.Controllers
 
         public ActionResult GetNetValues(int productId)
         {
-            List<Models.TimeSeriesDataViewModel> models = new List<Models.TimeSeriesDataViewModel>();
-            for (int i = 0; i < 100; i++)
+            try
             {
-                TimeSeriesDataViewModel model = new TimeSeriesDataViewModel();
-                model.Name = "净值";
-                model.ReportedDataTime = DateTime.Today.AddDays(i);
-                model.ReportedValue = R.NextDouble();
-                models.Add(model);
+                MultipleTimeSeriesViewModel viewModel = prodcutInfoFetcher.FetchProductNetValueDistViewModel(productId);
+                var jsonResult = Json(viewModel.Dictionary, JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = Int32.MaxValue;
+                return jsonResult;
             }
-            var jsonResult= Json(models,JsonRequestBehavior.AllowGet);
-            jsonResult.MaxJsonLength = Int32.MaxValue;
-            return jsonResult;
+            catch (Exception ex)
+            {
+                LogUtility.Fatal("Error happend when fetching product net value distribution",ex);
+                return Json(null);
+            }
+        }
+
+        public ActionResult GetPiggyBackDist(int productId)
+        {
+            try
+            {
+                List<TimeSeriesDataViewModel> viewModel = prodcutInfoFetcher.FetchPiggyBackDistViewModel(productId);
+                var jsonResult = Json(viewModel, JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = Int32.MaxValue;
+                return jsonResult;
+            }
+            catch (Exception ex)
+            {
+                LogUtility.Fatal("Error happend when fetching product piggyback distribution", ex);
+                return Json(null);
+            }
+        }
+
+        public ActionResult GetReturnDist(int productId)
+        {
+            try
+            {
+                List<CategoryDataViewModel> viewModel = prodcutInfoFetcher.FetchReturnDistViewModel(productId);
+                var jsonResult = Json(viewModel, JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = Int32.MaxValue;
+                return jsonResult;
+            }
+            catch (Exception ex)
+            {
+                LogUtility.Fatal("Error happend when fetching product return distribution", ex);
+                return Json(null);
+            }
         }
 	}
 }

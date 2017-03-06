@@ -182,7 +182,6 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\TimeSeriesDataViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -451,6 +450,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Galaxy.BAL\Galaxy.BAL.csproj">
+      <Project>{1aae6993-c3be-472e-b4a3-709e22f4bc81}</Project>
+      <Name>Galaxy.BAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Galaxy.DAL\Galaxy.DAL.csproj">
+      <Project>{f297ea8a-9495-4bb9-8d6a-e05098f741a6}</Project>
+      <Name>Galaxy.DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

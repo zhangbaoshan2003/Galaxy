@@ -1,45 +1,236 @@
-﻿var Global_NetValue_Chart;
+﻿var GLOBAL_NETVALUE_CHART;
+var GLOBAL_PIGGYBACK_DIST_CHART;
+var GLOBAL_ASSET_DIST_CHART;
+var GLOBAL_RETURN_DIST_CHART;
 
-function netvalueChartBuilder(data, chart) {
+GLOBAL_NETVALUE_CHART = new Highcharts.stockChart({
+    chart: {
+        // Edit chart spacing
+        spacingBottom: 5,
+        spacingTop: 5,
+        spacingLeft: 5,
+        spacingRight: 5,
+        backgroundColor: null,
+        renderTo: 'netvalueChartContainer',
+
+        // Explicitly tell the width and height of a chart
+        width: null,
+        //width:400,
+        height: null
+    },
+
+    rangeSelector: {
+        selected: 1
+    },
+
+    credits: {
+        enabled: false
+    }
+});
+
+GLOBAL_PIGGYBACK_DIST_CHART = new Highcharts.chart({
+    chart: {
+        // Edit chart spacing
+        spacingBottom: 5,
+        spacingTop: 5,
+        spacingLeft: 5,
+        spacingRight: 5,
+        backgroundColor: null,
+        renderTo: 'pigbackRateChartContainer',
+        type: 'area',
+        width: null,
+        height: null
+    },
+    title: {
+        text:null
+    },
+
+    xAxis: {
+        type: 'datetime'
+    },
+    yAxis: {
+        title: {
+            text: null
+        }
+    },
+    plotOptions: {
+        area: {
+            fillOpacity: 0.5
+        }
+    },
+    credits: {
+        enabled: false
+    }
+});
+
+GLOBAL_RETURN_DIST_CHART = new Highcharts.chart({
+    chart: {
+        // Edit chart spacing
+        spacingBottom: 5,
+        spacingTop: 5,
+        spacingLeft: 5,
+        spacingRight: 5,
+        backgroundColor: null,
+        renderTo: 'returnDistChartContainer',
+        type: 'column',
+        width: null,
+        height: null
+    },
+    title: {
+        text: null
+    },
+
+    xAxis: {
+        type: 'category',
+        labels: {
+            rotation: -45,
+            style: {
+                fontSize: '13px',
+                fontFamily: 'Verdana, sans-serif'
+            }
+        }
+    },
+    yAxis: {
+        min: 0,
+        title: null
+    },
+    credits: {
+        enabled: false
+    }
+});
+
+function TimeSeriesChartBuilder(data, chart,isMutipleSeiers) {
     this.data = data;
     this.chart = chart;
-    this.dataPoints = [];
-    this.chartName = "";
+    this.chartName = "N/A";
 
-    this.processData = function () {
-        this.dataPoints = [];
-
-        if (data.length == 0) {
+    this.buildChart = function () {
+        var containerWidth = ($(document).width() - 350)/12*7;
+        this.chart.setSize(containerWidth, null, false);
+       
+        if (this.data.length == 0) {
             alert("No data found!");
             return;
         }
-        this.chartName = data[0].Name;
 
-        $.each(data, function (idx, value) {
-            this.dataPoints.push()
-        });
-    }
-
-    this.refresh = function () {
         var series = this.chart.series;
         while (series.length > 0) {
             series[0].remove(false);
         }
 
-        this.chart.addSeries({
-            name: this.chartName,
-            data: this.dataPoints,
-            tooltip: {
-                valueDecimals: 2
-            }
-        });
+        var chartMain = this.chart;
+        if (isMutipleSeiers == true) {
+            $.each(data, function(idx, value) {
+                var dataPoints = [];
+                var chartName = value[0].Name;
+                $.each(value, function(index, dataValue) {
+                    var year = dataValue.Year;
+                    var month = dataValue.Month;
+                    var day = dataValue.Day;
+                    var dateTimObj = Date.UTC(year, month, day);
+                    var time_value_pair = [];
+                    time_value_pair.push(dateTimObj);
+                    time_value_pair.push(dataValue.ReportedValue);
+                    dataPoints.push(time_value_pair);
+                });
+                chartMain.addSeries({
+                    name: chartName,
+                    data: dataPoints,
+                    tooltip: {
+                        valueDecimals: 2
+                    }
+                });
+            });
+        } else {
+            var dataPoints = [];
+            var chartName = data[0].Name;
+
+            $.each(data, function (index, dataValue) {
+                var year = dataValue.Year;
+                var month = dataValue.Month;
+                var day = dataValue.Day;
+                var dateTimObj = Date.UTC(year, month, day);
+                var time_value_pair = [];
+                time_value_pair.push(dateTimObj);
+                time_value_pair.push(dataValue.ReportedValue);
+                dataPoints.push(time_value_pair);
+            });
+            chartMain.addSeries({
+                name: chartName,
+                data: dataPoints,
+                tooltip: {
+                    valueDecimals: 2
+                }
+            });
+        }
+
+        this.chart.redraw();
+    }
+};
+
+function CategoryChartBuilder(data, chart, isMutipleSeiers) {
+    this.data = data;
+    this.chart = chart;
+    this.chartName = "N/A";
+
+    this.buildChart = function () {
+        var containerWidth = ($(document).width() - 350) / 12 * 2;
+        this.chart.setSize(containerWidth, null, false);
+
+        if (this.data.length == 0) {
+            alert("No data found!");
+            return;
+        }
+
+        var series = this.chart.series;
+        while (series.length > 0) {
+            series[0].remove(false);
+        }
+
+        var chartMain = this.chart;
+        if (isMutipleSeiers == true) {
+            $.each(data, function (idx, value) {
+                var dataPoints = [];
+                var chartName = value[0].Name;
+                $.each(value, function (index, dataValue) {
+                    var year = dataValue.Year;
+                    var month = dataValue.Month;
+                    var day = dataValue.Day;
+                    var dateTimObj = Date.UTC(year, month, day);
+                    var time_value_pair = [];
+                    time_value_pair.push(dateTimObj);
+                    time_value_pair.push(dataValue.ReportedValue);
+                    dataPoints.push(time_value_pair);
+                });
+                chartMain.addSeries({
+                    name: chartName,
+                    data: dataPoints,
+                    tooltip: {
+                        valueDecimals: 2
+                    }
+                });
+            });
+        } else {
+            var dataPoints = [];
+            var chartName = data[0].Name;
+            $.each(data, function (index, dataValue) {
+                var time_value_pair = [];
+                time_value_pair.push(dataValue.Label);
+                time_value_pair.push(dataValue.Value);
+                dataPoints.push(time_value_pair);
+            });
+            chartMain.addSeries({
+                name: chartName,
+                data: dataPoints
+            });
+        }
+
         this.chart.redraw();
     }
 };
 
 $(function () {
-
-    var realVal = $('#netValueDiv').width();
+    $.ajaxSetup({ cache: false });
 
     Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
         return {
@@ -72,169 +263,77 @@ $(function () {
             downloadSVG: '下载SVG格式'
         }
     });
-
    
-    Global_NetValue_Chart = new Highcharts.stockChart({
-        chart: {
-            // Edit chart spacing
-            spacingBottom: 5,
-            spacingTop: 5,
-            spacingLeft: 5,
-            spacingRight: 5,
-            //backgroundColor: null,
-            renderTo: 'netvalueChartContainer',
 
-            // Explicitly tell the width and height of a chart
-            width: null,
-            //width:400,
-            height: null
-        },
-
-        rangeSelector: {
-            selected: 1
-        },
-
-        credits: {
-            enabled: false
-        }
+    $.getJSON('/Product/GetNetValues/?productId=100', function (data) {
+        var chartBuilder = new TimeSeriesChartBuilder(data,GLOBAL_NETVALUE_CHART,true);
+        chartBuilder.buildChart();
     });
 
-    //$.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=aapl-c.json&callback=?', function (data) {
-    //    // Create the chart
-    //    Global_NetValue_Chart = Highcharts.stockChart('netvalueChartContainer', {
-    //        credits: {
-    //            enabled: false
-    //        },
-    //        chart: {
-    //            // Edit chart spacing
-    //            spacingBottom: 5,
-    //            spacingTop: 5,
-    //            spacingLeft: 5,
-    //            spacingRight: 5,
-    //            backgroundColor :null,
+    $.getJSON('/Product/GetPiggyBackDist/?productId=100', function (data) {
+        var chartBuilder = new TimeSeriesChartBuilder(data, GLOBAL_PIGGYBACK_DIST_CHART,false);
+        chartBuilder.buildChart();
+    });
 
-    //            // Explicitly tell the width and height of a chart
-    //            width: realVal+100,
-    //            //width:400,
-    //            height: null
-    //        },
+    $.getJSON('/Product/GetReturnDist/?productId=100', function (data) {
+        var chartBuilder = new CategoryChartBuilder(data, GLOBAL_RETURN_DIST_CHART, false);
+        chartBuilder.buildChart();
+    });
 
-    //        rangeSelector: {
-    //            selected: 1
-    //        },
+   //  new Highcharts.chart('assetDistChartContainer', {
+   //     credits: {
+   //         enabled: false
+   //     },
+   //     chart: {
+   //         spacingBottom: 5,
+   //         spacingTop: 5,
+   //         spacingLeft: 5,
+   //         spacingRight: 25,
+   //         backgroundColor :null,
 
-    //        series: [{
-    //            name: '履泰2期',
-    //            data: data,
-    //            tooltip: {
-    //                valueDecimals: 2
-    //            }
-    //        }]
-    //    });
-    //});
+   //         // Explicitly tell the width and height of a chart
+   //         width: null,
+   //         height: null,
 
-     new Highcharts.chart('assetDistChartContainer', {
-        credits: {
-            enabled: false
-        },
-        chart: {
-            spacingBottom: 5,
-            spacingTop: 5,
-            spacingLeft: 5,
-            spacingRight: 25,
-            backgroundColor :null,
+   //         plotBackgroundColor: null,
+   //         plotBorderWidth: null,
+   //         plotShadow: false,
+   //         type: 'pie'
+   //     },
 
-            // Explicitly tell the width and height of a chart
-            width: null,
-            height: null,
-
-            plotBackgroundColor: null,
-            plotBorderWidth: null,
-            plotShadow: false,
-            type: 'pie'
-        },
-
-        title: {
-            text: null
-        },
+   //     title: {
+   //         text: null
+   //     },
       
-        plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                    style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                    },
-                    connectorColor: 'silver'
-                }
-            }
-        },
-        series: [{
-            name: '金额',
-            data: [
-                { name: '股票', y: 56.33 },
-                {
-                    name: '债券',
-                    y: 24.03,
-                    sliced: true,
-                    selected: true
-                },
-                { name: '现金', y: 10.38 },
-                { name: '其他资产', y: 4.77 }
-            ]
-        }]
-   });
-
-    Highcharts.chart('pigbackRateChartContainer', {
-        chart: {
-            spacingBottom: 5,
-            spacingTop: 5,
-            spacingLeft: 5,
-            spacingRight: 25,
-            backgroundColor: null,
-            width: realVal + 100,
-            type: 'area'
-        },
-
-        title: {
-            text: null
-        },
-       
-        xAxis: {
-            categories: ['Apples', 'Pears', 'Oranges', 'Bananas', 'Grapes', 'Plums', 'Strawberries', 'Raspberries']
-        },
-        yAxis: {
-            title: {
-                text: 'Y-Axis'
-            },
-            labels: {
-                formatter: function () {
-                    return this.value;
-                }
-            }
-        },
-        tooltip: {
-            formatter: function () {
-                return '<b>' + this.series.name + '</b><br/>' +
-                    this.x + ': ' + this.y;
-            }
-        },
-        plotOptions: {
-            area: {
-                fillOpacity: 0.5
-            }
-        },
-        credits: {
-            enabled: false
-        },
-        series: [{
-            name: 'John',
-            data: [0, 1, 4, 4, 5, 2, 3, 7]
-        }]
-    });
+   //     plotOptions: {
+   //         pie: {
+   //             allowPointSelect: true,
+   //             cursor: 'pointer',
+   //             dataLabels: {
+   //                 enabled: true,
+   //                 format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+   //                 style: {
+   //                     color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+   //                 },
+   //                 connectorColor: 'silver'
+   //             }
+   //         }
+   //     },
+   //     series: [{
+   //         name: '金额',
+   //         data: [
+   //             { name: '股票', y: 56.33 },
+   //             {
+   //                 name: '债券',
+   //                 y: 24.03,
+   //                 sliced: true,
+   //                 selected: true
+   //             },
+   //             { name: '现金', y: 10.38 },
+   //             { name: '其他资产', y: 4.77 }
+   //         ]
+   //     }]
+   //});
    
     //Global_NetValue_Chart.setSize(realVal - 100, realVal - 200, false)
 });

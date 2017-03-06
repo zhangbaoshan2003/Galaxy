@@ -406,9 +406,9 @@ namespace Galaxy
             bundles.Add(new StyleBundle("~/AdminLTE/plugins/pace/css").Include(
                                         "~/AdminLTE/plugins/pace/css/pace.min.css"));
 
-            // plugins | slimscroll
-            bundles.Add(new ScriptBundle("~/AdminLTE/plugins/slimscroll/js").Include(
-                                         "~/AdminLTE/plugins/slimscroll/js/jquery.slimscroll.min.js"));
+            //// plugins | slimscroll
+            //bundles.Add(new ScriptBundle("~/AdminLTE/plugins/slimscroll/js").Include(
+            //                             "~/AdminLTE/plugins/slimscroll/js/jquery.slimscroll.min.js"));
 
             // plugins | sparkline
             bundles.Add(new ScriptBundle("~/AdminLTE/plugins/sparkline/js").Include(

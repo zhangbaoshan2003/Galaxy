@@ -1,32 +1,18 @@
 ﻿$('#netValueChartCtrlBtn').click(function () {
-    $.ajax({
-        type: "GET",
-        url: "/Product/GetNetValues/?productId=100",
-        dataType: "JSON",
-        async: false,
-        sucess: function (data) {
-            alert('OK');
-            //alert(textStatus);
-            //var chartBuilder = new netvalueChartBuilder(data, Global_NetValue_Chart);
-            //chartBuilder.processData();
-        },
-        cache: true,
-        error: function (jqXHR, textStatus, errorThrown) {
-            alert('Error!' + textStatus);
-        }
-    });
     $.getJSON('/Product/GetNetValues/?productId=100', function (data) {
-        alert('OK');
-        //var chartBuilder = new netvalueChartBuilder(data, Global_NetValue_Chart);
-        //chartBuilder.processData();
+        var chartBuilder = new TimeSeriesChartBuilder(data, GLOBAL_NETVALUE_CHART,true);
+        chartBuilder.buildChart();
+    });
+});
+
+$('#piggybackBtn').click(function (){
+    $.getJSON('/Product/GetPiggyBackDist/?productId=100', function (data) {
+        var chartBuilder = new TimeSeriesChartBuilder(data, GLOBAL_PIGGYBACK_DIST_CHART,false);
+        chartBuilder.buildChart();
     });
 });
 
 $(window).resize(function () {
     //var realVal = $('#netValueDiv').width();
     //Global_NetValue_Chart.setSize(realVal + 100, realVal + 200, false)
-});
-
-jQuery(document).ready(function ($) {
-   
 });
