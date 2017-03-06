@@ -10,7 +10,7 @@ namespace Galaxy.BAL
 {
     public class DummyProdcutInfoFetcher : IProdcutInfo
     {
-        Random random = new Random(100);
+        private static Random random = new Random();
         public ViewModel.MultipleTimeSeriesViewModel FetchProductNetValueDistViewModel(int productId)
         {
             MultipleTimeSeriesViewModel multipleTime = new MultipleTimeSeriesViewModel();
@@ -72,12 +72,20 @@ namespace Galaxy.BAL
         public List<CategoryDataViewModel> FetchReturnDistViewModel(int productId)
         {
             List<CategoryDataViewModel> models = new List<CategoryDataViewModel>();
-            for (double i= -0.1; i < 0.1; i+=0.02 )
+            int step = 0;
+            for (double i= -0.1; i <= 0.1; i+=0.02 )
             {
+                step++;
+                
                 CategoryDataViewModel model = new CategoryDataViewModel();
                 model.Name = "收益分布";
+                
+                
                 model.Label= i.ToString();
-                model.Value = random.Next();
+                if (step == 6) {
+                    model.Label = "0";
+                }
+                model.Value = random.Next(100);
                 models.Add(model);
             }
 

@@ -60,13 +60,19 @@ GLOBAL_PIGGYBACK_DIST_CHART = new Highcharts.chart({
     },
     credits: {
         enabled: false
+    },
+    legend: {
+        align: 'right',
+        verticalAlign: 'top',
+        floating: true,
+        enabled: false
     }
 });
 
 GLOBAL_RETURN_DIST_CHART = new Highcharts.chart({
     chart: {
         // Edit chart spacing
-        spacingBottom: 5,
+        spacingBottom: 0,
         spacingTop: 5,
         spacingLeft: 5,
         spacingRight: 5,
@@ -85,17 +91,26 @@ GLOBAL_RETURN_DIST_CHART = new Highcharts.chart({
         labels: {
             rotation: -45,
             style: {
-                fontSize: '13px',
+                fontSize: '10px',
                 fontFamily: 'Verdana, sans-serif'
             }
         }
     },
     yAxis: {
         min: 0,
-        title: null
+        title: null,
+        labels: {
+            overflow: 'justify'
+        }
     },
     credits: {
         enabled: false
+    },
+    legend: {
+        align: 'right',
+        verticalAlign: 'top',
+        floating: true,
+        enabled:false
     }
 });
 
@@ -174,8 +189,8 @@ function CategoryChartBuilder(data, chart, isMutipleSeiers) {
     this.chartName = "N/A";
 
     this.buildChart = function () {
-        var containerWidth = ($(document).width() - 350) / 12 * 2;
-        this.chart.setSize(containerWidth, null, false);
+        var containerWidth = ($(document).width() - 350) / 12 * 5;
+        this.chart.setSize(containerWidth, 150, false);
 
         if (this.data.length == 0) {
             alert("No data found!");
@@ -220,7 +235,7 @@ function CategoryChartBuilder(data, chart, isMutipleSeiers) {
                 dataPoints.push(time_value_pair);
             });
             chartMain.addSeries({
-                name: chartName,
+                name: "",
                 data: dataPoints
             });
         }

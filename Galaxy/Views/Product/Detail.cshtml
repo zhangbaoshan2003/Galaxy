@@ -235,43 +235,39 @@
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="box box-warning direct-chat direct-chat-warning">
-                                <div class="box-header ">
-                                    <h3 class="box-title">周收益分布图</h3>
-                                    <div class="box-tools pull-right">
-                                        <button type="button" class="btn btn-sm bg-yellow-gradient" id="returnDisBtn">
-                                            <i class="fa fa-eye"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
-                                            <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="box-body">
-                                    <div class="chart" id="returnDistChartContainer"></div>
-                                </div>
+                    <div class="box box-solid box-warning" >
+                        <div class="box-header">
+                            <i class="fa fa-th"></i>
+                            <h3 class="box-title">周收益分布图</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-sm bg-yellow-gradient" id="returnDisBtn">
+                                    <i class="fa fa-eye"></i>
+                                </button>
+                                <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
                             </div>
                         </div>
-                        <div class="col-md-6 no-padding">
-                            <div class="box box-danger box-warning">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title">正负收益周数</h3>
-                                    <div class="box-tools pull-right">
-                                        <button type="button" class="btn btn-sm bg-yellow-gradient" id="pnlDistBtn">
-                                            <i class="fa fa-eye"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
-                                            <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="box-body no-padding">
-                                    <div class="chart" id="pnlDistChart"></div>
-                                </div>
+                        <div class="box-body border-radius-none">
+                            <div class="chart" id="returnDistChartContainer" style="height:150px" ></div>
+                        </div>
+                    </div>
 
+                    <div class="box box-solid box-warning">
+                        <div class="box-header">
+                            <i class="fa fa-th"></i>
+                            <h3 class="box-title">正负收益周数</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-sm bg-yellow-gradient" id="returnDisBtn">
+                                    <i class="fa fa-eye"></i>
+                                </button>
+                                <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
                             </div>
+                        </div>
+                        <div class="box-body border-radius-none">
+                            <div class="chart" id="pnlChartContainer"></div>
                         </div>
                     </div>
 
