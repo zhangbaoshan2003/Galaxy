@@ -18,12 +18,14 @@ namespace Galaxy.Controllers
         // GET: /Product/
         public ActionResult Index()
         {
-            return View();
+            List<ProductBriefViewModel> models = prodcutInfoFetcher.FetchProducts();
+            return View(models);
         }
 
-        public ActionResult Detail() 
+        public ActionResult Detail(int id) 
         {
-            return View();
+            ProductBriefViewModel product = prodcutInfoFetcher.FetchProduct(id);
+            return View(product);
         }
 
         public ActionResult GetNetValues(int productId)
@@ -63,6 +65,22 @@ namespace Galaxy.Controllers
             try
             {
                 List<CategoryDataViewModel> viewModel = prodcutInfoFetcher.FetchReturnDistViewModel(productId);
+                var jsonResult = Json(viewModel, JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = Int32.MaxValue;
+                return jsonResult;
+            }
+            catch (Exception ex)
+            {
+                LogUtility.Fatal("Error happend when fetching product return distribution", ex);
+                return Json(null);
+            }
+        }
+
+        public ActionResult GetPnlDist(int productId)
+        {
+            try
+            {
+                List<CategoryDataViewModel> viewModel = prodcutInfoFetcher.FetchPnLDistViewModel(productId);
                 var jsonResult = Json(viewModel, JsonRequestBehavior.AllowGet);
                 jsonResult.MaxJsonLength = Int32.MaxValue;
                 return jsonResult;

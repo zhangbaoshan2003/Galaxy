@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<Galaxy.BAL.ViewModel.ProductBriefViewModel>
+@{
     ViewBag.Title = "产品信息";
     ViewBag.SubTitle = "产品列表";
 }
@@ -27,39 +28,17 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Trident</td>
-                            <td>
-                                Internet
-                                Explorer 4.0
-                            </td>
-                            <td>Win 95+</td>
-                            <td> 4</td>
-                            <td>X</td>
-                            <td>@Html.ActionLink("详细信息","Detail")</td>
-                        </tr>
-                        <tr>
-                            <td>Trident</td>
-                            <td>
-                                Internet
-                                Explorer 5.0
-                            </td>
-                            <td>Win 95+</td>
-                            <td>5</td>
-                            <td>C</td>
-                            <td>@Html.ActionLink("详细信息", "Detail")</td>
-                        </tr>
-                        <tr>
-                            <td>Trident</td>
-                            <td>
-                                Internet
-                                Explorer 5.5
-                            </td>
-                            <td>Win 95+</td>
-                            <td>5.5</td>
-                            <td>A</td>
-                            <td>@Html.ActionLink("详细信息", "Detail")</td>
-                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                                <td> @Html.DisplayFor(modelItem => item.IssueDate)</td>
+                                <td>@Html.DisplayFor(modelItem => item.ConsusityBank)</td>
+                                <td> @Html.DisplayFor(modelItem => item.ConsusityBank)</td>
+                                <td> @Html.DisplayFor(modelItem => item.Administrator)</td>
+                                <td>@Html.ActionLink("详细信息", "Detail", new { id = item.ProductID })</td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>

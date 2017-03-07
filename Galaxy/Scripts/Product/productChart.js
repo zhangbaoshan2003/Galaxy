@@ -2,6 +2,7 @@
 var GLOBAL_PIGGYBACK_DIST_CHART;
 var GLOBAL_ASSET_DIST_CHART;
 var GLOBAL_RETURN_DIST_CHART;
+var GLOBAL_PNL_DIST_CHART
 
 GLOBAL_NETVALUE_CHART = new Highcharts.stockChart({
     chart: {
@@ -114,6 +115,67 @@ GLOBAL_RETURN_DIST_CHART = new Highcharts.chart({
     }
 });
 
+GLOBAL_PNL_DIST_CHART = new Highcharts.chart({
+    chart: {
+        // Edit chart spacing
+        spacingBottom: 0,
+        spacingTop: 5,
+        spacingLeft: 5,
+        spacingRight: 5,
+        backgroundColor: null,
+        renderTo: 'pnlChartContainer',
+        type: 'pie',
+        width: null,
+        height: null
+    },
+    title: {
+        text: null
+    },
+
+    xAxis: {
+        type: 'category',
+        labels: {
+            rotation: -45,
+            style: {
+                fontSize: '10px',
+                fontFamily: 'Verdana, sans-serif'
+            }
+        }
+    },
+    yAxis: {
+        min: 0,
+        title: null,
+        labels: {
+            overflow: 'justify'
+        }
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: false,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                style: {
+                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                },
+                connectorColor: 'silver'
+            },
+            showInLegend: true
+        }
+    },
+    credits: {
+        enabled: false
+    },
+    legend: {
+        align: 'right',
+        verticalAlign: 'top',
+        floating: true,
+        enabled: true,
+        layout: 'vertical'
+    }
+});
+
 function TimeSeriesChartBuilder(data, chart,isMutipleSeiers) {
     this.data = data;
     this.chart = chart;
@@ -189,7 +251,7 @@ function CategoryChartBuilder(data, chart, isMutipleSeiers) {
     this.chartName = "N/A";
 
     this.buildChart = function () {
-        var containerWidth = ($(document).width() - 350) / 12 * 5;
+        var containerWidth = ($(document).width() - 350) / 12 * 2;
         this.chart.setSize(containerWidth, 150, false);
 
         if (this.data.length == 0) {
@@ -235,7 +297,7 @@ function CategoryChartBuilder(data, chart, isMutipleSeiers) {
                 dataPoints.push(time_value_pair);
             });
             chartMain.addSeries({
-                name: "",
+                name: chartName,
                 data: dataPoints
             });
         }
@@ -295,60 +357,9 @@ $(function () {
         chartBuilder.buildChart();
     });
 
-   //  new Highcharts.chart('assetDistChartContainer', {
-   //     credits: {
-   //         enabled: false
-   //     },
-   //     chart: {
-   //         spacingBottom: 5,
-   //         spacingTop: 5,
-   //         spacingLeft: 5,
-   //         spacingRight: 25,
-   //         backgroundColor :null,
-
-   //         // Explicitly tell the width and height of a chart
-   //         width: null,
-   //         height: null,
-
-   //         plotBackgroundColor: null,
-   //         plotBorderWidth: null,
-   //         plotShadow: false,
-   //         type: 'pie'
-   //     },
-
-   //     title: {
-   //         text: null
-   //     },
-      
-   //     plotOptions: {
-   //         pie: {
-   //             allowPointSelect: true,
-   //             cursor: 'pointer',
-   //             dataLabels: {
-   //                 enabled: true,
-   //                 format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-   //                 style: {
-   //                     color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-   //                 },
-   //                 connectorColor: 'silver'
-   //             }
-   //         }
-   //     },
-   //     series: [{
-   //         name: '金额',
-   //         data: [
-   //             { name: '股票', y: 56.33 },
-   //             {
-   //                 name: '债券',
-   //                 y: 24.03,
-   //                 sliced: true,
-   //                 selected: true
-   //             },
-   //             { name: '现金', y: 10.38 },
-   //             { name: '其他资产', y: 4.77 }
-   //         ]
-   //     }]
-   //});
+    $.getJSON('/Product/GetPnlDist/?productId=100', function (data) {
+        var chartBuilder = new CategoryChartBuilder(data, GLOBAL_PNL_DIST_CHART, false);
+        chartBuilder.buildChart();
+    });
    
-    //Global_NetValue_Chart.setSize(realVal - 100, realVal - 200, false)
 });

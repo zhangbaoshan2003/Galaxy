@@ -45,6 +45,7 @@
     <Compile Include="DummyProdcutInfoFetcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\CategoryDataViewModel.cs" />
+    <Compile Include="ViewModel\ProductBriefViewModel.cs" />
     <Compile Include="ViewModel\TimeSeriesDataViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
