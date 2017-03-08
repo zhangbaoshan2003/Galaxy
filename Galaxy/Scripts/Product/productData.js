@@ -6,6 +6,10 @@
         "searching": true,
         "ordering": true,
         "info": true,
-        "autoWidth": false
+        "autoWidth": false,
+        "scrollX": true,
+        "sScrollX": "100%",
+        "sScrollXInner": "110%",
+        "bScrollCollapse": true
     });
 });

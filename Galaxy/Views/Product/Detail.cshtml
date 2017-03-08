@@ -18,7 +18,7 @@
         <ul class="nav nav-tabs">
             <li class="active"><a href="#tab_1" data-toggle="tab">产品详情</a></li>
             <li><a href="#tab_2" data-toggle="tab">净值分析</a></li>
-            <li><a href="#tab_3" data-toggle="tab">股票持仓管理</a></li>
+            <li><a href="#tab_3" data-toggle="tab">股票持仓</a></li>
             <li><a href="#tab_3" data-toggle="tab">持仓分析</a></li>
         </ul>
         <div class="tab-content">
@@ -144,7 +144,7 @@
                 </div>
             </div>
         </div>
-        <div class="tab-pane" id="tab_2">
+            <div class="tab-pane" id="tab_2">
             <section class="col-lg-7 connectedSortable pad ">
                 <div class="box box-solid box-success">
                     <div class="box-header" id="netValueDiv">
@@ -284,25 +284,10 @@
 
         </div>
         <div class="tab-pane" id="tab_3">
-            <div class="box box-solid box-warning">
+            <div class="box box-solid box-info" style="font-size: 12px;">
                 <div class="box-header">
                     <i class="fa fa-th"></i>
-                    <h3 class="box-title">资产配置（2016-12-1）</h3>
-                    <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
-                            <i class="fa fa-minus"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="box-body border-radius-none">
-                    <div class="chart" id="assetDistChartContainer" style="height: 250px;"></div>
-                </div>
-            </div>
-
-            <div class="box box-solid box-info">
-                <div class="box-header">
-                    <i class="fa fa-th"></i>
-                    <h3 class="box-title">重仓债券（2016-12-1）</h3>
+                    <h3 class="box-title">持仓汇总</h3>
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-sm bg-light-blue-gradient" data-widget="collapse">
                             <i class="fa fa-minus"></i>
@@ -313,47 +298,154 @@
                     <table class="table table-bordered table-striped table-hover table-condensed">
                         <thead>
                             <tr>
-                                <th>证券名称</th>
-                                <th>占净值比</th>
-                                <th>近月涨跌</th>
+                                <th></th>
+                                <th>证券市值</th>
+                                <th>资金余额</th>
+                                <th>资产总值</th>
+                                <th>产品份额</th>
+                                <th>持仓比例</th>
+                                <th>前一日持仓比例</th>
+                                <th>持仓比例变化</th>
+                                <th>已公布净值</th>
+                                <th>净值变动</th>
+                                <th>前一日估值</th>
+                                <th>与前一日估值比较</th>
+                                <th>预警线</th>
+                                <th>止损线</th>
+                                <th>预估净值</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>白云转债</td>
                                 <td>
-                                    -
+                                    @Html.DisplayFor(model => model.EquityMarketValue)
                                 </td>
-                                <td>-4.68%</td>
-                            </tr>
-                            <tr>
-                                <td>白云转债</td>
                                 <td>
-                                    -
+                                    @Html.DisplayFor(model => model.MoneyLeft)
                                 </td>
-                                <td>-4.68%</td>
-                            </tr>
-                            <tr>
-                                <td>白云转债</td>
                                 <td>
-                                    -
+                                    @Html.DisplayFor(model => model.AssetMarketValue)
                                 </td>
-                                <td>-4.68%</td>
+                                <td>
+                                    @Html.DisplayFor(model => model.ProductQuantity)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.PropertionOfEquity)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.PropertionOfEquityPrevDay)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.ChangeOfEuqityPropertion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.NetValueEstimated)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.NetValueAnanced)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.ChangeOfNetValue)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.NetValueEstimatedPreDay)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.ChangeOfNetValueEstimated)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.ThresholdOfWarning)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.TreshholdOfStopLoss)
+                                </td>
                             </tr>
                         </tbody>
-                        <tfoot>
+                    </table>
+                </div>
+            </div>
+            <div class="box box-solid box-success" style="font-size: 10px;">
+                <div class="box-header" >
+                    <i class="fa fa-th"></i>
+                    <h5 class="box-title">持仓明细</h5>
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-sm bg-light-blue-gradient" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="box-body border-radius-none">
+                    <table class="table table-bordered table-striped table-hover table-condensed">
+                        <thead>
                             <tr>
-                                <th>合计</th>
-                                <th>10%</th>
                                 <th></th>
+                                <th>证券市值</th>
+                                <th>资金余额</th>
+                                <th>资产总值</th>
+                                <th>产品份额</th>
+                                <th>持仓比例</th>
+                                <th>前一日持仓比例</th>
+                                <th>持仓比例变化</th>
+                                <th>已公布净值</th>
+                                <th>净值变动</th>
+                                <th>前一日估值</th>
+                                <th>与前一日估值比较</th>
+                                <th>预警线</th>
+                                <th>止损线</th>
+                                <th>预估净值</th>
                             </tr>
-
-                        </tfoot>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(model => model.EquityMarketValue)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.MoneyLeft)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.AssetMarketValue)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.ProductQuantity)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.PropertionOfEquity)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.PropertionOfEquityPrevDay)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.ChangeOfEuqityPropertion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.NetValueEstimated)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.NetValueAnanced)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.ChangeOfNetValue)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.NetValueEstimatedPreDay)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.ChangeOfNetValueEstimated)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.ThresholdOfWarning)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => model.TreshholdOfStopLoss)
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>
         </div>
-        <div class="tab-pane" id="tab_4">
+        <div class="tab-pane" id="tab_4" >
             <div class="box box-solid box-warning">
                 <div class="box-header">
                     <i class="fa fa-th"></i>
@@ -380,7 +472,7 @@
                     </div>
                 </div>
                 <div class="box-body border-radius-none">
-                    <table id="productListTable" class="table table-bordered table-striped table-hover table-condensed">
+                    <table id="productListTable" class="table table-bordered table-striped table-hover table-condensed ">
                         <thead>
                             <tr>
                                 <th>证券名称</th>
@@ -391,9 +483,19 @@
                         <tbody>
                             <tr>
                                 <td>白云转债</td>
-                                <td>
-                                    -
-                                </td>
+                                <td>-</td>
+                                <td>-4.68%</td>
+                                
+                                <td>白云转债</td>
+                                <td>-</td>
+                                <td>-4.68%</td>
+                                
+                                <td>白云转债</td>
+                                <td>-</td>
+                                <td>-4.68%</td>
+                                
+                                <td>白云转债</td>
+                                <td>-</td>
                                 <td>-4.68%</td>
                             </tr>
                             <tr>
