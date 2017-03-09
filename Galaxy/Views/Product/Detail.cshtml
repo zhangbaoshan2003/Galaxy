@@ -19,136 +19,148 @@
 <link rel="stylesheet" type="text/css" href="~/Styles/resources/syntax/shCore.css">
 @*<link rel="stylesheet" type="text/css" href="~/Styles/resources/demo.css">*@
 
+<style>
+    td.details-control {
+        background: url('~/Styles/resources/details_open.png') no-repeat;
+        cursor: pointer;
+    }
 
+    tr.details td.details-control {
+        background: url('~/Styles/resources/details_close.png') no-repeat;
+    }
+</style>
 <div class="row" style="font-size: 14px ">
     <div class="nav-tabs-custom tab-danger ">
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#tab_1" data-toggle="tab">产品详情</a></li>
+            <li ><a href="#tab_1" data-toggle="tab" id="btnTabOne">股票持仓</a></li>
             <li><a href="#tab_2" data-toggle="tab">净值分析</a></li>
-            <li><a href="#tab_3" data-toggle="tab">股票持仓</a></li>
+            <li class="active"><a href="#tab_3" data-toggle="tab">产品详情</a></li>
             <li><a href="#tab_3" data-toggle="tab">持仓分析</a></li>
         </ul>
         <div class="tab-content">
-            <div class="tab-pane active" id="tab_1">
-                <div class="box box-solid box-success">
-                    <div class="box-body border-radius-none ">
-                        <table class="table table-bordered table-striped table-hover table-condensed">
-                            <tr>
-                                <th style="width:200px">产品名称</th>
-                                <td>@Html.DisplayFor(model => model.Name)</td>
-                            </tr>
-                            <tr>
-                                <th>管理人</th>
-                                <td>@Html.DisplayFor(model => model.Administrator)</td>
-                            </tr>
-                            <tr>
-                                <th>投资顾问</th>
-                                <td>@Html.DisplayFor(model => model.Consultant)</td>
-                            </tr>
-                            <tr>
-                                <th>产品类型</th>
-                                <td>@Html.DisplayFor(model => model.ProductType)</td>
-                            </tr>
-                            <tr>
-                                <th>托管银行</th>
-                                <td>@Html.DisplayFor(model => model.ConsusityBank)</td>
-                            </tr>
-                            <tr>
-                                <th>证券经纪商</th>
-                                <td>@Html.DisplayFor(model => model.Broker)</td>
-                            </tr>
-                            <tr>
-                                <th>拟发行时间</th>
-                                <td>@Html.DisplayFor(model => model.IssueDate)</td>
-                            </tr>
-                            <tr>
-                                <th>存续期限</th>
-                                <td>@Html.DisplayFor(model => model.LifeTime)</td>
-                            </tr>
-                            <tr>
-                                <th>初始规模</th>
-                                <td>@Html.DisplayFor(model => model.InitialInvestment)</td>
-                            </tr>
-                            <tr>
-                                <th>投顾跟投比例</th>
-                                <td>@Html.DisplayFor(model => model.ProportionOfConsultant)</td>
-                            </tr>
-                            <tr>
-                                <th>基金管理人跟投资金是否优先承担亏损</th>
-                                @*<td>@Html.DisplayFor(model => model.)</td>*@
-                                <td>是（投顾指定投资者跟投资金对在本基金初始募集期内认购并持有至第一个开放日的客户提供有限保本：即该客户持有至第一个开放日赎回时，若赎回单位净值小于1，则以投顾指定投资者跟投部分将其补足到1；如果投顾指定投资者跟投部分不足以将基金净值补足到1，则以投顾指定投资者所有跟投部分为限对其作出补偿。）</td>
-                            </tr>
-                            <tr>
-                                <th>认购门槛</th>
-                                <td>
-                                    @Html.DisplayFor(model => model.MinimumBuy)
-                                    @Html.Encode("@")
-                                    @Html.DisplayFor(model => model.StepBuy)
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>封闭期</th>
-                                @*<td>1年，第一个开放日之后，产品转为管理型</td>*@
-                                <td>@Html.DisplayFor(model => model.ClosureTerm)</td>
-                            </tr>
-                            <tr>
-                                <th>开放日</th>
-                                <td>@Html.DisplayFor(model => model.OpenTerm)</td>
-                            </tr>
-                            <tr>
-                                <th>认购费/参与费</th>
-                                <td>@Html.DisplayFor(model => model.SubscriptionFee)</td>
-                            </tr>
-                            <tr>
-                                <th>赎回费</th>
-                                <td>@Html.DisplayFor(model => model.RedemptionFee)</td>
-                            </tr>
-                            <tr>
-                                <th>管理费</th>
-                                <td>@Html.DisplayFor(model => model.ManagementFee)</td>
-                            </tr>
-                            <tr>
-                                <th>管理费计提及结算方式</th>
-                                <td>@Html.DisplayFor(model => model.WayToCalcManagementFee)</td>
-                            </tr>
-                            <tr>
-                                <th>基金管理人业绩计提标准</th>
-                                <td>@Html.DisplayFor(model => model.BenchmarkToRewardConsultant)</td>
-                            </tr>
-                            <tr>
-                                <th>基金管理人业绩计提比例及结算方式</th>
-                                <td>@Html.DisplayFor(model => model.WayToCollectReward)</td>
-                            </tr>
-                            <tr>
-                                <th>投资者分红方式</th>
-                                <td>@Html.DisplayFor(model => model.WayToReceiveBonus)</td>
-                            </tr>
-                            <tr>
-                                <th>预警线</th>
-                                <td>@Html.DisplayFor(model => model.WarningDesc)</td>
-                            </tr>
-                            <tr>
-                                <th>投资标的</th>
-                                <td>@Html.DisplayFor(model => model.SecurityTypeToInvest)</td>
-                            </tr>
-                            <tr>
-                                <th>投资限定</th>
-                                <td>
-                                    <div>
-                                        @Html.DisplayFor(model => model.ConstrainsOfInvestment)
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>投资策略</th>
-                                <td>@Html.DisplayFor(model => model.StrategyType)</td>
-                            </tr>
-                        </table>
-                        <div class="footer">
-                            备注：
-                            <div>@Html.DisplayFor(model => model.Mem)</div>
+            <div class="tab-pane " id="tab_1">
+                <div class="box box-solid box-info" style="font-size: 12px;">
+                    <div class="box-header">
+                        <i class="fa fa-th"></i>
+                        <h3 class="box-title">持仓汇总</h3>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-sm bg-light-blue-gradient" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
                         </div>
                     </div>
+                    <div class="box-body border-radius-none">
+                        <table class="display compact table table-bordered table-striped table-hover table-condensed ">
+                            <thead>
+                                <tr>
+                                    <th>证券市值</th>
+                                    <th>资金余额</th>
+                                    <th>资产总值</th>
+                                    <th>产品份额</th>
+                                    <th>持仓比例</th>
+                                    <th>前一日持仓比例</th>
+                                    <th>持仓比例变化</th>
+                                    <th>已公布净值</th>
+                                    <th>净值变动</th>
+                                    <th>前一日估值</th>
+                                    <th>与前一日估值比较</th>
+                                    <th>预警线</th>
+                                    <th>止损线</th>
+                                    <th>预估净值</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(model => model.EquityMarketValue)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.MoneyLeft)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.AssetMarketValue)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.ProductQuantity)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.PropertionOfEquity)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.PropertionOfEquityPrevDay)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.ChangeOfEuqityPropertion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.NetValueEstimated)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.NetValueAnanced)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.ChangeOfNetValue)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.NetValueEstimatedPreDay)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.ChangeOfNetValueEstimated)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.ThresholdOfWarning)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.TreshholdOfStopLoss)
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="box box-solid box-warning" style="font-size: 12px;">
+                    <table id="prodcutDetailTable" class="display compact">
+                        <thead>
+                            <tr>
+
+                                <th>产品名称</th>
+                                <th>成立日期</th>
+                                <th>托管银行</th>
+                                <th>投资顾问</th>
+                                <th>管理人</th>
+                                <th>投资顾问</th>
+                                <th>管理人</th>
+                                <th>投资顾问</th>
+                                <th>管理人</th>
+                                <th>投资顾问</th>
+                                <th>管理人</th>
+                                <th>管理人</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Portfolio)
+                            {
+                            <tr>
+
+                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+
+                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+
                 </div>
             </div>
             <div class="tab-pane" id="tab_2">
@@ -290,129 +302,127 @@
                 </section>
 
             </div>
-            <div class="tab-pane" id="tab_3">
-                <div class="box box-solid box-info" style="font-size: 12px;">
-                    <div class="box-header">
-                        <i class="fa fa-th"></i>
-                        <h3 class="box-title">持仓汇总</h3>
-                        <div class="box-tools pull-right">
-                            <button type="button" class="btn btn-sm bg-light-blue-gradient" data-widget="collapse">
-                                <i class="fa fa-minus"></i>
-                            </button>
+            <div class="tab-pane active" id="tab_3">
+                <div class="box box-solid box-success">
+                    <div class="box-body border-radius-none ">
+                        <table class="table table-bordered table-striped table-hover table-condensed">
+                            <tr>
+                                <th style="width:200px">产品名称</th>
+                                <td>@Html.DisplayFor(model => model.Name)</td>
+                            </tr>
+                            <tr>
+                                <th>管理人</th>
+                                <td>@Html.DisplayFor(model => model.Administrator)</td>
+                            </tr>
+                            <tr>
+                                <th>投资顾问</th>
+                                <td>@Html.DisplayFor(model => model.Consultant)</td>
+                            </tr>
+                            <tr>
+                                <th>产品类型</th>
+                                <td>@Html.DisplayFor(model => model.ProductType)</td>
+                            </tr>
+                            <tr>
+                                <th>托管银行</th>
+                                <td>@Html.DisplayFor(model => model.ConsusityBank)</td>
+                            </tr>
+                            <tr>
+                                <th>证券经纪商</th>
+                                <td>@Html.DisplayFor(model => model.Broker)</td>
+                            </tr>
+                            <tr>
+                                <th>拟发行时间</th>
+                                <td>@Html.DisplayFor(model => model.IssueDate)</td>
+                            </tr>
+                            <tr>
+                                <th>存续期限</th>
+                                <td>@Html.DisplayFor(model => model.LifeTime)</td>
+                            </tr>
+                            <tr>
+                                <th>初始规模</th>
+                                <td>@Html.DisplayFor(model => model.InitialInvestment)</td>
+                            </tr>
+                            <tr>
+                                <th>投顾跟投比例</th>
+                                <td>@Html.DisplayFor(model => model.ProportionOfConsultant)</td>
+                            </tr>
+                            <tr>
+                                <th>基金管理人跟投资金是否优先承担亏损</th>
+                                @*<td>@Html.DisplayFor(model => model.)</td>*@
+                                <td>是（投顾指定投资者跟投资金对在本基金初始募集期内认购并持有至第一个开放日的客户提供有限保本：即该客户持有至第一个开放日赎回时，若赎回单位净值小于1，则以投顾指定投资者跟投部分将其补足到1；如果投顾指定投资者跟投部分不足以将基金净值补足到1，则以投顾指定投资者所有跟投部分为限对其作出补偿。）</td>
+                            </tr>
+                            <tr>
+                                <th>认购门槛</th>
+                                <td>
+                                    @Html.DisplayFor(model => model.MinimumBuy)
+                                    @Html.Encode("@")
+                                    @Html.DisplayFor(model => model.StepBuy)
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>封闭期</th>
+                                @*<td>1年，第一个开放日之后，产品转为管理型</td>*@
+                                <td>@Html.DisplayFor(model => model.ClosureTerm)</td>
+                            </tr>
+                            <tr>
+                                <th>开放日</th>
+                                <td>@Html.DisplayFor(model => model.OpenTerm)</td>
+                            </tr>
+                            <tr>
+                                <th>认购费/参与费</th>
+                                <td>@Html.DisplayFor(model => model.SubscriptionFee)</td>
+                            </tr>
+                            <tr>
+                                <th>赎回费</th>
+                                <td>@Html.DisplayFor(model => model.RedemptionFee)</td>
+                            </tr>
+                            <tr>
+                                <th>管理费</th>
+                                <td>@Html.DisplayFor(model => model.ManagementFee)</td>
+                            </tr>
+                            <tr>
+                                <th>管理费计提及结算方式</th>
+                                <td>@Html.DisplayFor(model => model.WayToCalcManagementFee)</td>
+                            </tr>
+                            <tr>
+                                <th>基金管理人业绩计提标准</th>
+                                <td>@Html.DisplayFor(model => model.BenchmarkToRewardConsultant)</td>
+                            </tr>
+                            <tr>
+                                <th>基金管理人业绩计提比例及结算方式</th>
+                                <td>@Html.DisplayFor(model => model.WayToCollectReward)</td>
+                            </tr>
+                            <tr>
+                                <th>投资者分红方式</th>
+                                <td>@Html.DisplayFor(model => model.WayToReceiveBonus)</td>
+                            </tr>
+                            <tr>
+                                <th>预警线</th>
+                                <td>@Html.DisplayFor(model => model.WarningDesc)</td>
+                            </tr>
+                            <tr>
+                                <th>投资标的</th>
+                                <td>@Html.DisplayFor(model => model.SecurityTypeToInvest)</td>
+                            </tr>
+                            <tr>
+                                <th>投资限定</th>
+                                <td>
+                                    <div>
+                                        @Html.DisplayFor(model => model.ConstrainsOfInvestment)
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>投资策略</th>
+                                <td>@Html.DisplayFor(model => model.StrategyType)</td>
+                            </tr>
+                        </table>
+                        <div class="footer">
+                            备注：
+                            <div>@Html.DisplayFor(model => model.Mem)</div>
                         </div>
                     </div>
-                    <div class="box-body border-radius-none">
-                        <table class="display compact table table-bordered table-striped table-hover table-condensed ">
-                            <thead>
-                                <tr>
-                                    <th>证券市值</th>
-                                    <th>资金余额</th>
-                                    <th>资产总值</th>
-                                    <th>产品份额</th>
-                                    <th>持仓比例</th>
-                                    <th>前一日持仓比例</th>
-                                    <th>持仓比例变化</th>
-                                    <th>已公布净值</th>
-                                    <th>净值变动</th>
-                                    <th>前一日估值</th>
-                                    <th>与前一日估值比较</th>
-                                    <th>预警线</th>
-                                    <th>止损线</th>
-                                    <th>预估净值</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(model => model.EquityMarketValue)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.MoneyLeft)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.AssetMarketValue)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.ProductQuantity)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.PropertionOfEquity)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.PropertionOfEquityPrevDay)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.ChangeOfEuqityPropertion)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.NetValueEstimated)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.NetValueAnanced)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.ChangeOfNetValue)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.NetValueEstimatedPreDay)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.ChangeOfNetValueEstimated)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.ThresholdOfWarning)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.TreshholdOfStopLoss)
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
-                <div class="box box-solid box-warning" style="font-size: 12px;">
-                    <table id="prodcutDetailTable" class="display compact" >
-                        <thead>
-                            <tr>
-                                <th>产品名称</th>
-                                <th>成立日期</th>
-                                <th>托管银行</th>
-                                <th>投资顾问</th>
-                                <th>管理人</th>
-                                <th>投资顾问</th>
-                                <th>管理人</th>
-                                <th>投资顾问</th>
-                                <th>管理人</th>
-                                <th>投资顾问</th>
-                                <th>管理人</th>
-                                <th>管理人</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model.Portfolio)
-                            {
-                                <tr>
-                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-
-                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-
-                </div>
-
             </div>
             <div class="tab-pane" id="tab_4">
                 <div class="box box-solid box-warning">
