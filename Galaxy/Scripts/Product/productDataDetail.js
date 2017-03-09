@@ -12,4 +12,7 @@
         "sScrollXInner": "110%",
         "bScrollCollapse": true
     });
+
+    $('.dataTables_scrollHeadInner').css('width', '');
+
 });
