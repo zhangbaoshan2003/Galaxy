@@ -2,8 +2,8 @@
     //initialize data table 
     $('#prodcutDetailTable').DataTable({
         "paging": true,
-        "lengthChange": false,
-        "searching": false,
+        "lengthChange": true,
+        "searching": true,
         "ordering": true,
         "info": false,
         "autoWidth": false,
@@ -13,6 +13,7 @@
         "bScrollCollapse": true
     });
 
-    $('.dataTables_scrollHeadInner').css('width', '');
-
+    //fix display issue for a datatable in a tab div initially
+    $('div.dataTables_scrollHeadInner').css('width', '110%');
+    $('div.dataTables_scrollHeadInner table').css('width', '110%');
 });

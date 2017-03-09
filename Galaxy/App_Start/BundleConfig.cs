@@ -239,7 +239,7 @@ namespace Galaxy
                 "~/AdminLTE/bootstrap/js/bootstrap.min.js"));
 
             bundles.Add(new StyleBundle("~/AdminLTE/bootstrap/css").Include(
-                "~/AdminLTE/bootstrap/css/bootstrap.min.css"));
+                "~/AdminLTE/bootstrap/css/bootstrap.css"));
 
             // dist
             bundles.Add(new ScriptBundle("~/AdminLTE/dist/js").Include(

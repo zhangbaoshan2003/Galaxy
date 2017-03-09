@@ -8,16 +8,11 @@
 }
 
 @*@Styles.Render("~/AdminLTE/plugins/morris/css")
-@Styles.Render("~/AdminLTE/plugins/jvectormap/css")
-@Styles.Render("~/AdminLTE/plugins/datepicker/css")
-@Styles.Render("~/AdminLTE/plugins/daterangepicker/css")
-@Styles.Render("~/AdminLTE/plugins/bootstrap-wysihtml5/css")*@
+    @Styles.Render("~/AdminLTE/plugins/jvectormap/css")
+    @Styles.Render("~/AdminLTE/plugins/datepicker/css")
+    @Styles.Render("~/AdminLTE/plugins/daterangepicker/css")
+    @Styles.Render("~/AdminLTE/plugins/bootstrap-wysihtml5/css")*@
 @Styles.Render("~/AdminLTE/plugins/datatables/css")
-
-
-
-
-
 
 
 <div class="row" style="font-size: 14px ">
@@ -82,118 +77,343 @@
                                 <th>认购门槛</th>
                                 <td>
                                     @Html.DisplayFor(model => model.MinimumBuy)
-                                @Html.Encode("@")
-                                @Html.DisplayFor(model => model.StepBuy)
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>封闭期</th>
-                            @*<td>1年，第一个开放日之后，产品转为管理型</td>*@
-                            <td>@Html.DisplayFor(model => model.ClosureTerm)</td>
-                        </tr>
-                        <tr>
-                            <th>开放日</th>
-                            <td>@Html.DisplayFor(model => model.OpenTerm)</td>
-                        </tr>
-                        <tr>
-                            <th>认购费/参与费</th>
-                            <td>@Html.DisplayFor(model => model.SubscriptionFee)</td>
-                        </tr>
-                        <tr>
-                            <th>赎回费</th>
-                            <td>@Html.DisplayFor(model => model.RedemptionFee)</td>
-                        </tr>
-                        <tr>
-                            <th>管理费</th>
-                            <td>@Html.DisplayFor(model => model.ManagementFee)</td>
-                        </tr>
-                        <tr>
-                            <th>管理费计提及结算方式</th>
-                            <td>@Html.DisplayFor(model => model.WayToCalcManagementFee)</td>
-                        </tr>
-                        <tr>
-                            <th>基金管理人业绩计提标准</th>
-                            <td>@Html.DisplayFor(model => model.BenchmarkToRewardConsultant)</td>
-                        </tr>
-                        <tr>
-                            <th>基金管理人业绩计提比例及结算方式</th>
-                            <td>@Html.DisplayFor(model => model.WayToCollectReward)</td>
-                        </tr>
-                        <tr>
-                            <th>投资者分红方式</th>
-                            <td>@Html.DisplayFor(model => model.WayToReceiveBonus)</td>
-                        </tr>
-                        <tr>
-                            <th>预警线</th>
-                            <td>@Html.DisplayFor(model => model.WarningDesc)</td>
-                        </tr>
-                        <tr>
-                            <th>投资标的</th>
-                            <td>@Html.DisplayFor(model => model.SecurityTypeToInvest)</td>
-                        </tr>
-                        <tr>
-                            <th>投资限定</th>
-                            <td>
-                                <div>
-                                    @Html.DisplayFor(model => model.ConstrainsOfInvestment)
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>投资策略</th>
-                            <td>@Html.DisplayFor(model => model.StrategyType)</td>
-                        </tr>
-                    </table>
-                    <div class="footer">
-                        备注：
-                        <div>@Html.DisplayFor(model => model.Mem)</div>
+                                    @Html.Encode("@")
+                                    @Html.DisplayFor(model => model.StepBuy)
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>封闭期</th>
+                                @*<td>1年，第一个开放日之后，产品转为管理型</td>*@
+                                <td>@Html.DisplayFor(model => model.ClosureTerm)</td>
+                            </tr>
+                            <tr>
+                                <th>开放日</th>
+                                <td>@Html.DisplayFor(model => model.OpenTerm)</td>
+                            </tr>
+                            <tr>
+                                <th>认购费/参与费</th>
+                                <td>@Html.DisplayFor(model => model.SubscriptionFee)</td>
+                            </tr>
+                            <tr>
+                                <th>赎回费</th>
+                                <td>@Html.DisplayFor(model => model.RedemptionFee)</td>
+                            </tr>
+                            <tr>
+                                <th>管理费</th>
+                                <td>@Html.DisplayFor(model => model.ManagementFee)</td>
+                            </tr>
+                            <tr>
+                                <th>管理费计提及结算方式</th>
+                                <td>@Html.DisplayFor(model => model.WayToCalcManagementFee)</td>
+                            </tr>
+                            <tr>
+                                <th>基金管理人业绩计提标准</th>
+                                <td>@Html.DisplayFor(model => model.BenchmarkToRewardConsultant)</td>
+                            </tr>
+                            <tr>
+                                <th>基金管理人业绩计提比例及结算方式</th>
+                                <td>@Html.DisplayFor(model => model.WayToCollectReward)</td>
+                            </tr>
+                            <tr>
+                                <th>投资者分红方式</th>
+                                <td>@Html.DisplayFor(model => model.WayToReceiveBonus)</td>
+                            </tr>
+                            <tr>
+                                <th>预警线</th>
+                                <td>@Html.DisplayFor(model => model.WarningDesc)</td>
+                            </tr>
+                            <tr>
+                                <th>投资标的</th>
+                                <td>@Html.DisplayFor(model => model.SecurityTypeToInvest)</td>
+                            </tr>
+                            <tr>
+                                <th>投资限定</th>
+                                <td>
+                                    <div>
+                                        @Html.DisplayFor(model => model.ConstrainsOfInvestment)
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>投资策略</th>
+                                <td>@Html.DisplayFor(model => model.StrategyType)</td>
+                            </tr>
+                        </table>
+                        <div class="footer">
+                            备注：
+                            <div>@Html.DisplayFor(model => model.Mem)</div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
             <div class="tab-pane" id="tab_2">
-            <section class="col-lg-7 connectedSortable pad ">
-                <div class="box box-solid box-success">
-                    <div class="box-header" id="netValueDiv">
-                        <i class="fa fa-th"></i>
-                        <h3 class="box-title">产品净值图</h3>
-                        <div class="box-tools pull-right">
-                            <button type="button" class="btn btn-sm bg-green-gradient" id="netValueChartCtrlBtn">
-                                <i class="fa fa-eye"></i>
-                            </button>
-                            <button type="button" class="btn btn-sm bg-green-gradient" data-widget="collapse">
-                                <i class="fa fa-minus"></i>
-                            </button>
+                <section class="col-lg-7 connectedSortable pad ">
+                    <div class="box box-solid box-success">
+                        <div class="box-header" id="netValueDiv">
+                            <i class="fa fa-th"></i>
+                            <h3 class="box-title">产品净值图</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-sm bg-green-gradient" id="netValueChartCtrlBtn">
+                                    <i class="fa fa-eye"></i>
+                                </button>
+                                <button type="button" class="btn btn-sm bg-green-gradient" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body border-radius-none">
+                            <div id="netvalueChartContainer" class="chart"></div>
                         </div>
                     </div>
-                    <div class="box-body border-radius-none">
-                        <div id="netvalueChartContainer" class="chart"></div>
-                    </div>
-                </div>
 
-                <div class="box box-solid box-success">
+                    <div class="box box-solid box-success">
+                        <div class="box-header">
+                            <i class="fa fa-th"></i>
+                            <h3 class="box-title">最大回撤分布</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-sm bg-green-gradient" id="piggybackBtn">
+                                    <i class="fa fa-eye"></i>
+                                </button>
+                                <button type="button" class="btn btn-sm bg-green-gradient" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body border-radius-none">
+                            <div id="pigbackRateChartContainer" class="chart"></div>
+                        </div>
+                    </div>
+                </section>
+                <section class="col-lg-5 connectedSortable pad">
+                    <div class="box box-solid box-warning">
+                        <div class="box-header">
+                            <i class="fa fa-th"></i>
+                            <h3 class="box-title">大朴进取1期（2013-1-1）</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body border-radius-none">
+                            <table class="table table-bordered table-striped table-hover table-condensed">
+                                <tr>
+                                    <th>收益率</th>
+                                    <td>5.4%</td>
+                                </tr>
+                                <tr>
+                                    <th>年化收益率</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>相对收益率</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>Beta</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>波动率</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>最大回撤</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>夏普率</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>风险收益比</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>与大盘指数相关性</th>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <th>通策略收益率排名</th>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="box box-solid box-warning">
+                                <div class="box-header">
+                                    <i class="fa fa-th"></i>
+                                    <h3 class="box-title">周收益分布图</h3>
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-sm bg-yellow-gradient" id="returnDisBtn">
+                                            <i class="fa fa-eye"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="box-body border-radius-none">
+                                    <div class="chart" id="returnDistChartContainer" style="height:150px"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="box box-solid box-warning">
+                                <div class="box-header">
+                                    <i class="fa fa-th"></i>
+                                    <h3 class="box-title">正负收益周数</h3>
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-sm bg-yellow-gradient" id="returnDisBtn">
+                                            <i class="fa fa-eye"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="box-body border-radius-none">
+                                    <div class="chart" id="pnlChartContainer" style="height:150px"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+
+            </div>
+            <div class="tab-pane" id="tab_3">
+                <div class="box box-solid box-info" style="font-size: 12px;">
                     <div class="box-header">
                         <i class="fa fa-th"></i>
-                        <h3 class="box-title">最大回撤分布</h3>
+                        <h3 class="box-title">持仓汇总</h3>
                         <div class="box-tools pull-right">
-                            <button type="button" class="btn btn-sm bg-green-gradient" id="piggybackBtn">
-                                <i class="fa fa-eye"></i>
-                            </button>
-                            <button type="button" class="btn btn-sm bg-green-gradient" data-widget="collapse">
+                            <button type="button" class="btn btn-sm bg-light-blue-gradient" data-widget="collapse">
                                 <i class="fa fa-minus"></i>
                             </button>
                         </div>
                     </div>
                     <div class="box-body border-radius-none">
-                        <div id="pigbackRateChartContainer" class="chart"></div>
+                        <table class="display compact table table-bordered table-striped table-hover table-condensed ">
+                            <thead>
+                                <tr>
+                                    <th>证券市值</th>
+                                    <th>资金余额</th>
+                                    <th>资产总值</th>
+                                    <th>产品份额</th>
+                                    <th>持仓比例</th>
+                                    <th>前一日持仓比例</th>
+                                    <th>持仓比例变化</th>
+                                    <th>已公布净值</th>
+                                    <th>净值变动</th>
+                                    <th>前一日估值</th>
+                                    <th>与前一日估值比较</th>
+                                    <th>预警线</th>
+                                    <th>止损线</th>
+                                    <th>预估净值</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(model => model.EquityMarketValue)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.MoneyLeft)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.AssetMarketValue)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.ProductQuantity)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.PropertionOfEquity)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.PropertionOfEquityPrevDay)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.ChangeOfEuqityPropertion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.NetValueEstimated)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.NetValueAnanced)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.ChangeOfNetValue)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.NetValueEstimatedPreDay)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.ChangeOfNetValueEstimated)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.ThresholdOfWarning)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.TreshholdOfStopLoss)
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            </section>
-            <section class="col-lg-5 connectedSortable pad">
+                <div class="box box-solid box-warning" style="font-size: 12px;">
+                    <table id="prodcutDetailTable" class="table table-bordered table-striped table-hover table-condensed">
+                        <thead>
+                            <tr>
+                                <th>产品名称</th>
+                                <th>成立日期</th>
+                                <th>托管银行</th>
+                                <th>投资顾问</th>
+                                <th>管理人</th>
+                                <th>投资顾问</th>
+                                <th>管理人</th>
+                                <th>投资顾问</th>
+                                <th>管理人</th>
+                                <th>投资顾问</th>
+                                <th>管理人</th>
+                                <th>管理人</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Portfolio)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+
+                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+            <div class="tab-pane" id="tab_4">
                 <div class="box box-solid box-warning">
                     <div class="box-header">
                         <i class="fa fa-th"></i>
-                        <h3 class="box-title">大朴进取1期（2013-1-1）</h3>
+                        <h3 class="box-title">资产配置（2016-12-1）</h3>
                         <div class="box-tools pull-right">
                             <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
                                 <i class="fa fa-minus"></i>
@@ -201,302 +421,76 @@
                         </div>
                     </div>
                     <div class="box-body border-radius-none">
-                        <table class="table table-bordered table-striped table-hover table-condensed">
-                            <tr>
-                                <th>收益率</th>
-                                <td>5.4%</td>
-                            </tr>
-                            <tr>
-                                <th>年化收益率</th>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th>相对收益率</th>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th>Beta</th>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th>波动率</th>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th>最大回撤</th>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th>夏普率</th>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th>风险收益比</th>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th>与大盘指数相关性</th>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <th>通策略收益率排名</th>
-                                <td></td>
-                            </tr>
+                        <div class="chart" id="assetDistChartContainer" style="height: 250px;"></div>
+                    </div>
+                </div>
+
+                <div class="box box-solid box-info">
+                    <div class="box-header">
+                        <i class="fa fa-th"></i>
+                        <h3 class="box-title">重仓债券（2016-12-1）</h3>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-sm bg-light-blue-gradient" data-widget="collapse">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="box-body border-radius-none">
+                        <table id="productListTable" class="table table-bordered table-striped table-hover table-condensed ">
+                            <thead>
+                                <tr>
+                                    <th>证券名称</th>
+                                    <th>占净值比</th>
+                                    <th>近月涨跌</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>白云转债</td>
+                                    <td>-</td>
+                                    <td>-4.68%</td>
+
+                                    <td>白云转债</td>
+                                    <td>-</td>
+                                    <td>-4.68%</td>
+
+                                    <td>白云转债</td>
+                                    <td>-</td>
+                                    <td>-4.68%</td>
+
+                                    <td>白云转债</td>
+                                    <td>-</td>
+                                    <td>-4.68%</td>
+                                </tr>
+                                <tr>
+                                    <td>白云转债</td>
+                                    <td>
+                                        -
+                                    </td>
+                                    <td>-4.68%</td>
+                                </tr>
+                                <tr>
+                                    <td>白云转债</td>
+                                    <td>
+                                        -
+                                    </td>
+                                    <td>-4.68%</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>合计</th>
+                                    <th>10%</th>
+                                    <th></th>
+                                </tr>
+
+                            </tfoot>
                         </table>
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="box box-solid box-warning">
-                            <div class="box-header">
-                                <i class="fa fa-th"></i>
-                                <h3 class="box-title">周收益分布图</h3>
-                                <div class="box-tools pull-right">
-                                    <button type="button" class="btn btn-sm bg-yellow-gradient" id="returnDisBtn">
-                                        <i class="fa fa-eye"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
-                                        <i class="fa fa-minus"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="box-body border-radius-none">
-                                <div class="chart" id="returnDistChartContainer" style="height:150px"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="box box-solid box-warning">
-                            <div class="box-header">
-                                <i class="fa fa-th"></i>
-                                <h3 class="box-title">正负收益周数</h3>
-                                <div class="box-tools pull-right">
-                                    <button type="button" class="btn btn-sm bg-yellow-gradient" id="returnDisBtn">
-                                        <i class="fa fa-eye"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
-                                        <i class="fa fa-minus"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="box-body border-radius-none">
-                                <div class="chart" id="pnlChartContainer"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </section>
-
-        </div>
-        <div class="tab-pane" id="tab_3">
-            <div class="box box-solid box-info" style="font-size: 12px;">
-                <div class="box-header">
-                    <i class="fa fa-th"></i>
-                    <h3 class="box-title">持仓汇总</h3>
-                    <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-sm bg-light-blue-gradient" data-widget="collapse">
-                            <i class="fa fa-minus"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="box-body border-radius-none">
-                    <table class="table table-bordered table-striped table-hover table-condensed">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>证券市值</th>
-                                <th>资金余额</th>
-                                <th>资产总值</th>
-                                <th>产品份额</th>
-                                <th>持仓比例</th>
-                                <th>前一日持仓比例</th>
-                                <th>持仓比例变化</th>
-                                <th>已公布净值</th>
-                                <th>净值变动</th>
-                                <th>前一日估值</th>
-                                <th>与前一日估值比较</th>
-                                <th>预警线</th>
-                                <th>止损线</th>
-                                <th>预估净值</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(model => model.EquityMarketValue)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.MoneyLeft)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.AssetMarketValue)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.ProductQuantity)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.PropertionOfEquity)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.PropertionOfEquityPrevDay)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.ChangeOfEuqityPropertion)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.NetValueEstimated)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.NetValueAnanced)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.ChangeOfNetValue)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.NetValueEstimatedPreDay)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.ChangeOfNetValueEstimated)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.ThresholdOfWarning)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.TreshholdOfStopLoss)
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="box">
-                <table id="prodcutDetailTable" class="table table-bordered table-striped table-hover table-condensed">
-                    <thead>
-                        <tr>
-                            <th>产品名称</th>
-                            <th>成立日期</th>
-                            <th>托管银行</th>
-                            <th>投资顾问</th>
-                            <th>管理人</th>
-                            <th>投资顾问</th>
-                            <th>管理人</th>
-                            <th>投资顾问</th>
-                            <th>管理人</th>
-                            <th>投资顾问</th>
-                            <th>管理人</th>
-                            <th>管理人</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.Portfolio)
-                        {
-                            <tr>
-                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-
-                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-
-            </div>
-
-        </div>
-        <div class="tab-pane" id="tab_4" >
-            <div class="box box-solid box-warning">
-                <div class="box-header">
-                    <i class="fa fa-th"></i>
-                    <h3 class="box-title">资产配置（2016-12-1）</h3>
-                    <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
-                            <i class="fa fa-minus"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="box-body border-radius-none">
-                    <div class="chart" id="assetDistChartContainer" style="height: 250px;"></div>
-                </div>
-            </div>
-
-            <div class="box box-solid box-info">
-                <div class="box-header">
-                    <i class="fa fa-th"></i>
-                    <h3 class="box-title">重仓债券（2016-12-1）</h3>
-                    <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-sm bg-light-blue-gradient" data-widget="collapse">
-                            <i class="fa fa-minus"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="box-body border-radius-none">
-                    <table id="productListTable" class="table table-bordered table-striped table-hover table-condensed ">
-                        <thead>
-                            <tr>
-                                <th>证券名称</th>
-                                <th>占净值比</th>
-                                <th>近月涨跌</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>白云转债</td>
-                                <td>-</td>
-                                <td>-4.68%</td>
-                                
-                                <td>白云转债</td>
-                                <td>-</td>
-                                <td>-4.68%</td>
-                                
-                                <td>白云转债</td>
-                                <td>-</td>
-                                <td>-4.68%</td>
-                                
-                                <td>白云转债</td>
-                                <td>-</td>
-                                <td>-4.68%</td>
-                            </tr>
-                            <tr>
-                                <td>白云转债</td>
-                                <td>
-                                    -
-                                </td>
-                                <td>-4.68%</td>
-                            </tr>
-                            <tr>
-                                <td>白云转债</td>
-                                <td>
-                                    -
-                                </td>
-                                <td>-4.68%</td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>合计</th>
-                                <th>10%</th>
-                                <th></th>
-                            </tr>
-
-                        </tfoot>
-                    </table>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 </div>
 
