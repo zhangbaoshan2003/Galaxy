@@ -93,7 +93,6 @@ namespace Galaxy.BAL.ViewModel
         public double NetValueAnanced { get; set; }
         public double ChangeOfNetValue { get { return NetValueEstimated - NetValueAnanced; }}
         public double NetValueEstimatedPreDay { get; set; }
-
         public double ChangeOfNetValueEstimated
         {
             get
@@ -109,6 +108,6 @@ namespace Galaxy.BAL.ViewModel
         #endregion
 
         private List<PorductHoldingViewModel> _portfolio=new List<PorductHoldingViewModel>();
-        private List<PorductHoldingViewModel> Portfolio { get { return _portfolio; }}
+        public List<PorductHoldingViewModel> Portfolio { get { return _portfolio; }}
     }
 }

@@ -7,11 +7,18 @@
     @Scripts.Render("~/Scripts/Product/menu.js")
 }
 
-@Styles.Render("~/AdminLTE/plugins/morris/css")
+@*@Styles.Render("~/AdminLTE/plugins/morris/css")
 @Styles.Render("~/AdminLTE/plugins/jvectormap/css")
 @Styles.Render("~/AdminLTE/plugins/datepicker/css")
 @Styles.Render("~/AdminLTE/plugins/daterangepicker/css")
-@Styles.Render("~/AdminLTE/plugins/bootstrap-wysihtml5/css")
+@Styles.Render("~/AdminLTE/plugins/bootstrap-wysihtml5/css")*@
+@Styles.Render("~/AdminLTE/plugins/datatables/css")
+
+
+
+
+
+
 
 <div class="row" style="font-size: 14px ">
     <div class="nav-tabs-custom tab-danger ">
@@ -364,86 +371,49 @@
                     </table>
                 </div>
             </div>
-            <div class="box box-solid box-success" style="font-size: 10px;">
-                <div class="box-header" >
-                    <i class="fa fa-th"></i>
-                    <h5 class="box-title">持仓明细</h5>
-                    <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-sm bg-light-blue-gradient" data-widget="collapse">
-                            <i class="fa fa-minus"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="box-body border-radius-none">
-                    <table class="table table-bordered table-striped table-hover table-condensed">
-                        <thead>
+            <div class="box">
+                <table id="prodcutDetailTable" class="table table-bordered table-striped table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th>产品名称</th>
+                            <th>成立日期</th>
+                            <th>托管银行</th>
+                            <th>投资顾问</th>
+                            <th>管理人</th>
+                            <th>投资顾问</th>
+                            <th>管理人</th>
+                            <th>投资顾问</th>
+                            <th>管理人</th>
+                            <th>投资顾问</th>
+                            <th>管理人</th>
+                            <th>管理人</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Portfolio)
+                        {
                             <tr>
-                                <th></th>
-                                <th>证券市值</th>
-                                <th>资金余额</th>
-                                <th>资产总值</th>
-                                <th>产品份额</th>
-                                <th>持仓比例</th>
-                                <th>前一日持仓比例</th>
-                                <th>持仓比例变化</th>
-                                <th>已公布净值</th>
-                                <th>净值变动</th>
-                                <th>前一日估值</th>
-                                <th>与前一日估值比较</th>
-                                <th>预警线</th>
-                                <th>止损线</th>
-                                <th>预估净值</th>
+                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+
+                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+
                             </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(model => model.EquityMarketValue)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.MoneyLeft)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.AssetMarketValue)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.ProductQuantity)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.PropertionOfEquity)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.PropertionOfEquityPrevDay)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.ChangeOfEuqityPropertion)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.NetValueEstimated)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.NetValueAnanced)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.ChangeOfNetValue)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.NetValueEstimatedPreDay)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.ChangeOfNetValueEstimated)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.ThresholdOfWarning)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(model => model.TreshholdOfStopLoss)
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                        }
+                    </tbody>
+                </table>
+
             </div>
+
         </div>
         <div class="tab-pane" id="tab_4" >
             <div class="box box-solid box-warning">
@@ -531,10 +501,13 @@
 </div>
 
 @section Scripts {
+    @Scripts.Render("~/AdminLTE/plugins/datatables/js")
     @Scripts.Render("~/AdminLTE/plugins/jquery-ui/js")
     <script>
         $.widget.bridge('uibutton', $.ui.button);
     </script>
     @Scripts.Render("~/Scripts/Product/productChart.js")
     @Scripts.Render("~/Scripts/Product/productBtn.js")
+    @Scripts.Render("~/Scripts/Product/productDataDetail.js")
+
 }

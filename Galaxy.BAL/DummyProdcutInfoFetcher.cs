@@ -166,6 +166,28 @@ namespace Galaxy.BAL
 •不得投资于ST、*ST、S类股票；
 •不得投资于权证。
 •不得购买管理人自身发行的股票以及与管理人存在关联关系的上市公司股票。";
+
+            for (int i = 0; i < 100; i++)
+            {
+                PorductHoldingViewModel holding = new PorductHoldingViewModel();
+                holding.SecurityName = "浦发银行_" + i;
+                holding.SecurityCode = "00000" + i;
+                holding.IndustryName = "银行";
+                holding.CostPerShare= random.Next(60);
+                holding.Quantity = random.Next();
+                holding.MarketValue = holding.TotalCost + random.Next(100);
+                holding.PreClosePrice = random.Next(60);
+                holding.PropotionOfTotalAssets = random.NextDouble();
+                holding.PropotionOfTotalEquity = random.NextDouble();
+                holding.TradeState = "正常交易";
+                holding.LastTradeDate = DateTime.Today.AddDays(-7);
+
+                holding.ClosePriceBeforeHalt = random.Next(60);
+                holding.IndustryIndexBeforeHalt = random.Next(3000, 3300);
+                holding.IndustryIndexNow = random.Next(3000, 3300);
+
+                vm.Portfolio.Add(holding);
+            }
             return vm;
         }
     }

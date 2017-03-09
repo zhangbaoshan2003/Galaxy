@@ -408,6 +408,7 @@
     <Content Include="Scripts\Product\menu.js" />
     <Content Include="Scripts\Product\productBtn.js" />
     <Content Include="Scripts\Product\productChart.js" />
+    <Content Include="Scripts\Product\productDataDetail.js" />
     <Content Include="Scripts\Product\productData.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
