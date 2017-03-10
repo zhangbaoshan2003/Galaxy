@@ -21,14 +21,16 @@
 
 <style>
     td.details-control {
-        background: url('~/Styles/resources/details_open.png') no-repeat;
+        background: url('/Styles/resources/details_open.png') no-repeat center center;
         cursor: pointer;
     }
 
-    tr.details td.details-control {
-        background: url('~/Styles/resources/details_close.png') no-repeat;
+    tr.shown td.details-control {
+        background: url('/Styles/resources/details_close.png') no-repeat center center;
     }
 </style>
+
+
 <div class="row" style="font-size: 14px ">
     <div class="nav-tabs-custom tab-danger ">
         <ul class="nav nav-tabs">
@@ -122,7 +124,7 @@
                     <table id="prodcutDetailTable" class="display compact">
                         <thead>
                             <tr>
-
+                                <th></th>
                                 <th>产品名称</th>
                                 <th>成立日期</th>
                                 <th>托管银行</th>
@@ -137,26 +139,26 @@
                                 <th>管理人</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody> 
                             @foreach (var item in Model.Portfolio)
                             {
-                            <tr>
+                                <tr>
+                                    <td class="details-control"></td>
+                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
 
-                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
 
-                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-
-                            </tr>
+                                </tr>
                             }
                         </tbody>
                     </table>

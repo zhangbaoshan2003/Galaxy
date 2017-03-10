@@ -22,9 +22,12 @@ namespace Galaxy.Controllers
             return View(models);
         }
 
-        public ActionResult Detail(int id) 
+        public ActionResult Detail(int? id) 
         {
-            ProductBriefViewModel product = prodcutInfoFetcher.FetchProduct(id);
+            if (id.HasValue == false) {
+                return RedirectToAction("Index");
+            }
+            ProductBriefViewModel product = prodcutInfoFetcher.FetchProduct(id.Value);
             return View(product);
         }
 

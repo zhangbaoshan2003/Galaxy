@@ -13,3 +13,7 @@
         //"bScrollCollapse": true
     });
 });
+
+$('#productListTable tbody').on('click', 'tr', function () {
+    $(this).toggleClass('selected');
+});
