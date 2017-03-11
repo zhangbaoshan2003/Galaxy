@@ -5,7 +5,8 @@ $('#btnTabOne').click(function () {
 
 function format(d) {
     // `d` is the original data object for the row
-    return '<table cellpadding="5" cellspacing="0" border="2" style="margin-left:50px;">' +
+    return '<div class="box box-solid box-warning" style="margin-left:45px;width:1000px"> ' +
+    '<table cellpadding="0" cellspacing="0" border="1" style="margin-left:0;">' +
 		'<tr>' +
 			'<td>停牌前收盘价:</td>' +
 			'<td>33.99</td>' +
@@ -23,7 +24,7 @@ function format(d) {
 			'<td> 200 </td>' +
 
         '<td>指数涨跌幅:</td>' +
-			'<td> 200 </td>' +
+			'<td> 200 </td>' + 
 
         '<td>股票价格预估:</td>' +
 			'<td> 200 </td>' +
@@ -35,7 +36,7 @@ function format(d) {
 			'<td> 200 </td>' +
 
 		'</tr>' +
-	'</table>';
+	'</table></div>';
 }
 
 $(function () {
@@ -56,17 +57,7 @@ $(function () {
         ]
     });
     
-    //$('#prodcutDetailTable tbody td img').click(function () {
-    //    var nTr = this.parentNode.parentNode;
-    //    if (this.src.match('details_close')) {
-    //        /* This row is already open - close it */
-    //        this.src = "/Styles/resources/details_open.png";
-    //    }
-    //    else {
-    //        /* Open this row */
-    //        this.src = "/Styles/resources/details_close.png";
-    //    }
-    //});
+   
 
     $('#prodcutDetailTable tbody').on('click', 'td.details-control', function () {
       

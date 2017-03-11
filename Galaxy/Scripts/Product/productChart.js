@@ -2,7 +2,9 @@
 var GLOBAL_PIGGYBACK_DIST_CHART;
 var GLOBAL_ASSET_DIST_CHART;
 var GLOBAL_RETURN_DIST_CHART;
-var GLOBAL_PNL_DIST_CHART
+var GLOBAL_PNL_DIST_CHART;
+var GLOBAL_FUND_DIST_CHART;
+var GLOBAL_EQUITY_ASSET_DIST_CHART;
 
 GLOBAL_NETVALUE_CHART = new Highcharts.stockChart({
     chart: {
@@ -176,6 +178,177 @@ GLOBAL_PNL_DIST_CHART = new Highcharts.chart({
     }
 });
 
+GLOBAL_ASSET_DIST_CHART = new Highcharts.chart({
+    chart: {
+        // Edit chart spacing
+        spacingBottom: 0,
+        spacingTop: 5,
+        spacingLeft: 5,
+        spacingRight: 5,
+        backgroundColor: null,
+        renderTo: 'assetDistChartContainer',
+        type: 'pie',
+        width: null,
+        height: null
+    },
+    title: {
+        text: null
+    },
+
+    xAxis: {
+        type: 'category',
+        labels: {
+            rotation: -45,
+            style: {
+                fontSize: '10px',
+                fontFamily: 'Verdana, sans-serif'
+            }
+        }
+    },
+    yAxis: {
+        min: 0,
+        title: null,
+        labels: {
+            overflow: 'justify'
+        }
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                style: {
+                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                },
+                connectorColor: 'silver'
+            },
+            showInLegend: true
+        }
+    },
+    credits: {
+        enabled: false
+    },
+    legend: {
+        align: 'right',
+        verticalAlign: 'top',
+        floating: false,
+        enabled: false,
+        layout: 'vertical'
+    }
+});
+
+GLOBAL_EQUITY_ASSET_DIST_CHART = new Highcharts.chart({
+    chart: {
+        // Edit chart spacing
+        spacingBottom: 0,
+        spacingTop: 5,
+        spacingLeft: 5,
+        spacingRight: 5,
+        backgroundColor: null,
+        renderTo: 'equity_assetDistChartContainer',
+        type: 'area',
+        width: 500,
+        height: null
+    },
+    credits: {
+        enabled: false
+    },
+    title: {
+        text: null
+    },
+
+    xAxis: {
+        categories: ['2016-2-1', '2016-3-1', '2016-4-1', '2016-5-1', '2016-6-1', '2016-9-1', '2016-10-1'],
+        tickmarkPlacement: 'on',
+        title: {
+            enabled: false
+        }
+    },
+    yAxis: {
+        title: {
+            text: 'Percent'
+        }
+    },
+    plotOptions: {
+        area: {
+            stacking: 'percent',
+            lineColor: '#ffffff',
+            lineWidth: 1,
+            marker: {
+                lineWidth: 1,
+                lineColor: '#ffffff'
+            }
+        }
+    },
+    series: [{
+        name: '采矿业',
+        data: [502, 635, 809, 947, 1402, 3634, 5268]
+    }, {
+        name: '能源',
+        data: [106, 107, 111, 133, 221, 767, 1766]
+    }, {
+        name: '贵金属',
+        data: [163, 203, 276, 408, 547, 729, 628]
+    }, {
+        name: '服务也',
+        data: [18, 31, 54, 156, 339, 818, 1201]
+    }, {
+        name: '金融业',
+        data: [2, 2, 2, 6, 13, 30, 46]
+    }]
+});
+
+GLOBAL_FUND_DIST_CHART = new Highcharts.chart({
+    chart: {
+        // Edit chart spacing
+        spacingBottom: 0,
+        spacingTop: 5,
+        spacingLeft: 5,
+        spacingRight: 5,
+        backgroundColor: null,
+        renderTo: 'fundAssetDistChartContainer',
+        type: 'column',
+        width: 500,
+        height: null
+    },
+    credits: {
+        enabled: false
+    },
+    title: {
+        text: null
+    },
+    xAxis: {
+        categories: ['2011', '2012', '2013', '2014', '2015']
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: null
+        }
+    },
+    tooltip: {
+        pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.percentage:.0f}%)<br/>',
+        shared: true
+    },
+    plotOptions: {
+        column: {
+            stacking: 'percent'
+        }
+    },
+    series: [{
+        name: '股票',
+        data: [5, 3, 4, 7, 2]
+    }, {
+        name: '债券',
+        data: [2, 2, 3, 2, 1]
+    }, {
+        name: '基金',
+        data: [3, 4, 4, 2, 5]
+    }]
+});
+
 function TimeSeriesChartBuilder(data, chart,isMutipleSeiers) {
     this.data = data;
     this.chart = chart;
@@ -252,7 +425,7 @@ function CategoryChartBuilder(data, chart, isMutipleSeiers) {
 
     this.buildChart = function () {
         var containerWidth = ($(document).width() - 350) / 12 * 2;
-        this.chart.setSize(containerWidth, 150, false);
+        this.chart.setSize(500, 150, false);
 
         if (this.data.length == 0) {
             alert("No data found!");
@@ -359,6 +532,11 @@ $(function () {
 
     $.getJSON('/Product/GetPnlDist/?productId=100', function (data) {
         var chartBuilder = new CategoryChartBuilder(data, GLOBAL_PNL_DIST_CHART, false);
+        chartBuilder.buildChart();
+    });
+
+    $.getJSON('/Product/GetPnlDist/?productId=100', function (data) {
+        var chartBuilder = new CategoryChartBuilder(data, GLOBAL_ASSET_DIST_CHART, false);
         chartBuilder.buildChart();
     });
    

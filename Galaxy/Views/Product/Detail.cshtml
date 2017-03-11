@@ -7,11 +7,12 @@
     @Scripts.Render("~/Scripts/Product/menu.js")
 }
 
-@*@Styles.Render("~/AdminLTE/plugins/morris/css")
-    @Styles.Render("~/AdminLTE/plugins/jvectormap/css")
-    @Styles.Render("~/AdminLTE/plugins/datepicker/css")
-    @Styles.Render("~/AdminLTE/plugins/daterangepicker/css")
-    @Styles.Render("~/AdminLTE/plugins/bootstrap-wysihtml5/css")*@
+@*@Styles.Render("~/AdminLTE/plugins/daterangepicker/css")*@
+@*@Styles.Render("~/AdminLTE/plugins/morris/css")*@
+@*@Styles.Render("~/AdminLTE/plugins/jvectormap/css")*@
+@Styles.Render("~/AdminLTE/plugins/datepicker/css")
+@*@Styles.Render("~/AdminLTE/plugins/daterangepicker/css")*@
+@Styles.Render("~/AdminLTE/plugins/bootstrap-wysihtml5/css")
 @*@Styles.Render("~/AdminLTE/plugins/datatables/css")*@
 
 <link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -34,10 +35,19 @@
 <div class="row" style="font-size: 14px ">
     <div class="nav-tabs-custom tab-danger ">
         <ul class="nav nav-tabs">
-            <li ><a href="#tab_1" data-toggle="tab" id="btnTabOne">股票持仓</a></li>
+            <li><a href="#tab_1" data-toggle="tab" id="btnTabOne">股票持仓</a></li>
             <li><a href="#tab_2" data-toggle="tab">净值分析</a></li>
             <li class="active"><a href="#tab_3" data-toggle="tab">产品详情</a></li>
-            <li><a href="#tab_3" data-toggle="tab">持仓分析</a></li>
+            <li><a href="#tab_4" data-toggle="tab">持仓分析</a></li>
+            <li>
+                <div class="box-group" >
+                    @Html.Partial("DatePickerView")
+                    <div style="float:right;vertical-align:bottom"><button type="button" id="btnDatePicker" class="btn btn-block btn-success btn-sm">确定</button></div>
+                </div>
+            </li>
+            <li>
+
+            </li>
         </ul>
         <div class="tab-content">
             <div class="tab-pane " id="tab_1">
@@ -139,7 +149,7 @@
                                 <th>管理人</th>
                             </tr>
                         </thead>
-                        <tbody> 
+                        <tbody>
                             @foreach (var item in Model.Portfolio)
                             {
                                 <tr>
@@ -302,7 +312,6 @@
                     </div>
 
                 </section>
-
             </div>
             <div class="tab-pane active" id="tab_3">
                 <div class="box box-solid box-success">
@@ -427,84 +436,268 @@
                 </div>
             </div>
             <div class="tab-pane" id="tab_4">
-                <div class="box box-solid box-warning">
-                    <div class="box-header">
-                        <i class="fa fa-th"></i>
-                        <h3 class="box-title">资产配置（2016-12-1）</h3>
-                        <div class="box-tools pull-right">
-                            <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
-                                <i class="fa fa-minus"></i>
-                            </button>
+                <div class="row">
+                    <div class="box box-solid box-warning">
+                        <div class="box-header">
+                            <i class="fa fa-th"></i>
+                            <h3 class="box-title">资产配置（2016-12-1）</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body border-radius-none">
+
+                            <div style="float: left;width:50%">
+                                <div class="chart" id="assetDistChartContainer"></div>
+                            </div>
+                            <div style="float:right;width:50%">
+                                <table class="table table-bordered table-striped table-hover table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th>名称</th>
+                                            <th>占比</th>
+                                            <th>较上期</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                股票
+                                            </td>
+                                            <td>85.79%</td>
+                                            <td>0.60</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                债券
+                                            </td>
+                                            <td>85.79%</td>
+                                            <td>0.60</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                现金
+                                            </td>
+                                            <td>85.79%</td>
+                                            <td>0.60</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                其他资产
+                                            </td>
+                                            <td>85.79%</td>
+                                            <td>0.60</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                    <div class="box-body border-radius-none">
-                        <div class="chart" id="assetDistChartContainer" style="height: 250px;"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="box box-solid box-warning">
+                            <div class="box-header">
+                                <i class="fa fa-th"></i>
+                                <h3 class="box-title">重仓债券（2016-12-1）</h3>
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="box-body border-radius-none">
+                                <table class="table table-bordered table-striped table-hover table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th>名称</th>
+                                            <th>占比</th>
+                                            <th>较上期</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                股票
+                                            </td>
+                                            <td>85.79%</td>
+                                            <td>0.60</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                债券
+                                            </td>
+                                            <td>85.79%</td>
+                                            <td>0.60</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                现金
+                                            </td>
+                                            <td>85.79%</td>
+                                            <td>0.60</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                其他资产
+                                            </td>
+                                            <td>85.79%</td>
+                                            <td>0.60</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="box box-solid box-warning">
+                            <div class="box-header">
+                                <i class="fa fa-th"></i>
+                                <h3 class="box-title">重仓股票（2016-12-1）</h3>
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="box-body border-radius-none">
+                                <table class="table table-bordered table-striped table-hover table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th>名称</th>
+                                            <th>占比</th>
+                                            <th>较上期</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                股票
+                                            </td>
+                                            <td>85.79%</td>
+                                            <td>0.60</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                债券
+                                            </td>
+                                            <td>85.79%</td>
+                                            <td>0.60</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                现金
+                                            </td>
+                                            <td>85.79%</td>
+                                            <td>0.60</td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                其他资产
+                                            </td>
+                                            <td>85.79%</td>
+                                            <td>0.60</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="box box-solid box-warning">
+                            <div class="box-header">
+                                <i class="fa fa-th"></i>
+                                <h3 class="box-title">行业配置（2016-12-1）</h3>
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="box-body border-radius-none">
+                                <div>
+                                    <table class="table table-bordered table-striped table-hover table-condensed">
+                                        <thead>
+                                            <tr>
+                                                <th>名称</th>
+                                                <th>占比</th>
+                                                <th>较上期</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    股票
+                                                </td>
+                                                <td>85.79%</td>
+                                                <td>0.60</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    债券
+                                                </td>
+                                                <td>85.79%</td>
+                                                <td>0.60</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    现金
+                                                </td>
+                                                <td>85.79%</td>
+                                                <td>0.60</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    其他资产
+                                                </td>
+                                                <td>85.79%</td>
+                                                <td>0.60</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="box box-solid box-info">
-                    <div class="box-header">
-                        <i class="fa fa-th"></i>
-                        <h3 class="box-title">重仓债券（2016-12-1）</h3>
-                        <div class="box-tools pull-right">
-                            <button type="button" class="btn btn-sm bg-light-blue-gradient" data-widget="collapse">
-                                <i class="fa fa-minus"></i>
-                            </button>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="box box-solid box-success">
+                            <div class="box-header">
+                                <i class="fa fa-th"></i>
+                                <h3 class="box-title">基金历年资产配置（2017-12-1）</h3>
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="box-body border-radius-none">
+                                <div class="chart" id="fundAssetDistChartContainer"></div>
+                            </div>
                         </div>
                     </div>
-                    <div class="box-body border-radius-none">
-                        <table id="productListTable" class="table table-bordered table-striped table-hover table-condensed ">
-                            <thead>
-                                <tr>
-                                    <th>证券名称</th>
-                                    <th>占净值比</th>
-                                    <th>近月涨跌</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>白云转债</td>
-                                    <td>-</td>
-                                    <td>-4.68%</td>
-
-                                    <td>白云转债</td>
-                                    <td>-</td>
-                                    <td>-4.68%</td>
-
-                                    <td>白云转债</td>
-                                    <td>-</td>
-                                    <td>-4.68%</td>
-
-                                    <td>白云转债</td>
-                                    <td>-</td>
-                                    <td>-4.68%</td>
-                                </tr>
-                                <tr>
-                                    <td>白云转债</td>
-                                    <td>
-                                        -
-                                    </td>
-                                    <td>-4.68%</td>
-                                </tr>
-                                <tr>
-                                    <td>白云转债</td>
-                                    <td>
-                                        -
-                                    </td>
-                                    <td>-4.68%</td>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>合计</th>
-                                    <th>10%</th>
-                                    <th></th>
-                                </tr>
-
-                            </tfoot>
-                        </table>
+                    <div class="col-md-8">
+                        <div class="box box-solid box-success">
+                            <div class="box-header">
+                                <i class="fa fa-th"></i>
+                                <h3 class="box-title">股票持仓部分</h3>
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="box-body border-radius-none">
+                                <div class="chart" id="equity_assetDistChartContainer"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -512,18 +705,19 @@
 </div>
 
 @section Scripts {
+    @Scripts.Render("~/AdminLTE/plugins/datepicker/js")
     @*@Scripts.Render("~/AdminLTE/plugins/datatables/js")
-    @Scripts.Render("~/AdminLTE/plugins/jquery-ui/js")*@
+        @Scripts.Render("~/AdminLTE/plugins/jquery-ui/js")*@
 
     @Scripts.Render("~/Styles/media/js/jquery.dataTables.js")
     @Scripts.Render("~/Styles/media/js/dataTables.jqueryui.js")
     @Scripts.Render("~/Styles/resources/syntax/shCore.js")
     @Scripts.Render("~/Styles/resources/demo.js")
     @*<script>
-        $.widget.bridge('uibutton', $.ui.button);
-    </script>*@
+            $.widget.bridge('uibutton', $.ui.button);
+        </script>*@
     @Scripts.Render("~/Scripts/Product/productChart.js")
     @Scripts.Render("~/Scripts/Product/productBtn.js")
     @Scripts.Render("~/Scripts/Product/productDataDetail.js")
-
+    @Scripts.Render("~/Scripts/Product/datePickerLogic.js")
 }
