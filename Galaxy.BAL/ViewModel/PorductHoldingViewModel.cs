@@ -52,14 +52,14 @@ namespace Galaxy.BAL.ViewModel
             }
         }
 
-        public double PricePerShareAfterHalt
+        public double PricePerShareEstimated
         {
             get { return PreClosePrice*(1 + IndustryIndexChangePercent); }
         }
 
         public double MarketValueEstimated
         {
-            get { return PricePerShareAfterHalt*Quantity; }
+            get { return PricePerShareEstimated * Quantity; }
         }
 
         public double MarketValueDecrease { get { return MarketValueEstimated - MarketValue; }}

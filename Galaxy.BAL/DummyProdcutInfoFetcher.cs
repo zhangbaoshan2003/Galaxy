@@ -24,10 +24,10 @@ namespace Galaxy.BAL
                 TimeSeriesDataViewModel model = new TimeSeriesDataViewModel();
                 model.Name = "净值";
                 model.ReportedDataTime = DateTime.Today.AddDays(i);
-                model.ReportedValue = random.NextDouble();
-                if (model.ReportedValue < 0.5)
+                model.ReportedNetValue = random.NextDouble();
+                if (model.ReportedNetValue < 0.5)
                 {
-                    model.ReportedValue += 0.5;
+                    model.ReportedNetValue += 0.5;
                 }
                 models.Add(model);
             }
@@ -39,10 +39,10 @@ namespace Galaxy.BAL
                 TimeSeriesDataViewModel model = new TimeSeriesDataViewModel();
                 model.Name = "沪深300指数";
                 model.ReportedDataTime = DateTime.Today.AddDays(i);
-                model.ReportedValue = random.NextDouble();
-                if (model.ReportedValue < 0.5)
+                model.ReportedNetValue = random.NextDouble();
+                if (model.ReportedNetValue < 0.5)
                 {
-                    model.ReportedValue += 0.5;
+                    model.ReportedNetValue += 0.5;
                 }
                 models.Add(model);
             }
@@ -59,10 +59,10 @@ namespace Galaxy.BAL
                 TimeSeriesDataViewModel model = new TimeSeriesDataViewModel();
                 model.Name = "回撤率";
                 model.ReportedDataTime = DateTime.Today.AddDays(i);
-                model.ReportedValue = random.NextDouble();
-                if (model.ReportedValue < 0.5)
+                model.ReportedNetValue = random.NextDouble();
+                if (model.ReportedNetValue < 0.5)
                 {
-                    model.ReportedValue += 0.5;
+                    model.ReportedNetValue += 0.5;
                 }
                 models.Add(model);
             }

@@ -5,38 +5,32 @@ $('#btnTabOne').click(function () {
 
 function format(d) {
     // `d` is the original data object for the row
-    return '<div class="box box-solid box-warning" style="margin-left:45px;width:1000px"> ' +
-    '<table cellpadding="0" cellspacing="0" border="1" style="margin-left:0;">' +
+    return '' +
+    '<table cellpadding="0" cellspacing="0" border="1" style="margin-left:20px;">' +
 		'<tr>' +
 			'<td>停牌前收盘价:</td>' +
-			'<td>33.99</td>' +
-
-            '<td>最近交易日:</td>' +
-			'<td> 2013-1-1 </td>' +
-
-            '<td>停牌前收盘价:</td>' +
-			'<td> 40 </td>' +
+			'<td>'+d[13]+'</td>' +
 
             '<td>停牌前行业指数:</td>' +
-			'<td> 200 </td>' +
+			'<td>'+[14]+' </td>' +
 
-          '<td>最新行业指数:</td>' +
-			'<td> 200 </td>' +
+            '<td>最新行业指数:</td>' +
+			'<td> '+d[15]+' </td>' +
 
-        '<td>指数涨跌幅:</td>' +
-			'<td> 200 </td>' + 
+            '<td>指数涨跌幅:</td>' +
+			'<td> '+d[16]+' </td>' +
 
-        '<td>股票价格预估:</td>' +
-			'<td> 200 </td>' +
+          '<td>股票价格预估:</td>' +
+			'<td> '+d[17]+' </td>' +
 
         '<td>股票市值预估:</td>' +
-			'<td> 200 </td>' +
+			'<td> '+d[18]+' </td>' + 
 
-         '<td>市值减少额:</td>' +
-			'<td> 200 </td>' +
+        '<td>市值减少额:</td>' +
+			'<td> '+d[19]+' </td>' +
 
 		'</tr>' +
-	'</table></div>';
+	'</table>';
 }
 
 $(function () {
@@ -54,10 +48,15 @@ $(function () {
         "sScrollXInner": "110%",
         "columnDefs": [
             { "width": "20px", "targets": 0 }
-        ]
+        ],
+        "createdRow": function (row, data, index) {
+            if (data[4].replace(/[\$,]/g, '') * 1 > 30) {
+                $('td', row).eq(0).removeClass('details-control');
+            } else {
+                $('td', row).eq(1).addClass('bg-red-gradient')
+            }
+        }
     });
-    
-   
 
     $('#prodcutDetailTable tbody').on('click', 'td.details-control', function () {
       

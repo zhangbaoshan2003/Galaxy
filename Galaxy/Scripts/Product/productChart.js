@@ -380,7 +380,7 @@ function TimeSeriesChartBuilder(data, chart,isMutipleSeiers) {
                     var dateTimObj = Date.UTC(year, month, day);
                     var time_value_pair = [];
                     time_value_pair.push(dateTimObj);
-                    time_value_pair.push(dataValue.ReportedValue);
+                    time_value_pair.push(dataValue.ReportedNetValue);
                     dataPoints.push(time_value_pair);
                 });
                 chartMain.addSeries({
@@ -449,7 +449,7 @@ function CategoryChartBuilder(data, chart, isMutipleSeiers) {
                     var dateTimObj = Date.UTC(year, month, day);
                     var time_value_pair = [];
                     time_value_pair.push(dateTimObj);
-                    time_value_pair.push(dataValue.ReportedValue);
+                    time_value_pair.push(dataValue.ReportedNetValue);
                     dataPoints.push(time_value_pair);
                 });
                 chartMain.addSeries({

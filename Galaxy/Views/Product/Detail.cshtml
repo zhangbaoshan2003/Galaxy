@@ -29,6 +29,10 @@
     tr.shown td.details-control {
         background: url('/Styles/resources/details_close.png') no-repeat center center;
     }
+
+    tr.hide {
+        display:none;
+    }
 </style>
 
 
@@ -135,39 +139,67 @@
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>产品名称</th>
-                                <th>成立日期</th>
-                                <th>托管银行</th>
-                                <th>投资顾问</th>
-                                <th>管理人</th>
-                                <th>投资顾问</th>
-                                <th>管理人</th>
-                                <th>投资顾问</th>
-                                <th>管理人</th>
-                                <th>投资顾问</th>
-                                <th>管理人</th>
-                                <th>管理人</th>
+                                <th>股票代码</th>
+                                <th>股票名称</th>
+                                <th>所属行业</th>
+                                <th>成本价</th>
+                                <th>数量</th>
+                                <th>成本</th>
+                                <th>市值</th>
+                                <th>总资产占比</th>
+                                <th>总持仓占比</th>
+                                <th>浮动盈亏</th>
+                                <th>浮盈率</th>
+                                <th>股票交易状态</th>
+                                <th style="display:none"></th>
+                                <th style="display:none"></th>
+                                <th style="display:none"></th>
+                                <th style="display:none"></th>
+                                <th style="display:none"></th>
+                                <th style="display:none"></th>
+                                <th style="display:none"></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var item in Model.Portfolio)
                             {
-                                <tr>
-                                    <td class="details-control"></td>
-                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                <tr >
+                                    <td class="details-control "></td>
+                                    <td >@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.SecurityName)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.IndustryName)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.CostPerShare)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.TotalCost)</td>
 
-                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.MarketValue)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.PropotionOfTotalAssets)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.PropotionOfTotalEquity)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.PnL)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.PnLYield)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.TradeState)</td>
 
+                                    <td style="display:none">
+                                        @Html.DisplayFor(modelItem => item.ClosePriceBeforeHalt) 
+                                    </td>
+                                    <td style="display:none">
+                                        @Html.DisplayFor(modelItem => item.IndustryIndexBeforeHalt)
+                                    </td>
+                                    <td style="display:none">
+                                        @Html.DisplayFor(modelItem => item.IndustryIndexNow)
+                                    </td>
+                                    <td style="display:none">
+                                        @Html.DisplayFor(modelItem => item.IndustryIndexChangePercent)
+                                    </td>
+                                    <td style="display:none">
+                                        @Html.DisplayFor(modelItem => item.PricePerShareEstimated)
+                                    </td>
+                                    <td style="display:none">
+                                        @Html.DisplayFor(modelItem => item.MarketValueEstimated)
+                                    </td>
+                                    <td style="display:none">
+                                        @Html.DisplayFor(modelItem => item.MarketValueDecrease)
+                                    </td>
                                 </tr>
                             }
                         </tbody>

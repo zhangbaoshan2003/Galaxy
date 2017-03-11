@@ -10,7 +10,17 @@ namespace Galaxy.BAL.ViewModel
     public class TimeSeriesDataViewModel
     {
         public DateTime ReportedDataTime { get; set; }
-        public double ReportedValue { get; set; }
+        public double ReportedNetValue { get; set; }
+        public double Yield { get; set; }
+        public double AnnualYield { get; set; }
+        public double RelativeYield { get; set; }
+        public double Beta { get; set; }
+        public double Volitility { get; set; }
+        public double MaxWtihdraw { get; set; }
+        public double SharpRatio { get; set; }
+        public double RiskProfitRatio { get; set; }
+        public double CoverionsWithIndex { get; set; }
+        public double OrderOfSimliarStrategy { get; set; }
         public String Name { get; set; }
 
         public int Year
