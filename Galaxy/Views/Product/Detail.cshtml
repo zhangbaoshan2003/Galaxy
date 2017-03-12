@@ -35,7 +35,9 @@
     }
 </style>
 
-
+<div class="row">
+   
+</div>
 <div class="row" style="font-size: 14px ">
     <div class="nav-tabs-custom tab-danger ">
         <ul class="nav nav-tabs">
@@ -136,7 +138,7 @@
                     </div>
                 </div>
                 <div class="box box-solid box-warning" style="font-size: 12px;">
-                    <table id="prodcutDetailTable" class="display compact">
+                    @*<table id="prodcutDetailTable" class="display compact">
                         <thead>
                             <tr>
                                 <th></th>
@@ -204,8 +206,9 @@
                                 </tr>
                             }
                         </tbody>
-                    </table>
+                    </table>*@
 
+                    @Html.Partial("KendoProductHoldingListView")
                 </div>
             </div>
             <div class="tab-pane" id="tab_2">
@@ -751,6 +754,6 @@
         </script>*@
     @Scripts.Render("~/Scripts/Product/productChart.js")
     @Scripts.Render("~/Scripts/Product/productBtn.js")
-    @Scripts.Render("~/Scripts/Product/productDataDetail.js")
+    @*@Scripts.Render("~/Scripts/Product/productDataDetail.js")*@
     @Scripts.Render("~/Scripts/Product/datePickerLogic.js")
 }

@@ -1,0 +1,62 @@
+﻿@(Html.Kendo().Grid<Galaxy.BAL.ViewModel.PorductHoldingViewModel>()
+        .Name("productHoldingGrid")
+            .HtmlAttributes(new { style = "height:450px;" })
+        .Columns(columns =>
+        {  
+            columns.Bound(c => c.SecurityCode).Title("股票代码").Width(94);
+            columns.Bound(c => c.SecurityName).Title("股票名称").Width(94);
+            columns.Bound(c => c.IndustryName).Title("所属行业").Width(94);
+            columns.Bound(c => c.CostPerShare).Title("成本价").Width(94).Format("{0:c}");
+            columns.Bound(c => c.Quantity).Title("数量").Width(94);
+            columns.Bound(c => c.TotalCost).Title("成本").Width(150).Format("{0:c}");
+            columns.Bound(c => c.PreClosePrice).Title("收盘价").Width(94).Format("{0:c}");
+            columns.Bound(c => c.MarketValue).Title("市值").Width(120).Format("{0:c}");
+            columns.Bound(c => c.PropotionOfTotalAssets).Title("总资产占比").Width(110).Format("{0:p2}");
+            columns.Bound(c => c.PropotionOfTotalEquity).Title("总持仓占比").Width(110).Format("{0:p2}");
+            columns.Bound(c => c.PnL).Title("浮动盈亏").Width(94);
+            columns.Bound(c => c.PnLYield).Title("浮盈率").Width(94).Format("{0:p2}");
+            columns.Bound(c => c.TradeState).Title("股票交易状态").Width(110);
+            columns.Bound(c => c.LastTradeDate).Title("最近交易日").Format("{0:MM/dd/yyyy}").Width(110);
+        })
+        //.HtmlAttributes(new { style = "height: 550px;" })
+        .Scrollable()
+        .Sortable()
+        .Filterable()
+        .Pageable(pageable => pageable
+            .Refresh(true)
+            .PageSizes(true)
+            .ButtonCount(5))
+        .DataSource(dataSource => dataSource
+            .Ajax()
+            .Read(read => read.Action("Customers_Read", "Product"))
+            .PageSize(20)
+        )
+        .ClientDetailTemplateId("suspend_equity_template")
+         .Resizable(resize => resize.Columns(false))    
+)
+)
+
+<script id="suspend_equity_template" type="text/kendo-tmpl">
+    @(Html.Kendo().TabStrip()
+                    .Name("tabStrip_#=SecurityCode#")
+            .SelectedIndex(0)
+            .Animation(animation => animation.Open(open => open.Fade(FadeDirection.In)))
+            .Items(items =>
+            {   
+                items.Add().Text("停牌信息").Content(
+                    "<div class='employee-details'>" +
+                        "<ul>" +
+                            "<li><label>停牌前收盘价:</label>#= ClosePriceBeforeHalt #</li>" +
+                            "<li><label>停牌前行业指数:</label>#= IndustryIndexBeforeHalt #</li>" +
+                            "<li><label>最新行业指数:</label>#= IndustryIndexNow #</li>" +
+                            "<li><label>指数涨跌幅:</label>#= PricePerShareEstimated #</li>" +
+                             "<li><label>股票价格预估:</label>#= PricePerShareEstimated #</li>" +
+                              "<li><label>股票市值预估:</label>#= PricePerShareEstimated #</li>" +
+                               "<li><label>市值减少额:</label>#= PricePerShareEstimated #</li>" +
+                        "</ul>" +
+                    "</div>"
+                );
+            })
+                                   .ToClientTemplate())
+</script>
+

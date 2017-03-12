@@ -2,11 +2,15 @@
 using Galaxy.BAL.Interface;
 using Galaxy.BAL.ViewModel;
 using Galaxy.Models;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+
+using Kendo.Mvc.Extensions;
+using Kendo.Mvc.UI;
 
 namespace Galaxy.Controllers
 {
@@ -93,6 +97,11 @@ namespace Galaxy.Controllers
                 LogUtility.Fatal("Error happend when fetching product return distribution", ex);
                 return Json(null);
             }
+        }
+        public ActionResult Customers_Read([DataSourceRequest]DataSourceRequest request)
+        {
+            ProductBriefViewModel product = prodcutInfoFetcher.FetchProduct(1);
+            return Json(product.Portfolio.ToDataSourceResult(request));
         }
 	}
 }

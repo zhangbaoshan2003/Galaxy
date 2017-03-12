@@ -36,42 +36,42 @@ function format(d) {
 $(function () {
     //initialize data table 
     
-    Global_oTable = $('#prodcutDetailTable').DataTable({
-        "paging": true,
-        "lengthChange": true,
-        "searching": true,
-        "ordering": true,
-        "info": false,
-        "autoWidth": false,
-        "scrollX": true,
-        "sScrollX": "100%",
-        "sScrollXInner": "110%",
-        "columnDefs": [
-            { "width": "20px", "targets": 0 }
-        ],
-        "createdRow": function (row, data, index) {
-            if (data[4].replace(/[\$,]/g, '') * 1 > 30) {
-                $('td', row).eq(0).removeClass('details-control');
-            } else {
-                $('td', row).eq(1).addClass('bg-red-gradient')
-            }
-        }
-    });
+    //Global_oTable = $('#prodcutDetailTable').DataTable({
+    //    "paging": true,
+    //    "lengthChange": true,
+    //    "searching": true,
+    //    "ordering": true,
+    //    "info": false,
+    //    "autoWidth": false,
+    //    "scrollX": true,
+    //    "sScrollX": "100%",
+    //    "sScrollXInner": "110%",
+    //    "columnDefs": [
+    //        { "width": "20px", "targets": 0 }
+    //    ],
+    //    "createdRow": function (row, data, index) {
+    //        if (data[4].replace(/[\$,]/g, '') * 1 > 30) {
+    //            $('td', row).eq(0).removeClass('details-control');
+    //        } else {
+    //            $('td', row).eq(1).addClass('bg-red-gradient')
+    //        }
+    //    }
+    //});
 
-    $('#prodcutDetailTable tbody').on('click', 'td.details-control', function () {
+    //$('#prodcutDetailTable tbody').on('click', 'td.details-control', function () {
       
-        var tr = $(this).closest('tr');
-        var row = Global_oTable.row(tr);
-        //alert(row);
-        if (row.child.isShown()) {
-            // This row is already open - close it
-            row.child.hide();
-            tr.removeClass('shown');
-        }
-        else {
-            // Open this row
-            row.child(format(row.data())).show();
-            tr.addClass('shown');
-        }
-    });
+    //    var tr = $(this).closest('tr');
+    //    var row = Global_oTable.row(tr);
+    //    //alert(row);
+    //    if (row.child.isShown()) {
+    //        // This row is already open - close it
+    //        row.child.hide();
+    //        tr.removeClass('shown');
+    //    }
+    //    else {
+    //        // Open this row
+    //        row.child(format(row.data())).show();
+    //        tr.addClass('shown');
+    //    }
+    //});
 });
