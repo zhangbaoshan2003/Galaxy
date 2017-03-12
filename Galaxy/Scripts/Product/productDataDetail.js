@@ -1,6 +1,11 @@
 ﻿var Global_oTable;
 $('#btnTabOne').click(function () {
-    setTimeout(function () { Global_oTable.draw(); }, 1);
+   
+    setTimeout(function () {
+        //Global_oTable.draw();
+        var gridDataSource = $('#productHoldingGrid').data('kendoGrid').dataSource;
+        gridDataSource.read();
+    }, 1);
 });
 
 function format(d) {

@@ -41,9 +41,9 @@
 <div class="row" style="font-size: 14px ">
     <div class="nav-tabs-custom tab-danger ">
         <ul class="nav nav-tabs">
-            <li><a href="#tab_1" data-toggle="tab" id="btnTabOne">股票持仓</a></li>
+            <li class="active"><a href="#tab_1" data-toggle="tab" id="btnTabOne">股票持仓</a></li>
             <li><a href="#tab_2" data-toggle="tab">净值分析</a></li>
-            <li class="active"><a href="#tab_3" data-toggle="tab">产品详情</a></li>
+            <li ><a href="#tab_3" data-toggle="tab">产品详情</a></li>
             <li><a href="#tab_4" data-toggle="tab">持仓分析</a></li>
             <li>
                 <div class="box-group" >
@@ -57,7 +57,7 @@
             </li>
         </ul>
         <div class="tab-content">
-            <div class="tab-pane " id="tab_1">
+            <div class="tab-pane active" id="tab_1">
                 <div class="box box-solid box-info" style="font-size: 12px;">
                     <div class="box-header">
                         <i class="fa fa-th"></i>
@@ -139,74 +139,74 @@
                 </div>
                 <div class="box box-solid box-warning" style="font-size: 12px;">
                     @*<table id="prodcutDetailTable" class="display compact">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>股票代码</th>
-                                <th>股票名称</th>
-                                <th>所属行业</th>
-                                <th>成本价</th>
-                                <th>数量</th>
-                                <th>成本</th>
-                                <th>市值</th>
-                                <th>总资产占比</th>
-                                <th>总持仓占比</th>
-                                <th>浮动盈亏</th>
-                                <th>浮盈率</th>
-                                <th>股票交易状态</th>
-                                <th style="display:none"></th>
-                                <th style="display:none"></th>
-                                <th style="display:none"></th>
-                                <th style="display:none"></th>
-                                <th style="display:none"></th>
-                                <th style="display:none"></th>
-                                <th style="display:none"></th>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>股票代码</th>
+                            <th>股票名称</th>
+                            <th>所属行业</th>
+                            <th>成本价</th>
+                            <th>数量</th>
+                            <th>成本</th>
+                            <th>市值</th>
+                            <th>总资产占比</th>
+                            <th>总持仓占比</th>
+                            <th>浮动盈亏</th>
+                            <th>浮盈率</th>
+                            <th>股票交易状态</th>
+                            <th style="display:none"></th>
+                            <th style="display:none"></th>
+                            <th style="display:none"></th>
+                            <th style="display:none"></th>
+                            <th style="display:none"></th>
+                            <th style="display:none"></th>
+                            <th style="display:none"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Portfolio)
+                        {
+                            <tr >
+                                <td class="details-control "></td>
+                                <td >@Html.DisplayFor(modelItem => item.SecurityCode)</td>
+                                <td>@Html.DisplayFor(modelItem => item.SecurityName)</td>
+                                <td>@Html.DisplayFor(modelItem => item.IndustryName)</td>
+                                <td>@Html.DisplayFor(modelItem => item.CostPerShare)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                                <td>@Html.DisplayFor(modelItem => item.TotalCost)</td>
+
+                                <td>@Html.DisplayFor(modelItem => item.MarketValue)</td>
+                                <td>@Html.DisplayFor(modelItem => item.PropotionOfTotalAssets)</td>
+                                <td>@Html.DisplayFor(modelItem => item.PropotionOfTotalEquity)</td>
+                                <td>@Html.DisplayFor(modelItem => item.PnL)</td>
+                                <td>@Html.DisplayFor(modelItem => item.PnLYield)</td>
+                                <td>@Html.DisplayFor(modelItem => item.TradeState)</td>
+
+                                <td style="display:none">
+                                    @Html.DisplayFor(modelItem => item.ClosePriceBeforeHalt)
+                                </td>
+                                <td style="display:none">
+                                    @Html.DisplayFor(modelItem => item.IndustryIndexBeforeHalt)
+                                </td>
+                                <td style="display:none">
+                                    @Html.DisplayFor(modelItem => item.IndustryIndexNow)
+                                </td>
+                                <td style="display:none">
+                                    @Html.DisplayFor(modelItem => item.IndustryIndexChangePercent)
+                                </td>
+                                <td style="display:none">
+                                    @Html.DisplayFor(modelItem => item.PricePerShareEstimated)
+                                </td>
+                                <td style="display:none">
+                                    @Html.DisplayFor(modelItem => item.MarketValueEstimated)
+                                </td>
+                                <td style="display:none">
+                                    @Html.DisplayFor(modelItem => item.MarketValueDecrease)
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model.Portfolio)
-                            {
-                                <tr >
-                                    <td class="details-control "></td>
-                                    <td >@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.SecurityName)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.IndustryName)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.CostPerShare)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.TotalCost)</td>
-
-                                    <td>@Html.DisplayFor(modelItem => item.MarketValue)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.PropotionOfTotalAssets)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.PropotionOfTotalEquity)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.PnL)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.PnLYield)</td>
-                                    <td>@Html.DisplayFor(modelItem => item.TradeState)</td>
-
-                                    <td style="display:none">
-                                        @Html.DisplayFor(modelItem => item.ClosePriceBeforeHalt) 
-                                    </td>
-                                    <td style="display:none">
-                                        @Html.DisplayFor(modelItem => item.IndustryIndexBeforeHalt)
-                                    </td>
-                                    <td style="display:none">
-                                        @Html.DisplayFor(modelItem => item.IndustryIndexNow)
-                                    </td>
-                                    <td style="display:none">
-                                        @Html.DisplayFor(modelItem => item.IndustryIndexChangePercent)
-                                    </td>
-                                    <td style="display:none">
-                                        @Html.DisplayFor(modelItem => item.PricePerShareEstimated)
-                                    </td>
-                                    <td style="display:none">
-                                        @Html.DisplayFor(modelItem => item.MarketValueEstimated)
-                                    </td>
-                                    <td style="display:none">
-                                        @Html.DisplayFor(modelItem => item.MarketValueDecrease)
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>*@
+                        }
+                    </tbody>
+                </table>*@
 
                     @Html.Partial("KendoProductHoldingListView")
                 </div>
@@ -349,7 +349,7 @@
 
                 </section>
             </div>
-            <div class="tab-pane active" id="tab_3">
+            <div class="tab-pane " id="tab_3">
                 <div class="box box-solid box-success">
                     <div class="box-body border-radius-none ">
                         <table class="table table-bordered table-striped table-hover table-condensed">
