@@ -15,9 +15,9 @@
 @Styles.Render("~/AdminLTE/plugins/bootstrap-wysihtml5/css")
 @*@Styles.Render("~/AdminLTE/plugins/datatables/css")*@
 
-<link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+@*<link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="~/Styles/media/css/dataTables.jqueryui.css">
-<link rel="stylesheet" type="text/css" href="~/Styles/resources/syntax/shCore.css">
+<link rel="stylesheet" type="text/css" href="~/Styles/resources/syntax/shCore.css">*@
 @*<link rel="stylesheet" type="text/css" href="~/Styles/resources/demo.css">*@
 
 <style>
@@ -35,14 +35,13 @@
     }
 </style>
 
-<div class="row">
-   
-</div>
+<input type="hidden" id="hidenProductId" value="@ViewBag.ProductId" />
+
 <div class="row" style="font-size: 14px ">
     <div class="nav-tabs-custom tab-danger ">
         <ul class="nav nav-tabs">
             <li class="active"><a href="#tab_1" data-toggle="tab" id="btnTabOne">股票持仓</a></li>
-            <li><a href="#tab_2" data-toggle="tab">净值分析</a></li>
+            <li><a href="#tab_2" data-toggle="tab" id="btnTabTwo">净值分析</a></li>
             <li ><a href="#tab_3" data-toggle="tab">产品详情</a></li>
             <li><a href="#tab_4" data-toggle="tab">持仓分析</a></li>
             <li>
@@ -700,7 +699,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-lg-6">
                         <div class="box box-solid box-success">
                             <div class="box-header">
                                 <i class="fa fa-th"></i>
@@ -716,7 +715,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-lg-6">
                         <div class="box box-solid box-success">
                             <div class="box-header">
                                 <i class="fa fa-th"></i>

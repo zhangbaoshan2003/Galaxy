@@ -11,6 +11,7 @@ namespace Galaxy.BAL.ViewModel
         public String SecurityName { get; set; }
         public String SecurityCode { get; set; }
         public String IndustryName { get; set; }
+        public DateTime UpdatedDate { get; set; }
         public double CostPerShare { get; set; }
         public double Quantity { get; set; }
 

@@ -418,14 +418,19 @@ function TimeSeriesChartBuilder(data, chart,isMutipleSeiers) {
     }
 };
 
-function CategoryChartBuilder(data, chart, isMutipleSeiers) {
+function CategoryChartBuilder(data, chart, isMutipleSeiers,chartWidth) {
     this.data = data;
     this.chart = chart;
     this.chartName = "N/A";
 
     this.buildChart = function () {
-        var containerWidth = ($(document).width() - 350) / 12 * 2;
-        this.chart.setSize(500, 150, false);
+        if (chartWidth != 'undefiend') {
+            this.chart.setSize(chartWidth, 150, false);
+        } else {
+            this.chart.setSize(500, 150, false);
+        }
+        //var containerWidth = ($(document).width() - 350) / 12 * 2;
+        //this.chart.setSize(containerWidth, 150, false);
 
         if (this.data.length == 0) {
             alert("No data found!");
@@ -480,6 +485,8 @@ function CategoryChartBuilder(data, chart, isMutipleSeiers) {
 };
 
 $(function () {
+    var chartWidth = $('div.col-md-6').css('width');
+
     $.ajaxSetup({ cache: false });
 
     Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
@@ -513,31 +520,13 @@ $(function () {
             downloadSVG: '下载SVG格式'
         }
     });
-   
-
-    $.getJSON('/Product/GetNetValues/?productId=100', function (data) {
-        var chartBuilder = new TimeSeriesChartBuilder(data,GLOBAL_NETVALUE_CHART,true);
-        chartBuilder.buildChart();
-    });
-
-    $.getJSON('/Product/GetPiggyBackDist/?productId=100', function (data) {
-        var chartBuilder = new TimeSeriesChartBuilder(data, GLOBAL_PIGGYBACK_DIST_CHART,false);
-        chartBuilder.buildChart();
-    });
-
-    $.getJSON('/Product/GetReturnDist/?productId=100', function (data) {
-        var chartBuilder = new CategoryChartBuilder(data, GLOBAL_RETURN_DIST_CHART, false);
-        chartBuilder.buildChart();
-    });
-
-    $.getJSON('/Product/GetPnlDist/?productId=100', function (data) {
-        var chartBuilder = new CategoryChartBuilder(data, GLOBAL_PNL_DIST_CHART, false);
-        chartBuilder.buildChart();
-    });
 
     $.getJSON('/Product/GetPnlDist/?productId=100', function (data) {
         var chartBuilder = new CategoryChartBuilder(data, GLOBAL_ASSET_DIST_CHART, false);
         chartBuilder.buildChart();
     });
-   
+
+    setTimeout(function () {
+       
+    }, 1);
 });

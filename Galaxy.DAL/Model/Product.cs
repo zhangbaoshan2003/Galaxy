@@ -14,6 +14,8 @@ namespace Galaxy.DAL.Model
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ID { get; set; }
+        
+        public string PBFundID { get; set; }
 
         [Required]
         public string Name { get; set; }

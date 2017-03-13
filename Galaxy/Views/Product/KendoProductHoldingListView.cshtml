@@ -28,7 +28,7 @@
             .ButtonCount(5))
         .DataSource(dataSource => dataSource
             .Ajax()
-            .Read(read => read.Action("Customers_Read", "Product"))
+                        .Read(read => read.Action("GetHoldings", "Product"))
             .PageSize(20)
         )
         .ClientDetailTemplateId("suspend_equity_template")

@@ -1,12 +1,5 @@
 ﻿var Global_oTable;
-$('#btnTabOne').click(function () {
-   
-    setTimeout(function () {
-        //Global_oTable.draw();
-        var gridDataSource = $('#productHoldingGrid').data('kendoGrid').dataSource;
-        gridDataSource.read();
-    }, 1);
-});
+
 
 function format(d) {
     // `d` is the original data object for the row
@@ -39,6 +32,7 @@ function format(d) {
 }
 
 $(function () {
+    
     //initialize data table 
     
     //Global_oTable = $('#prodcutDetailTable').DataTable({
@@ -79,4 +73,6 @@ $(function () {
     //        tr.addClass('shown');
     //    }
     //});
+
+   
 });

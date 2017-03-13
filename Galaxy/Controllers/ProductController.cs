@@ -32,6 +32,7 @@ namespace Galaxy.Controllers
                 return RedirectToAction("Index");
             }
             ProductBriefViewModel product = prodcutInfoFetcher.FetchProduct(id.Value);
+            ViewBag.ProductId = id.Value;
             return View(product);
         }
 
@@ -67,7 +68,7 @@ namespace Galaxy.Controllers
             }
         }
 
-        public ActionResult GetReturnDist(int productId)
+        public ActionResult GetReturnDist(int productId,String asofDate)
         {
             try
             {
@@ -83,7 +84,7 @@ namespace Galaxy.Controllers
             }
         }
 
-        public ActionResult GetPnlDist(int productId)
+        public ActionResult GetPnlDist(int productId,String asOfDate)
         {
             try
             {
@@ -98,7 +99,7 @@ namespace Galaxy.Controllers
                 return Json(null);
             }
         }
-        public ActionResult Customers_Read([DataSourceRequest]DataSourceRequest request)
+        public ActionResult GetHoldings([DataSourceRequest]DataSourceRequest request,String asOfDate,String productId)
         {
             ProductBriefViewModel product = prodcutInfoFetcher.FetchProduct(1);
             return Json(product.Portfolio.ToDataSourceResult(request));
