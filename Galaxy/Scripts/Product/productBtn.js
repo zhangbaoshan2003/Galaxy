@@ -45,3 +45,14 @@ $('#btnTabTwo').click(function () {
     }
 
 });
+
+var Global_asset_dist_chart_initialized = false;
+$('#btnTabFour').click(function () {
+    if (Global_asset_dist_chart_initialized == false) {
+        $.getJSON('/Product/GetFuncAssetDist/?productId=100', function (data) {
+            var chartBuilder = new CategoryChartBuilder(data, GLOBAL_FUND_DIST_CHART, true);
+            chartBuilder.buildChart();
+        });
+        Global_asset_dist_chart_initialized = true;
+    }
+});

@@ -43,8 +43,8 @@
             <li class="active"><a href="#tab_1" data-toggle="tab" id="btnTabOne">股票持仓</a></li>
             <li><a href="#tab_2" data-toggle="tab" id="btnTabTwo">净值分析</a></li>
             <li ><a href="#tab_3" data-toggle="tab">产品详情</a></li>
-            <li><a href="#tab_4" data-toggle="tab">持仓分析</a></li>
-            <li>
+            <li><a href="#tab_4" data-toggle="tab" id="btnTabFour">持仓分析</a></li>
+            <li>    
                 <div class="box-group" >
                     @Html.Partial("DatePickerView")
                     <div style="float:right;vertical-align:bottom">
@@ -472,10 +472,10 @@
             </div>
             <div class="tab-pane" id="tab_4">
                 <div class="row">
-                    <div class="box box-solid box-warning">
+                    <div class="box box-solid box-warning pad">
                         <div class="box-header">
                             <i class="fa fa-th"></i>
-                            <h3 class="box-title">资产配置（2016-12-1）</h3>
+                            <h3 class="box-title">资产配置</h3>
                             <div class="box-tools pull-right">
                                 <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
                                     <i class="fa fa-minus"></i>
@@ -483,7 +483,6 @@
                             </div>
                         </div>
                         <div class="box-body border-radius-none">
-
                             <div style="float: left;width:50%">
                                 <div class="chart" id="assetDistChartContainer"></div>
                             </div>
@@ -536,7 +535,7 @@
                         <div class="box box-solid box-warning">
                             <div class="box-header">
                                 <i class="fa fa-th"></i>
-                                <h3 class="box-title">重仓债券（2016-12-1）</h3>
+                                <h3 class="box-title">重仓债券</h3>
                                 <div class="box-tools pull-right">
                                     <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
                                         <i class="fa fa-minus"></i>
@@ -590,7 +589,7 @@
                         <div class="box box-solid box-warning">
                             <div class="box-header">
                                 <i class="fa fa-th"></i>
-                                <h3 class="box-title">重仓股票（2016-12-1）</h3>
+                                <h3 class="box-title">重仓股票</h3>
                                 <div class="box-tools pull-right">
                                     <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
                                         <i class="fa fa-minus"></i>
@@ -703,7 +702,7 @@
                         <div class="box box-solid box-success">
                             <div class="box-header">
                                 <i class="fa fa-th"></i>
-                                <h3 class="box-title">基金历年资产配置（2017-12-1）</h3>
+                                <h3 class="box-title">基金历年资产配置</h3>
                                 <div class="box-tools pull-right">
                                     <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
                                         <i class="fa fa-minus"></i>

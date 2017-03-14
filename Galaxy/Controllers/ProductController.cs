@@ -1,4 +1,5 @@
-﻿using Galaxy.BAL;
+﻿using System.Globalization;
+using Galaxy.BAL;
 using Galaxy.BAL.Interface;
 using Galaxy.BAL.ViewModel;
 using Galaxy.Models;
@@ -16,6 +17,16 @@ namespace Galaxy.Controllers
 {
     public class ProductController : Controller
     {
+        private DateTime toDate(String dateStr)
+        {
+            DateTime asOfDate = DateTime.Today;
+            if (DateTime.TryParseExact(dateStr, "MM/dd/yyyy", null, DateTimeStyles.None, out asOfDate) == true)
+            {
+                
+            }
+            return asOfDate;
+        }
+
         private IProdcutInfo prodcutInfoFetcher = new DummyProdcutInfoFetcher();
         
         //
@@ -26,12 +37,15 @@ namespace Galaxy.Controllers
             return View(models);
         }
 
-        public ActionResult Detail(int? id) 
+        public ActionResult Detail(int? id,String asOfDateStr)
         {
-            if (id.HasValue == false) {
+            if (id.HasValue == false)
+            {
                 return RedirectToAction("Index");
             }
-            ProductBriefViewModel product = prodcutInfoFetcher.FetchProduct(id.Value);
+
+            DateTime asOfDate = toDate(asOfDateStr);
+            ProductBriefViewModel product = prodcutInfoFetcher.FetchProduct(id.Value,asOfDate);
             ViewBag.ProductId = id.Value;
             return View(product);
         }
@@ -52,6 +66,23 @@ namespace Galaxy.Controllers
             }
         }
 
+        public ActionResult GetFuncAssetDist(int productId,String asOfDateStr)
+        {
+            try
+            {
+                DateTime asOfDate = toDate(asOfDateStr);
+                MultipleCategoriesViewModel viewModel = prodcutInfoFetcher.FetchProductFundAssetDist(productId,asOfDate);
+                var jsonResult = Json(viewModel.Dictionary, JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = Int32.MaxValue;
+                return jsonResult;
+            }
+            catch (Exception ex)
+            {
+                LogUtility.Fatal("Error happend when fetching product net value distribution", ex);
+                return Json(null);
+            }
+        }
+
         public ActionResult GetPiggyBackDist(int productId)
         {
             try
@@ -68,27 +99,29 @@ namespace Galaxy.Controllers
             }
         }
 
-        public ActionResult GetReturnDist(int productId,String asofDate)
+        public ActionResult GetReturnDist(int productId,String asOfDateStr)
         {
             try
             {
-                List<CategoryDataViewModel> viewModel = prodcutInfoFetcher.FetchReturnDistViewModel(productId);
+                DateTime asOfDate = toDate(asOfDateStr);
+                List<CategoryDataViewModel> viewModel = prodcutInfoFetcher.FetchReturnDistViewModel(productId,asOfDate);
                 var jsonResult = Json(viewModel, JsonRequestBehavior.AllowGet);
                 jsonResult.MaxJsonLength = Int32.MaxValue;
                 return jsonResult;
             }
             catch (Exception ex)
             {
-                LogUtility.Fatal("Error happend when fetching product return distribution", ex);
+                LogUtility.Fatal("Error happend when GetReturnDist", ex);
                 return Json(null);
             }
         }
 
-        public ActionResult GetPnlDist(int productId,String asOfDate)
+        public ActionResult GetPnlDist(int productId,String asOfDateStr)
         {
             try
             {
-                List<CategoryDataViewModel> viewModel = prodcutInfoFetcher.FetchPnLDistViewModel(productId);
+                DateTime asOfDate = toDate(asOfDateStr);
+                List<CategoryDataViewModel> viewModel = prodcutInfoFetcher.FetchPnLDistViewModel(productId,asOfDate);
                 var jsonResult = Json(viewModel, JsonRequestBehavior.AllowGet);
                 jsonResult.MaxJsonLength = Int32.MaxValue;
                 return jsonResult;
@@ -99,10 +132,19 @@ namespace Galaxy.Controllers
                 return Json(null);
             }
         }
-        public ActionResult GetHoldings([DataSourceRequest]DataSourceRequest request,String asOfDate,String productId)
+        public ActionResult GetHoldings([DataSourceRequest]DataSourceRequest request,int productId,String asOfDateStr)
         {
-            ProductBriefViewModel product = prodcutInfoFetcher.FetchProduct(1);
-            return Json(product.Portfolio.ToDataSourceResult(request));
+            try
+            {
+                DateTime asOfDate = toDate(asOfDateStr);
+                ProductBriefViewModel product = prodcutInfoFetcher.FetchProduct(productId, asOfDate);
+                return Json(product.Portfolio.ToDataSourceResult(request));
+            }
+            catch (Exception ex)
+            {
+                LogUtility.Fatal("Error happend when GetHoldings", ex);
+                return Json(null);
+            }
         }
 	}
 }

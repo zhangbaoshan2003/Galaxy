@@ -71,7 +71,7 @@ namespace Galaxy.BAL
         }
 
 
-        public List<CategoryDataViewModel> FetchReturnDistViewModel(int productId)
+        public List<CategoryDataViewModel> FetchReturnDistViewModel(int productId, DateTime asOfDate)
         {
             Thread.Sleep(3000);
 
@@ -96,7 +96,7 @@ namespace Galaxy.BAL
         }
 
 
-        public List<CategoryDataViewModel> FetchPnLDistViewModel(int productId)
+        public List<CategoryDataViewModel> FetchPnLDistViewModel(int productId, DateTime asOfDate)
         {
             Thread.Sleep(3000);
             List<CategoryDataViewModel> models = new List<CategoryDataViewModel>();
@@ -135,7 +135,7 @@ namespace Galaxy.BAL
         }
 
 
-        public ProductBriefViewModel FetchProduct(int productId)
+        public ProductBriefViewModel FetchProduct(int productId, DateTime asOfDate)
         {
             Thread.Sleep(3000);
             ProductBriefViewModel vm = new ProductBriefViewModel();
@@ -189,6 +189,38 @@ namespace Galaxy.BAL
                 vm.Portfolio.Add(holding);
             }
             return vm;
+        }
+        public MultipleCategoriesViewModel FetchProductFundAssetDist(int productId, DateTime asOfDate)
+        {
+            Thread.Sleep(3000);
+            MultipleCategoriesViewModel multipleCategories = new MultipleCategoriesViewModel();
+           
+            for (int i = 2013; i < 2017; i++)
+            {
+                List<CategoryDataViewModel> models = new List<CategoryDataViewModel>();
+                CategoryDataViewModel model = new CategoryDataViewModel();
+                model.Name = i.ToString();
+                model.Label = "股票";
+                model.Value = random.Next(5,10);
+                models.Add(model);
+
+                model = new CategoryDataViewModel();
+                model.Name = i.ToString();
+                model.Label = "债券";
+                model.Value = random.Next(5, 10);
+                models.Add(model);
+
+                model = new CategoryDataViewModel();
+                model.Name = i.ToString();
+                model.Label = "基金";
+                model.Value = random.Next(5, 10); ;
+                models.Add(model);
+
+                multipleCategories.AddCategories(models[0].Name, models);
+            }
+         
+
+            return multipleCategories;
         }
     }
 }

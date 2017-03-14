@@ -249,7 +249,7 @@ GLOBAL_EQUITY_ASSET_DIST_CHART = new Highcharts.chart({
         backgroundColor: null,
         renderTo: 'equity_assetDistChartContainer',
         type: 'area',
-        width: 500,
+        width: null,
         height: null
     },
     credits: {
@@ -310,7 +310,7 @@ GLOBAL_FUND_DIST_CHART = new Highcharts.chart({
         backgroundColor: null,
         renderTo: 'fundAssetDistChartContainer',
         type: 'column',
-        width: 500,
+        width: null,
         height: null
     },
     credits: {
@@ -319,9 +319,9 @@ GLOBAL_FUND_DIST_CHART = new Highcharts.chart({
     title: {
         text: null
     },
-    xAxis: {
-        categories: ['2011', '2012', '2013', '2014', '2015']
-    },
+    //xAxis: {
+    //    categories: ['2011', '2012', '2013', '2014', '2015']
+    //},
     yAxis: {
         min: 0,
         title: {
@@ -336,17 +336,17 @@ GLOBAL_FUND_DIST_CHART = new Highcharts.chart({
         column: {
             stacking: 'percent'
         }
-    },
-    series: [{
-        name: '股票',
-        data: [5, 3, 4, 7, 2]
-    }, {
-        name: '债券',
-        data: [2, 2, 3, 2, 1]
-    }, {
-        name: '基金',
-        data: [3, 4, 4, 2, 5]
-    }]
+    }
+    //series: [{
+    //    name: '股票',
+    //    data: [5, 3, 4, 7, 2]
+    //}, {
+    //    name: '债券',
+    //    data: [2, 2, 3, 2, 1]
+    //}, {
+    //    name: '基金',
+    //    data: [3, 4, 4, 2, 5]
+    //}]
 });
 
 function TimeSeriesChartBuilder(data, chart,isMutipleSeiers) {
@@ -418,13 +418,13 @@ function TimeSeriesChartBuilder(data, chart,isMutipleSeiers) {
     }
 };
 
-function CategoryChartBuilder(data, chart, isMutipleSeiers,chartWidth) {
+function CategoryChartBuilder(data, chart, isMultipleSeiers,chartWidth) {
     this.data = data;
     this.chart = chart;
     this.chartName = "N/A";
 
     this.buildChart = function () {
-        if (chartWidth != 'undefiend') {
+        if (chartWidth != undefined) {
             this.chart.setSize(chartWidth, 150, false);
         } else {
             this.chart.setSize(500, 150, false);
@@ -443,18 +443,14 @@ function CategoryChartBuilder(data, chart, isMutipleSeiers,chartWidth) {
         }
 
         var chartMain = this.chart;
-        if (isMutipleSeiers == true) {
+        if (isMultipleSeiers == true) {
             $.each(data, function (idx, value) {
                 var dataPoints = [];
                 var chartName = value[0].Name;
                 $.each(value, function (index, dataValue) {
-                    var year = dataValue.Year;
-                    var month = dataValue.Month;
-                    var day = dataValue.Day;
-                    var dateTimObj = Date.UTC(year, month, day);
                     var time_value_pair = [];
-                    time_value_pair.push(dateTimObj);
-                    time_value_pair.push(dataValue.ReportedNetValue);
+                    time_value_pair.push(dataValue.Label);
+                    time_value_pair.push(dataValue.Value);
                     dataPoints.push(time_value_pair);
                 });
                 chartMain.addSeries({
@@ -523,6 +519,11 @@ $(function () {
 
     $.getJSON('/Product/GetPnlDist/?productId=100', function (data) {
         var chartBuilder = new CategoryChartBuilder(data, GLOBAL_ASSET_DIST_CHART, false);
+        chartBuilder.buildChart();
+    });
+
+    $.getJSON('/Product/GetFuncAssetDist/?productId=100', function (data) {
+        var chartBuilder = new CategoryChartBuilder(data, GLOBAL_FUND_DIST_CHART, true);
         chartBuilder.buildChart();
     });
 

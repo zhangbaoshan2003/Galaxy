@@ -10,6 +10,7 @@ namespace Galaxy.BAL.Interface
     public interface IProdcutInfo
     {
         MultipleTimeSeriesViewModel FetchProductNetValueDistViewModel(int productId);
+        MultipleCategoriesViewModel FetchProductFundAssetDist(int productId,DateTime asOfDate);
         List<TimeSeriesDataViewModel> FetchPiggyBackDistViewModel(int productId);
         List<CategoryDataViewModel> FetchReturnDistViewModel(int productId,DateTime asOfDate);
         List<CategoryDataViewModel> FetchPnLDistViewModel(int productId,DateTime asOfDate);

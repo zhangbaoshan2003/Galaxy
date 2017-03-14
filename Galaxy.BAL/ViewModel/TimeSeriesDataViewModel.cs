@@ -53,4 +53,6 @@ namespace Galaxy.BAL.ViewModel
             get { return dictionary; }
         }
     }
+
+    
 }
