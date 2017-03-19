@@ -514,6 +514,10 @@
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
     <Content Include="Views\Product\KendoProductHoldingListView.cshtml" />
+    <Content Include="Views\Product\kendoProductAssetDistView.cshtml" />
+    <Content Include="Views\Product\kendoProductMostValuableBondsView.cshtml" />
+    <Content Include="Views\Product\kendoProductMostValuableEquities.cshtml" />
+    <Content Include="Views\Product\kendoProductIndustryDistView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

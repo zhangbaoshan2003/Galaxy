@@ -48,6 +48,7 @@
     <Compile Include="ViewModel\NetValueStaticsViewModel.cs" />
     <Compile Include="ViewModel\PorductHoldingViewModel.cs" />
     <Compile Include="ViewModel\ProductBriefViewModel.cs" />
+    <Compile Include="ViewModel\ProductPerformanceIndexViewModel.cs" />
     <Compile Include="ViewModel\TimeSeriesDataViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

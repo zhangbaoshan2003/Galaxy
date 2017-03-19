@@ -11,6 +11,12 @@ namespace Galaxy.BAL.ViewModel
         public String Label { get; set; }
         public String Name { get; set; }
         public double Value { get; set; }
+        public double PctOfTotal { get; set; }
+        public double LastValue { get; set; }
+        public double CompareToLastValuePct 
+        { 
+            get{ return LastValue > 0.0 ? (Value - LastValue) / LastValue : 0.0; } 
+        }
     }
 
     public class MultipleCategoriesViewModel

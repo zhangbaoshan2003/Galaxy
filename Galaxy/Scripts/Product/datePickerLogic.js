@@ -1,5 +1,23 @@
 ﻿function updateProductDetailTable() {
 }
+function toPercentage(val) {
+    return ((val * 100.0).toFixed(2) + '%');
+}
+function fillPerformanceIndex(data) {
+    $('#lblReturn').text((data.Return*100.0).toFixed(2)+'%');
+    $('#lblAnualReturn').text((data.AnnualReturn*100.0).toFixed(2) + '%');
+
+    $('#lblRelativeReturn').text((data.RelativeReturn * 100.0).toFixed(2) + '%');
+    $('#lblBeta').text(toPercentage(data.Beta));
+    $('#lblVol').text(toPercentage(data.Volitility));
+    $('#lblMaxWithdraw').text(toPercentage(data.MaxWithdraw));
+    $('#lblSharp').text(toPercentage(data.SharpRatio));
+    $('#lblRiskToReturn').text(toPercentage(data.RiskToReturn));
+    $('#lblConOfIndex').text(toPercentage(data.ConvarianceOfIndex));
+    $('#lblNumOfStrategy').text(data.OrderOfSimilarStragtigy);
+}
+
+
 var GLOBAL_AS_OF_DATE='1/1/2017';
 var GLOBAL_PROD_ID;
 $(function () {
@@ -8,6 +26,18 @@ $(function () {
         GLOBAL_AS_OF_DATE = datePicker.val();
         GLOBAL_PROD_ID = $('#hidenProductId').val();
         var gridDataSource = $('#productHoldingGrid').data('kendoGrid').dataSource;
+        gridDataSource.read({ asOfDateStr: GLOBAL_AS_OF_DATE, productId: GLOBAL_PROD_ID });
+
+        gridDataSource = $('#productFundAssetDistGrid').data('kendoGrid').dataSource;
+        gridDataSource.read({ asOfDateStr: GLOBAL_AS_OF_DATE, productId: GLOBAL_PROD_ID });
+
+        gridDataSource = $('#productIndustryDistGrid').data('kendoGrid').dataSource;
+        gridDataSource.read({ asOfDateStr: GLOBAL_AS_OF_DATE, productId: GLOBAL_PROD_ID });
+
+        gridDataSource = $('#productMostValuableEquitiesGrid').data('kendoGrid').dataSource;
+        gridDataSource.read({ asOfDateStr: GLOBAL_AS_OF_DATE, productId: GLOBAL_PROD_ID });
+
+        gridDataSource = $('#productMostValuableBondsGrid').data('kendoGrid').dataSource;
         gridDataSource.read({ asOfDateStr: GLOBAL_AS_OF_DATE, productId: GLOBAL_PROD_ID });
 
         var request = '/Product/{method}/?productId={pId}&asOfDateStr={asOfDate}';
@@ -39,6 +69,10 @@ $(function () {
         $.getJSON(request.replace('{method}', 'GetCurrentFuncAssetDist').replace('{pId}', GLOBAL_PROD_ID).replace('{asOfDate}', GLOBAL_AS_OF_DATE), function (data) {
             var chartBuilder = new CategoryChartBuilder(data, GLOBAL_ASSET_DIST_CHART, false);
             chartBuilder.buildChart();
+        });
+
+        $.getJSON(request.replace('{method}', 'GetPerformanceIndex').replace('{pId}', GLOBAL_PROD_ID).replace('{asOfDate}', GLOBAL_AS_OF_DATE), function (data) {
+            fillPerformanceIndex(data);
         });
     });
    

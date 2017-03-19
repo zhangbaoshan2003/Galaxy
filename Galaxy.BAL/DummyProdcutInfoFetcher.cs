@@ -301,27 +301,54 @@ namespace Galaxy.BAL
             vm.Name = "股票";
             vm.Label = "股票";
             vm.Value = random.Next(1,10);
+            vm.LastValue = random.Next(1, 10);
+            vm.PctOfTotal = random.NextDouble();
             models.Add(vm);
 
             vm = new CategoryDataViewModel();
             vm.Name = "债券";
             vm.Label = "债券";
             vm.Value = random.Next(1, 10);
+            vm.LastValue = random.Next(1, 10);
+            vm.PctOfTotal = random.NextDouble();
             models.Add(vm);
 
             vm = new CategoryDataViewModel();
             vm.Name = "现金";
             vm.Label = "现金";
             vm.Value = random.Next(1, 10);
+            vm.LastValue = random.Next(1, 10);
+            vm.PctOfTotal = random.NextDouble();
             models.Add(vm);
 
             vm = new CategoryDataViewModel();
             vm.Name = "其他资产";
             vm.Label = "其他资产";
             vm.Value = random.Next(1, 10);
+            vm.LastValue = random.Next(1, 10);
+            vm.PctOfTotal = random.NextDouble();
             models.Add(vm);
 
             return models;
+        }
+
+
+        public ProductPerformanceIndexViewModel FetchPerformanceViewModel(int productId, DateTime asOfDate)
+        {
+            ProductPerformanceIndexViewModel vm = new ProductPerformanceIndexViewModel();
+            vm.ProductId = productId;
+            vm.AsOfDate = asOfDate;
+            vm.Return = random.NextDouble();
+            vm.AnnualReturn = random.NextDouble();
+            vm.RelativeReturn = random.NextDouble();
+            vm.Beta = random.NextDouble();
+            vm.Volitility = random.NextDouble();
+            vm.MaxWithdraw = random.NextDouble();
+            vm.SharpRatio = random.NextDouble();
+            vm.RiskToReturn = random.NextDouble();
+            vm.ConvarianceOfIndex = random.NextDouble();
+            vm.OrderOfSimilarStragtigy = random.Next(1, 100);
+            return vm;
         }
     }
 }

@@ -6,8 +6,17 @@ using System.Threading.Tasks;
 
 namespace Galaxy.BAL.ViewModel
 {
+    public enum SecurityTypeEnum 
+    {
+        Equity,
+        Bond,
+        Fund,
+        Cash,
+        Others
+    }
     public class PorductHoldingViewModel
     {
+        public SecurityTypeEnum SecurityType { get; set; }
         public String SecurityName { get; set; }
         public String SecurityCode { get; set; }
         public String IndustryName { get; set; }
@@ -20,12 +29,23 @@ namespace Galaxy.BAL.ViewModel
             get { return CostPerShare * Quantity; }
         }
 
+        public double TheLatest3MPnL { get; set; }
+
         public double PreClosePrice { get; set; }
 
         public double MarketValue { get; set; }
 
         public double PropotionOfTotalAssets { get; set; }
+        public double PropotionOfTotalAssetsPrev { get; set; }
+        public double PctChangeCompareToPrev
+        {
+            get 
+            {
+                return PropotionOfTotalAssetsPrev > 0.0 ? (PropotionOfTotalAssets - PropotionOfTotalAssetsPrev) / PropotionOfTotalAssets : 0.0;
+            }
+        }
         public double PropotionOfTotalEquity { get; set; }
+        public double PropotionOfTotalSameEquity { get; set; }
 
         public double PnL
         {

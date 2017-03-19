@@ -183,7 +183,7 @@
                         <div class="box box-solid box-warning">
                             <div class="box-header">
                                 <i class="fa fa-th"></i>
-                                <h3 class="box-title">大朴进取1期（2013-1-1）</h3>
+                                <h3 class="box-title">技术指标</h3>
                                 <div class="box-tools pull-right">
                                     <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
                                         <i class="fa fa-minus"></i>
@@ -194,43 +194,43 @@
                                 <table class="table table-bordered table-striped table-hover table-condensed">
                                     <tr>
                                         <th>收益率</th>
-                                        <td>5.4%</td>
+                                        <td><label id="lblReturn"> 5.4% </label> </td>
                                     </tr>
                                     <tr>
                                         <th>年化收益率</th>
-                                        <td></td>
+                                        <td><label id="lblAnualReturn"> 5.4% </label></td>
                                     </tr>
                                     <tr>
                                         <th>相对收益率</th>
-                                        <td></td>
+                                        <td><label id="lblRelativeReturn"> 5.4% </label></td>
                                     </tr>
                                     <tr>
                                         <th>Beta</th>
-                                        <td></td>
+                                        <td><label id="lblBeta"> 5.4% </label></td>
                                     </tr>
                                     <tr>
                                         <th>波动率</th>
-                                        <td></td>
+                                        <td><label id="lblVol"> 5.4% </label></td>
                                     </tr>
                                     <tr>
                                         <th>最大回撤</th>
-                                        <td></td>
+                                        <td><label id="lblMaxWithdraw"> 5.4% </label></td>
                                     </tr>
                                     <tr>
                                         <th>夏普率</th>
-                                        <td></td>
+                                        <td><label id="lblSharp"> 5.4% </label></td>
                                     </tr>
                                     <tr>
                                         <th>风险收益比</th>
-                                        <td></td>
+                                        <td><label id="lblRiskToReturn"> 5.4% </label></td>
                                     </tr>
                                     <tr>
                                         <th>与大盘指数相关性</th>
-                                        <td></td>
+                                        <td><label id="lblConOfIndex"> 5.4% </label></td>
                                     </tr>
                                     <tr>
-                                        <th>通策略收益率排名</th>
-                                        <td></td>
+                                        <th>同策略收益率排名</th>
+                                        <td><label id="lblNumOfStrategy"> 5.4% </label></td>
                                     </tr>
                                 </table>
                             </div>
@@ -411,56 +411,21 @@
                             </div>
                         </div>
                         <div class="box-body border-radius-none">
-                            <div style="float: left;width:50%">
+                            <div class="col-lg-4 no-padding">
                                 <div class="chart" id="assetDistChartContainer"></div>
                             </div>
-                            <div style="float:right;width:50%">
-                                <table class="table table-bordered table-striped table-hover table-condensed">
-                                    <thead>
-                                        <tr>
-                                            <th>名称</th>
-                                            <th>占比</th>
-                                            <th>较上期</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                股票
-                                            </td>
-                                            <td>85.79%</td>
-                                            <td>0.60</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                债券
-                                            </td>
-                                            <td>85.79%</td>
-                                            <td>0.60</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                现金
-                                            </td>
-                                            <td>85.79%</td>
-                                            <td>0.60</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                其他资产
-                                            </td>
-                                            <td>85.79%</td>
-                                            <td>0.60</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                            <div class="col-lg-4 no-padding">
+                                @Html.Partial("kendoProductAssetDistView")
+                            </div>
+                            <div class="col-lg-4 ">
+                                @Html.Partial("kendoProductIndustryDistView")
                             </div>
                         </div>
                     </div>
                     
                 </div>
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-6 no-padding">
                         <div class="box box-solid box-warning">
                             <div class="box-header">
                                 <i class="fa fa-th"></i>
@@ -472,49 +437,11 @@
                                 </div>
                             </div>
                             <div class="box-body border-radius-none">
-                                <table class="table table-bordered table-striped table-hover table-condensed">
-                                    <thead>
-                                        <tr>
-                                            <th>名称</th>
-                                            <th>占比</th>
-                                            <th>较上期</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                股票
-                                            </td>
-                                            <td>85.79%</td>
-                                            <td>0.60</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                债券
-                                            </td>
-                                            <td>85.79%</td>
-                                            <td>0.60</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                现金
-                                            </td>
-                                            <td>85.79%</td>
-                                            <td>0.60</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                其他资产
-                                            </td>
-                                            <td>85.79%</td>
-                                            <td>0.60</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                @Html.Partial("kendoProductMostValuableBondsView")
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="box box-solid box-warning">
                             <div class="box-header">
                                 <i class="fa fa-th"></i>
@@ -526,108 +453,15 @@
                                 </div>
                             </div>
                             <div class="box-body border-radius-none">
-                                <table class="table table-bordered table-striped table-hover table-condensed">
-                                    <thead>
-                                        <tr>
-                                            <th>名称</th>
-                                            <th>占比</th>
-                                            <th>较上期</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                股票
-                                            </td>
-                                            <td>85.79%</td>
-                                            <td>0.60</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                债券
-                                            </td>
-                                            <td>85.79%</td>
-                                            <td>0.60</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                现金
-                                            </td>
-                                            <td>85.79%</td>
-                                            <td>0.60</td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                其他资产
-                                            </td>
-                                            <td>85.79%</td>
-                                            <td>0.60</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                @Html.Partial("kendoProductMostValuableEquities")
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="box box-solid box-warning">
-                            <div class="box-header">
-                                <i class="fa fa-th"></i>
-                                <h3 class="box-title">行业配置（2016-12-1）</h3>
-                                <div class="box-tools pull-right">
-                                    <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
-                                        <i class="fa fa-minus"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="box-body border-radius-none">
-                                <div>
-                                    <table class="table table-bordered table-striped table-hover table-condensed">
-                                        <thead>
-                                            <tr>
-                                                <th>名称</th>
-                                                <th>占比</th>
-                                                <th>较上期</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    股票
-                                                </td>
-                                                <td>85.79%</td>
-                                                <td>0.60</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    债券
-                                                </td>
-                                                <td>85.79%</td>
-                                                <td>0.60</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    现金
-                                                </td>
-                                                <td>85.79%</td>
-                                                <td>0.60</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    其他资产
-                                                </td>
-                                                <td>85.79%</td>
-                                                <td>0.60</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-6 no-padding">
                         <div class="box box-solid box-success">
                             <div class="box-header">
                                 <i class="fa fa-th"></i>

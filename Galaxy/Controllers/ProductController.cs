@@ -25,9 +25,10 @@ namespace Galaxy.Controllers
             DateTime asOfDate = DateTime.Today;
             if (DateTime.TryParseExact(dateStr, "MM/dd/yyyy", null, DateTimeStyles.None, out asOfDate) == true)
             {
-                
+                return asOfDate;
             }
-            return asOfDate;
+
+            return DateTime.Today;
         }
 
         private IProdcutInfo prodcutInfoFetcher = new DummyProdcutInfoFetcher();
@@ -102,8 +103,37 @@ namespace Galaxy.Controllers
                 return Json(null);
             }
         }
-
-        public ActionResult GetPiggyBackDist(int productId)
+        public ActionResult GetPerformanceIndex(int productId, String asOfDateStr)
+        {
+            try
+            {
+                DateTime asOfDate = toDate(asOfDateStr);
+                ProductPerformanceIndexViewModel viewModel = prodcutInfoFetcher.FetchPerformanceViewModel(productId, asOfDate);
+                var jsonResult = Json(viewModel, JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = Int32.MaxValue;
+                return jsonResult;
+            }
+            catch (Exception ex)
+            {
+                LogUtility.Fatal("Error happend when fetching product net value distribution", ex);
+                return Json(null);
+            }
+        }
+        public ActionResult GetFuncAssetDistAsOf([DataSourceRequest]DataSourceRequest request, int productId, String asOfDateStr)
+        {
+            try
+            {
+                DateTime asOfDate = toDate(asOfDateStr);
+                List<CategoryDataViewModel> viewModel = prodcutInfoFetcher.FetchCurrentProductFundAssetDist(productId, asOfDate);
+                return Json(viewModel.ToDataSourceResult(request));
+            }
+            catch (Exception ex)
+            {
+                LogUtility.Fatal("Error happend when fetching product net value distribution", ex);
+                return Json(null);
+            }
+        }
+        public ActionResult GetPiggyBackDist(int productId,String asOfDateStr)
         {
             try
             {
@@ -158,6 +188,80 @@ namespace Galaxy.Controllers
             {
                 DateTime asOfDate = toDate(asOfDateStr);
                 ProductBriefViewModel product = prodcutInfoFetcher.FetchProduct(productId, asOfDate);
+                return Json(product.Portfolio.Where(p=>p.SecurityType==SecurityTypeEnum.Equity).ToDataSourceResult(request));
+            }
+            catch (Exception ex)
+            {
+                LogUtility.Fatal("Error happend when GetHoldings", ex);
+                return Json(null);
+            }
+        }
+        public ActionResult GetMostValuableBonds([DataSourceRequest]DataSourceRequest request, int productId, String asOfDateStr)
+        {
+            try
+            {
+                DateTime asOfDate = toDate(asOfDateStr);
+                ProductBriefViewModel product = prodcutInfoFetcher.FetchProduct(productId, asOfDate);
+                List<PorductHoldingViewModel> bonds = product.Portfolio.Where(p => p.SecurityType == SecurityTypeEnum.Bond)
+                    .OrderByDescending(p=>p.PropotionOfTotalAssets).Take(3)
+                    .ToList();
+                return Json(bonds.ToDataSourceResult(request));
+            }
+            catch (Exception ex)
+            {
+                LogUtility.Fatal("Error happend when GetHoldings", ex);
+                return Json(null);
+            }
+        }
+
+        public ActionResult GetMostValuableEquities([DataSourceRequest]DataSourceRequest request, int productId, String asOfDateStr)
+        {
+            try
+            {
+                DateTime asOfDate = toDate(asOfDateStr);
+                ProductBriefViewModel product = prodcutInfoFetcher.FetchProduct(productId, asOfDate);
+                List<PorductHoldingViewModel> bonds = product.Portfolio.Where(p => p.SecurityType == SecurityTypeEnum.Equity)
+                    .OrderByDescending(p => p.PropotionOfTotalAssets).Take(10)
+                    .ToList();
+                return Json(bonds.ToDataSourceResult(request));
+            }
+            catch (Exception ex)
+            {
+                LogUtility.Fatal("Error happend when GetHoldings", ex);
+                return Json(null);
+            }
+        }
+        public ActionResult GetIndustryDistView([DataSourceRequest]DataSourceRequest request, int productId, String asOfDateStr)
+        {
+            try
+            {
+                DateTime asOfDate = toDate(asOfDateStr);
+                ProductBriefViewModel product = prodcutInfoFetcher.FetchProduct(productId, asOfDate);
+                var q = from p in product.Portfolio
+                        where p.SecurityType == SecurityTypeEnum.Equity
+                        orderby p.PropotionOfTotalAssets descending
+                        group p by p.IndustryName into gr
+                        select new PorductHoldingViewModel
+                        {
+                            IndustryName = gr.Key,
+                            PropotionOfTotalAssets = gr.Sum(x => x.PropotionOfTotalAssets)
+                        };
+                        
+                return Json(q.ToList().ToDataSourceResult(request));
+            }
+            catch (Exception ex)
+            {
+                LogUtility.Fatal("Error happend when GetHoldings", ex);
+                return Json(null);
+            }
+        }
+
+        public ActionResult GetBondsDist([DataSourceRequest]DataSourceRequest request, int productId, String asOfDateStr)
+        {
+            try
+            {
+                DateTime asOfDate = toDate(asOfDateStr);
+                ProductBriefViewModel product = prodcutInfoFetcher.FetchProduct(productId, asOfDate);
                 return Json(product.Portfolio.ToDataSourceResult(request));
             }
             catch (Exception ex)
@@ -166,6 +270,7 @@ namespace Galaxy.Controllers
                 return Json(null);
             }
         }
+
         public ActionResult GetEquitAssetDist([DataSourceRequest]DataSourceRequest request, int productId, String asOfDateStr)
         {
             try
@@ -182,5 +287,6 @@ namespace Galaxy.Controllers
                 return Json(null);
             }
         }
+        
 	}
 }

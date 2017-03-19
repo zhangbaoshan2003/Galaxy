@@ -1,0 +1,16 @@
+﻿
+@(Html.Kendo().Grid<Galaxy.BAL.ViewModel.PorductHoldingViewModel>()
+        .Name("productMostValuableBondsGrid")
+        .Columns(columns =>
+        {
+            columns.Bound(c => c.SecurityName).Title("名称");
+            columns.Bound(c => c.PropotionOfTotalAssets).Title("占比").Format("{0:p2}");
+            columns.Bound(c => c.PctChangeCompareToPrev).Title("较上期").Format("{0:p2}");
+            columns.Bound(c => c.TheLatest3MPnL).Title("近3月涨跌幅").Format("{0:p2}");
+        })
+        .DataSource(dataSource => dataSource
+            .Ajax()
+                            .Read(read => read.Action("GetMostValuableEquities", "Product", new { productId = @ViewBag.ProductId }))
+            .PageSize(20)
+        )
+)

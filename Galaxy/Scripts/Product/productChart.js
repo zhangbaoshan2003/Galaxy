@@ -181,10 +181,10 @@ GLOBAL_PNL_DIST_CHART = new Highcharts.chart({
 GLOBAL_ASSET_DIST_CHART = new Highcharts.chart({
     chart: {
         // Edit chart spacing
-        spacingBottom: 10,
-        spacingTop: 15,
-        spacingLeft: 15,
-        spacingRight: 15,
+        spacingBottom: 5,
+        spacingTop: 5,
+        spacingLeft: 0,
+        spacingRight: 5,
         backgroundColor: null,
         renderTo: 'assetDistChartContainer',
         type: 'pie',
@@ -376,7 +376,7 @@ function TimeSeriesChartBuilder(data, chart,isMutipleSeiers) {
                 var dateTimObj = Date.UTC(year, month, day);
                 var time_value_pair = [];
                 time_value_pair.push(dateTimObj);
-                time_value_pair.push(dataValue.ReportedValue);
+                time_value_pair.push(dataValue.ReportedNetValue);
                 dataPoints.push(time_value_pair);
             });
             chartMain.addSeries({
@@ -525,7 +525,7 @@ $(function () {
     });
 
     $.getJSON(request.replace('{method}', 'GetPnlDist').replace('{pId}', GLOBAL_PROD_ID).replace('{asOfDate}', GLOBAL_AS_OF_DATE), function (data) {
-        var chartBuilder = new CategoryChartBuilder(data, GLOBAL_PNL_DIST_CHART, false, 300);
+        var chartBuilder = new CategoryChartBuilder(data, GLOBAL_PNL_DIST_CHART, false, 300,180);
         chartBuilder.buildChart();
     });
 
@@ -541,8 +541,12 @@ $(function () {
     });
 
     $.getJSON(request.replace('{method}', 'GetCurrentFuncAssetDist').replace('{pId}', GLOBAL_PROD_ID).replace('{asOfDate}', GLOBAL_AS_OF_DATE), function (data) {
-        var chartBuilder = new CategoryChartBuilder(data, GLOBAL_ASSET_DIST_CHART, false, returnDistChartWitdh, 200);
+        var chartBuilder = new CategoryChartBuilder(data, GLOBAL_ASSET_DIST_CHART, false, returnDistChartWitdh-100, 200);
         chartBuilder.buildChart();
+    });
+
+    $.getJSON(request.replace('{method}', 'GetPerformanceIndex').replace('{pId}', GLOBAL_PROD_ID).replace('{asOfDate}', GLOBAL_AS_OF_DATE), function (data) {
+        fillPerformanceIndex(data);
     });
 
     setTimeout(function () {

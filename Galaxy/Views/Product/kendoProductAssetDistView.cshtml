@@ -1,0 +1,14 @@
+﻿@(Html.Kendo().Grid<Galaxy.BAL.ViewModel.CategoryDataViewModel>()
+        .Name("productFundAssetDistGrid")
+        .Columns(columns =>
+        {
+            columns.Bound(c => c.Label).Title("名称").Width(94);
+            columns.Bound(c => c.PctOfTotal).Title("占比").Width(94).Format("{0:p2}");
+            columns.Bound(c => c.CompareToLastValuePct).Title("较上期").Width(100).Format("{0:p2}");
+        })
+        .DataSource(dataSource => dataSource
+            .Ajax()
+                        .Read(read => read.Action("GetFuncAssetDistAsOf", "Product", new { productId = @ViewBag.ProductId }))
+            .PageSize(20)
+        )
+)
