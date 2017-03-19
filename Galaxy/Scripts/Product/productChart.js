@@ -75,10 +75,10 @@ GLOBAL_PIGGYBACK_DIST_CHART = new Highcharts.chart({
 GLOBAL_RETURN_DIST_CHART = new Highcharts.chart({
     chart: {
         // Edit chart spacing
-        spacingBottom: 0,
-        spacingTop: 5,
-        spacingLeft: 5,
-        spacingRight: 5,
+        spacingBottom: 10,
+        spacingTop: 15,
+        spacingLeft: 15,
+        spacingRight: 15,
         backgroundColor: null,
         renderTo: 'returnDistChartContainer',
         type: 'column',
@@ -120,10 +120,10 @@ GLOBAL_RETURN_DIST_CHART = new Highcharts.chart({
 GLOBAL_PNL_DIST_CHART = new Highcharts.chart({
     chart: {
         // Edit chart spacing
-        spacingBottom: 0,
-        spacingTop: 5,
-        spacingLeft: 5,
-        spacingRight: 5,
+        spacingBottom: 10,
+        spacingTop: 15,
+        spacingLeft: 15,
+        spacingRight: 15,
         backgroundColor: null,
         renderTo: 'pnlChartContainer',
         type: 'pie',
@@ -172,7 +172,7 @@ GLOBAL_PNL_DIST_CHART = new Highcharts.chart({
     legend: {
         align: 'right',
         verticalAlign: 'top',
-        floating: true,
+        floating: false,
         enabled: true,
         layout: 'vertical'
     }
@@ -181,10 +181,10 @@ GLOBAL_PNL_DIST_CHART = new Highcharts.chart({
 GLOBAL_ASSET_DIST_CHART = new Highcharts.chart({
     chart: {
         // Edit chart spacing
-        spacingBottom: 0,
-        spacingTop: 5,
-        spacingLeft: 5,
-        spacingRight: 5,
+        spacingBottom: 10,
+        spacingTop: 15,
+        spacingLeft: 15,
+        spacingRight: 15,
         backgroundColor: null,
         renderTo: 'assetDistChartContainer',
         type: 'pie',
@@ -250,7 +250,7 @@ GLOBAL_EQUITY_ASSET_DIST_CHART = new Highcharts.chart({
         renderTo: 'equity_assetDistChartContainer',
         type: 'area',
         width: null,
-        height: null
+        height: 500
     },
     credits: {
         enabled: false
@@ -260,7 +260,7 @@ GLOBAL_EQUITY_ASSET_DIST_CHART = new Highcharts.chart({
     },
 
     xAxis: {
-        categories: ['2016-2-1', '2016-3-1', '2016-4-1', '2016-5-1', '2016-6-1', '2016-9-1', '2016-10-1'],
+        //categories: ['2016-2-1', '2016-3-1', '2016-4-1', '2016-5-1', '2016-6-1', '2016-9-1', '2016-10-1'],
         tickmarkPlacement: 'on',
         title: {
             enabled: false
@@ -281,37 +281,21 @@ GLOBAL_EQUITY_ASSET_DIST_CHART = new Highcharts.chart({
                 lineColor: '#ffffff'
             }
         }
-    },
-    series: [{
-        name: '采矿业',
-        data: [502, 635, 809, 947, 1402, 3634, 5268]
-    }, {
-        name: '能源',
-        data: [106, 107, 111, 133, 221, 767, 1766]
-    }, {
-        name: '贵金属',
-        data: [163, 203, 276, 408, 547, 729, 628]
-    }, {
-        name: '服务也',
-        data: [18, 31, 54, 156, 339, 818, 1201]
-    }, {
-        name: '金融业',
-        data: [2, 2, 2, 6, 13, 30, 46]
-    }]
+    }
 });
 
 GLOBAL_FUND_DIST_CHART = new Highcharts.chart({
     chart: {
         // Edit chart spacing
-        spacingBottom: 0,
-        spacingTop: 5,
-        spacingLeft: 5,
-        spacingRight: 5,
+        spacingBottom: 10,
+        spacingTop: 15,
+        spacingLeft: 15,
+        spacingRight: 15,
         backgroundColor: null,
         renderTo: 'fundAssetDistChartContainer',
         type: 'column',
         width: null,
-        height: null
+        height: 500
     },
     credits: {
         enabled: false
@@ -319,11 +303,10 @@ GLOBAL_FUND_DIST_CHART = new Highcharts.chart({
     title: {
         text: null
     },
-    //xAxis: {
-    //    categories: ['2011', '2012', '2013', '2014', '2015']
-    //},
+   
     yAxis: {
         min: 0,
+        enabled: false,
         title: {
             text: null
         }
@@ -337,16 +320,7 @@ GLOBAL_FUND_DIST_CHART = new Highcharts.chart({
             stacking: 'percent'
         }
     }
-    //series: [{
-    //    name: '股票',
-    //    data: [5, 3, 4, 7, 2]
-    //}, {
-    //    name: '债券',
-    //    data: [2, 2, 3, 2, 1]
-    //}, {
-    //    name: '基金',
-    //    data: [3, 4, 4, 2, 5]
-    //}]
+   
 });
 
 function TimeSeriesChartBuilder(data, chart,isMutipleSeiers) {
@@ -418,16 +392,21 @@ function TimeSeriesChartBuilder(data, chart,isMutipleSeiers) {
     }
 };
 
-function CategoryChartBuilder(data, chart, isMultipleSeiers,chartWidth) {
+function CategoryChartBuilder(data, chart, isMultipleSeiers,chartWidth,chartHeight) {
     this.data = data;
     this.chart = chart;
     this.chartName = "N/A";
 
     this.buildChart = function () {
-        if (chartWidth != undefined) {
-            this.chart.setSize(chartWidth, 150, false);
+        if (typeof (chartWidth) != 'undefined') {
+            if (typeof (chartHeight) != 'undefined') {
+                this.chart.setSize(chartWidth, chartHeight, false);
+            } else {
+                this.chart.setSize(chartWidth, 150, false);
+            }
+           
         } else {
-            this.chart.setSize(500, 150, false);
+            //this.chart.setSize(300, 150, false);
         }
         //var containerWidth = ($(document).width() - 350) / 12 * 2;
         //this.chart.setSize(containerWidth, 150, false);
@@ -441,7 +420,7 @@ function CategoryChartBuilder(data, chart, isMultipleSeiers,chartWidth) {
         while (series.length > 0) {
             series[0].remove(false);
         }
-
+        var newCategories = [];
         var chartMain = this.chart;
         if (isMultipleSeiers == true) {
             $.each(data, function (idx, value) {
@@ -452,6 +431,9 @@ function CategoryChartBuilder(data, chart, isMultipleSeiers,chartWidth) {
                     time_value_pair.push(dataValue.Label);
                     time_value_pair.push(dataValue.Value);
                     dataPoints.push(time_value_pair);
+                    if (newCategories.indexOf(dataValue.Label) == -1) {
+                        newCategories.push(dataValue.Label);
+                    }
                 });
                 chartMain.addSeries({
                     name: chartName,
@@ -461,6 +443,9 @@ function CategoryChartBuilder(data, chart, isMultipleSeiers,chartWidth) {
                     }
                 });
             });
+
+            chartMain.xAxis[0].setCategories(newCategories);
+
         } else {
             var dataPoints = [];
             var chartName = data[0].Name;
@@ -475,6 +460,7 @@ function CategoryChartBuilder(data, chart, isMultipleSeiers,chartWidth) {
                 data: dataPoints
             });
         }
+
 
         this.chart.redraw();
     }
@@ -517,17 +503,49 @@ $(function () {
         }
     });
 
-    $.getJSON('/Product/GetPnlDist/?productId=100', function (data) {
-        var chartBuilder = new CategoryChartBuilder(data, GLOBAL_ASSET_DIST_CHART, false);
+    //GLOBAL_AS_OF_DATE = datePicker.val();
+    GLOBAL_PROD_ID = $('#hidenProductId').val();
+    var returnDistChartWitdh = ($(document).width() - 440) / 12 * 6;
+    
+
+    var request = '/Product/{method}/?productId={pId}&asOfDateStr={asOfDate}';
+    $.getJSON(request.replace('{method}', 'GetNetValues').replace('{pId}', GLOBAL_PROD_ID).replace('{asOfDate}', GLOBAL_AS_OF_DATE), function (data) {
+        var chartBuilder = new TimeSeriesChartBuilder(data, GLOBAL_NETVALUE_CHART, true);
         chartBuilder.buildChart();
     });
 
-    $.getJSON('/Product/GetFuncAssetDist/?productId=100', function (data) {
-        var chartBuilder = new CategoryChartBuilder(data, GLOBAL_FUND_DIST_CHART, true);
+    $.getJSON(request.replace('{method}', 'GetPiggyBackDist').replace('{pId}', GLOBAL_PROD_ID).replace('{asOfDate}', GLOBAL_AS_OF_DATE), function (data) {
+        var chartBuilder = new TimeSeriesChartBuilder(data, GLOBAL_PIGGYBACK_DIST_CHART, false);
+        chartBuilder.buildChart();
+    });
+
+    $.getJSON(request.replace('{method}', 'GetReturnDist').replace('{pId}', GLOBAL_PROD_ID).replace('{asOfDate}', GLOBAL_AS_OF_DATE), function (data) {
+        var chartBuilder = new CategoryChartBuilder(data, GLOBAL_RETURN_DIST_CHART, false, returnDistChartWitdh,150);
+        chartBuilder.buildChart();
+    });
+
+    $.getJSON(request.replace('{method}', 'GetPnlDist').replace('{pId}', GLOBAL_PROD_ID).replace('{asOfDate}', GLOBAL_AS_OF_DATE), function (data) {
+        var chartBuilder = new CategoryChartBuilder(data, GLOBAL_PNL_DIST_CHART, false, 300);
+        chartBuilder.buildChart();
+    });
+
+    //var newWidth = ($(document).width() - 440) / 12 * 6;
+    $.getJSON(request.replace('{method}', 'GetFuncAssetDist').replace('{pId}', GLOBAL_PROD_ID).replace('{asOfDate}', GLOBAL_AS_OF_DATE), function (data) {
+        var chartBuilder = new CategoryChartBuilder(data, GLOBAL_FUND_DIST_CHART, true, returnDistChartWitdh,200);
+        chartBuilder.buildChart();
+    });
+
+    $.getJSON(request.replace('{method}', 'GetEquitAssetDist').replace('{pId}', GLOBAL_PROD_ID).replace('{asOfDate}', GLOBAL_AS_OF_DATE), function (data) {
+        var chartBuilder = new CategoryChartBuilder(data, GLOBAL_EQUITY_ASSET_DIST_CHART, true, returnDistChartWitdh,200);
+        chartBuilder.buildChart();
+    });
+
+    $.getJSON(request.replace('{method}', 'GetCurrentFuncAssetDist').replace('{pId}', GLOBAL_PROD_ID).replace('{asOfDate}', GLOBAL_AS_OF_DATE), function (data) {
+        var chartBuilder = new CategoryChartBuilder(data, GLOBAL_ASSET_DIST_CHART, false, returnDistChartWitdh, 200);
         chartBuilder.buildChart();
     });
 
     setTimeout(function () {
-       
+        
     }, 1);
 });

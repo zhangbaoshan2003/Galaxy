@@ -31,6 +31,7 @@
                                     .Read(read => read.Action("GetHoldings", "Product", new { productId = @ViewBag.ProductId }))
             .PageSize(20)
         )
+        .Events(e=>e.DataBound("onHoldingsGridDataBound"))
         .ClientDetailTemplateId("suspend_equity_template")
          .Resizable(resize => resize.Columns(false))    
 )
@@ -59,3 +60,25 @@
                                    .ToClientTemplate())
 </script>
 
+<script type="text/javascript">
+    //highlight in-halting state equity
+    function onHoldingsGridDataBound(arg) {
+        var grid = $('#productHoldingGrid').data('kendoGrid');
+        var dataSource = grid.dataSource.data();
+        var trUID;
+        $.each(dataSource, function (idx, dataItem) {
+            if (dataItem.TradeState == '正常交易') {
+                trUID = dataItem.uid;
+                var indentifer = ">tr[data-uid=\"{UID}\"]".replace("{UID}", trUID);
+                var row = grid.tbody.find(indentifer);
+                row.addClass("halt-equit-tr");
+            }
+        });
+    }
+</script>
+
+<style>
+    .halt-equit-tr {
+        background-color:palevioletred;
+    }
+</style>

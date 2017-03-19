@@ -179,7 +179,14 @@ namespace Galaxy.BAL
                 holding.PreClosePrice = random.Next(60);
                 holding.PropotionOfTotalAssets = random.NextDouble();
                 holding.PropotionOfTotalEquity = random.NextDouble();
-                holding.TradeState = "正常交易";
+                if (random.Next(1, 10) > 5)
+                {
+                    holding.TradeState = "正常交易";
+                }
+                else {
+                    holding.TradeState = "停牌";
+                }
+               
                 holding.LastTradeDate = DateTime.Today.AddDays(-7);
 
                 holding.ClosePriceBeforeHalt = random.Next(60);
@@ -194,33 +201,127 @@ namespace Galaxy.BAL
         {
             Thread.Sleep(3000);
             MultipleCategoriesViewModel multipleCategories = new MultipleCategoriesViewModel();
-           
-            for (int i = 2013; i < 2017; i++)
+
+            List<CategoryDataViewModel> models = new List<CategoryDataViewModel>();
+            for (int i = 2010; i < 2017; i++)
             {
-                List<CategoryDataViewModel> models = new List<CategoryDataViewModel>();
                 CategoryDataViewModel model = new CategoryDataViewModel();
-                model.Name = i.ToString();
-                model.Label = "股票";
+                model.Name = "股票";
+                model.Label = i.ToString();
                 model.Value = random.Next(5,10);
                 models.Add(model);
+            }
+            multipleCategories.AddCategories(models[0].Name, models);
 
-                model = new CategoryDataViewModel();
-                model.Name = i.ToString();
-                model.Label = "债券";
+            models = new List<CategoryDataViewModel>();
+            for (int i = 2010; i < 2017; i++)
+            {
+                CategoryDataViewModel model = new CategoryDataViewModel();
+                model.Name = "债券";
+                model.Label = i.ToString();
                 model.Value = random.Next(5, 10);
                 models.Add(model);
-
-                model = new CategoryDataViewModel();
-                model.Name = i.ToString();
-                model.Label = "基金";
-                model.Value = random.Next(5, 10); ;
-                models.Add(model);
-
-                multipleCategories.AddCategories(models[0].Name, models);
             }
-         
+            multipleCategories.AddCategories(models[0].Name, models);
+
+            models = new List<CategoryDataViewModel>();
+            for (int i = 2010; i < 2017; i++)
+            {
+                CategoryDataViewModel model = new CategoryDataViewModel();
+                model.Name = "基金";
+                model.Label = i.ToString();
+                model.Value = random.Next(5, 10);
+                models.Add(model);
+            }
+            multipleCategories.AddCategories(models[0].Name, models);
 
             return multipleCategories;
+        }
+
+
+        public MultipleCategoriesViewModel FetchProductEquityAssetDist(int productId, DateTime asOfDate)
+        {
+            Thread.Sleep(3000);
+            MultipleCategoriesViewModel multipleCategories = new MultipleCategoriesViewModel();
+
+            List<CategoryDataViewModel> models = new List<CategoryDataViewModel>();
+            //DateTime date = DateTime.Today;
+            for (DateTime date = new DateTime(2016,1,1); date <= DateTime.Today;date =date.AddMonths(2) )
+            {
+                CategoryDataViewModel model = new CategoryDataViewModel();
+                model.Name = "能源";
+                model.Label = date.ToShortDateString();
+                model.Value = random.Next(5, 10);
+                models.Add(model);
+            }
+            multipleCategories.AddCategories(models[0].Name, models);
+
+            models = new List<CategoryDataViewModel>();
+            for (DateTime date = new DateTime(2016, 1, 1); date <= DateTime.Today; date = date.AddMonths(2))
+            {
+                CategoryDataViewModel model = new CategoryDataViewModel();
+                model.Name = "采矿业";
+                model.Label = date.ToShortDateString();
+                model.Value = random.Next(5, 10);
+                models.Add(model);
+            }
+            multipleCategories.AddCategories(models[0].Name, models);
+
+            models = new List<CategoryDataViewModel>();
+            for (DateTime date = new DateTime(2016, 1, 1); date <= DateTime.Today; date = date.AddMonths(2))
+            {
+                CategoryDataViewModel model = new CategoryDataViewModel();
+                model.Name = "贵金属";
+                model.Label = date.ToShortDateString();
+                model.Value = random.Next(5, 10);
+                models.Add(model);
+            }
+            multipleCategories.AddCategories(models[0].Name, models);
+
+            models = new List<CategoryDataViewModel>();
+            for (DateTime date = new DateTime(2016, 1, 1); date <= DateTime.Today; date = date.AddMonths(2))
+            {
+                CategoryDataViewModel model = new CategoryDataViewModel();
+                model.Name = "服务业";
+                model.Label = date.ToShortDateString();
+                model.Value = random.Next(5, 10);
+                models.Add(model);
+            }
+            multipleCategories.AddCategories(models[0].Name, models);
+
+            return multipleCategories;
+        }
+
+
+        public List<CategoryDataViewModel> FetchCurrentProductFundAssetDist(int productId, DateTime asOfDate)
+        {
+            Thread.Sleep(3000);
+            List<CategoryDataViewModel> models = new List<CategoryDataViewModel>();
+            CategoryDataViewModel vm = new CategoryDataViewModel();
+            vm.Name = "股票";
+            vm.Label = "股票";
+            vm.Value = random.Next(1,10);
+            models.Add(vm);
+
+            vm = new CategoryDataViewModel();
+            vm.Name = "债券";
+            vm.Label = "债券";
+            vm.Value = random.Next(1, 10);
+            models.Add(vm);
+
+            vm = new CategoryDataViewModel();
+            vm.Name = "现金";
+            vm.Label = "现金";
+            vm.Value = random.Next(1, 10);
+            models.Add(vm);
+
+            vm = new CategoryDataViewModel();
+            vm.Name = "其他资产";
+            vm.Label = "其他资产";
+            vm.Value = random.Next(1, 10);
+            models.Add(vm);
+
+            return models;
         }
     }
 }

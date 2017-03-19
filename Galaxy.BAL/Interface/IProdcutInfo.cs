@@ -11,11 +11,13 @@ namespace Galaxy.BAL.Interface
     {
         MultipleTimeSeriesViewModel FetchProductNetValueDistViewModel(int productId);
         MultipleCategoriesViewModel FetchProductFundAssetDist(int productId,DateTime asOfDate);
+        List<CategoryDataViewModel> FetchCurrentProductFundAssetDist(int productId, DateTime asOfDate);
         List<TimeSeriesDataViewModel> FetchPiggyBackDistViewModel(int productId);
         List<CategoryDataViewModel> FetchReturnDistViewModel(int productId,DateTime asOfDate);
         List<CategoryDataViewModel> FetchPnLDistViewModel(int productId,DateTime asOfDate);
         List<ProductBriefViewModel> FetchProducts();
         ProductBriefViewModel FetchProduct(int productId,DateTime asOfDate);
+        MultipleCategoriesViewModel FetchProductEquityAssetDist(int productId, DateTime asOfDate);
 
     }
 }

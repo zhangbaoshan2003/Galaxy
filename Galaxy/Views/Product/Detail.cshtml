@@ -137,76 +137,6 @@
                     </div>
                 </div>
                 <div class="box box-solid box-warning" style="font-size: 12px;">
-                    @*<table id="prodcutDetailTable" class="display compact">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>股票代码</th>
-                            <th>股票名称</th>
-                            <th>所属行业</th>
-                            <th>成本价</th>
-                            <th>数量</th>
-                            <th>成本</th>
-                            <th>市值</th>
-                            <th>总资产占比</th>
-                            <th>总持仓占比</th>
-                            <th>浮动盈亏</th>
-                            <th>浮盈率</th>
-                            <th>股票交易状态</th>
-                            <th style="display:none"></th>
-                            <th style="display:none"></th>
-                            <th style="display:none"></th>
-                            <th style="display:none"></th>
-                            <th style="display:none"></th>
-                            <th style="display:none"></th>
-                            <th style="display:none"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.Portfolio)
-                        {
-                            <tr >
-                                <td class="details-control "></td>
-                                <td >@Html.DisplayFor(modelItem => item.SecurityCode)</td>
-                                <td>@Html.DisplayFor(modelItem => item.SecurityName)</td>
-                                <td>@Html.DisplayFor(modelItem => item.IndustryName)</td>
-                                <td>@Html.DisplayFor(modelItem => item.CostPerShare)</td>
-                                <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
-                                <td>@Html.DisplayFor(modelItem => item.TotalCost)</td>
-
-                                <td>@Html.DisplayFor(modelItem => item.MarketValue)</td>
-                                <td>@Html.DisplayFor(modelItem => item.PropotionOfTotalAssets)</td>
-                                <td>@Html.DisplayFor(modelItem => item.PropotionOfTotalEquity)</td>
-                                <td>@Html.DisplayFor(modelItem => item.PnL)</td>
-                                <td>@Html.DisplayFor(modelItem => item.PnLYield)</td>
-                                <td>@Html.DisplayFor(modelItem => item.TradeState)</td>
-
-                                <td style="display:none">
-                                    @Html.DisplayFor(modelItem => item.ClosePriceBeforeHalt)
-                                </td>
-                                <td style="display:none">
-                                    @Html.DisplayFor(modelItem => item.IndustryIndexBeforeHalt)
-                                </td>
-                                <td style="display:none">
-                                    @Html.DisplayFor(modelItem => item.IndustryIndexNow)
-                                </td>
-                                <td style="display:none">
-                                    @Html.DisplayFor(modelItem => item.IndustryIndexChangePercent)
-                                </td>
-                                <td style="display:none">
-                                    @Html.DisplayFor(modelItem => item.PricePerShareEstimated)
-                                </td>
-                                <td style="display:none">
-                                    @Html.DisplayFor(modelItem => item.MarketValueEstimated)
-                                </td>
-                                <td style="display:none">
-                                    @Html.DisplayFor(modelItem => item.MarketValueDecrease)
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>*@
-
                     @Html.Partial("KendoProductHoldingListView")
                 </div>
             </div>
@@ -249,103 +179,101 @@
                     </div>
                 </section>
                 <section class="col-lg-5 connectedSortable pad">
-                    <div class="box box-solid box-warning">
-                        <div class="box-header">
-                            <i class="fa fa-th"></i>
-                            <h3 class="box-title">大朴进取1期（2013-1-1）</h3>
-                            <div class="box-tools pull-right">
-                                <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
-                                    <i class="fa fa-minus"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="box-body border-radius-none">
-                            <table class="table table-bordered table-striped table-hover table-condensed">
-                                <tr>
-                                    <th>收益率</th>
-                                    <td>5.4%</td>
-                                </tr>
-                                <tr>
-                                    <th>年化收益率</th>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th>相对收益率</th>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th>Beta</th>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th>波动率</th>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th>最大回撤</th>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th>夏普率</th>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th>风险收益比</th>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th>与大盘指数相关性</th>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <th>通策略收益率排名</th>
-                                    <td></td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="box box-solid box-warning">
-                                <div class="box-header">
-                                    <i class="fa fa-th"></i>
-                                    <h3 class="box-title">周收益分布图</h3>
-                                    <div class="box-tools pull-right">
-                                        <button type="button" class="btn btn-sm bg-yellow-gradient" id="returnDisBtn">
-                                            <i class="fa fa-eye"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
-                                            <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="box-body border-radius-none">
-                                    <div class="chart" id="returnDistChartContainer" style="height:150px"></div>
+                        <div class="box box-solid box-warning">
+                            <div class="box-header">
+                                <i class="fa fa-th"></i>
+                                <h3 class="box-title">大朴进取1期（2013-1-1）</h3>
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="box box-solid box-warning">
-                                <div class="box-header">
-                                    <i class="fa fa-th"></i>
-                                    <h3 class="box-title">正负收益周数</h3>
-                                    <div class="box-tools pull-right">
-                                        <button type="button" class="btn btn-sm bg-yellow-gradient" id="returnDisBtn">
-                                            <i class="fa fa-eye"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
-                                            <i class="fa fa-minus"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="box-body border-radius-none">
-                                    <div class="chart" id="pnlChartContainer" style="height:150px"></div>
-                                </div>
+                            <div class="box-body border-radius-none">
+                                <table class="table table-bordered table-striped table-hover table-condensed">
+                                    <tr>
+                                        <th>收益率</th>
+                                        <td>5.4%</td>
+                                    </tr>
+                                    <tr>
+                                        <th>年化收益率</th>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th>相对收益率</th>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Beta</th>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th>波动率</th>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th>最大回撤</th>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th>夏普率</th>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th>风险收益比</th>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th>与大盘指数相关性</th>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th>通策略收益率排名</th>
+                                        <td></td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
                     </div>
-
+                    <div class="row">
+                        <div class="box box-solid box-warning">
+                            <div class="box-header">
+                                <i class="fa fa-th"></i>
+                                <h3 class="box-title">周收益分布图</h3>
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-sm bg-yellow-gradient" id="returnDisBtn">
+                                        <i class="fa fa-eye"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="box-body border-radius-none">
+                                <div class="chart" id="returnDistChartContainer" ></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="box box-solid box-warning">
+                            <div class="box-header">
+                                <i class="fa fa-th"></i>
+                                <h3 class="box-title">正负收益周数</h3>
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-sm bg-yellow-gradient" id="returnDisBtn">
+                                        <i class="fa fa-eye"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="box-body border-radius-none">
+                                <div class="chart" id="pnlChartContainer" ></div>
+                            </div>
+                        </div>
+                    </div>
                 </section>
             </div>
             <div class="tab-pane " id="tab_3">
@@ -529,6 +457,7 @@
                             </div>
                         </div>
                     </div>
+                    
                 </div>
                 <div class="row">
                     <div class="col-md-4">

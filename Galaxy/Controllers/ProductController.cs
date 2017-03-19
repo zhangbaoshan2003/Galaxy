@@ -19,6 +19,9 @@ namespace Galaxy.Controllers
     {
         private DateTime toDate(String dateStr)
         {
+            if (String.IsNullOrEmpty(dateStr))
+                return DateTime.Today;
+
             DateTime asOfDate = DateTime.Today;
             if (DateTime.TryParseExact(dateStr, "MM/dd/yyyy", null, DateTimeStyles.None, out asOfDate) == true)
             {
@@ -73,6 +76,23 @@ namespace Galaxy.Controllers
                 DateTime asOfDate = toDate(asOfDateStr);
                 MultipleCategoriesViewModel viewModel = prodcutInfoFetcher.FetchProductFundAssetDist(productId,asOfDate);
                 var jsonResult = Json(viewModel.Dictionary, JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = Int32.MaxValue;
+                return jsonResult;
+            }
+            catch (Exception ex)
+            {
+                LogUtility.Fatal("Error happend when fetching product net value distribution", ex);
+                return Json(null);
+            }
+        }
+
+        public ActionResult GetCurrentFuncAssetDist(int productId, String asOfDateStr)
+        {
+            try
+            {
+                DateTime asOfDate = toDate(asOfDateStr);
+                List<CategoryDataViewModel> viewModel = prodcutInfoFetcher.FetchCurrentProductFundAssetDist(productId, asOfDate);
+                var jsonResult = Json(viewModel, JsonRequestBehavior.AllowGet);
                 jsonResult.MaxJsonLength = Int32.MaxValue;
                 return jsonResult;
             }
@@ -143,6 +163,22 @@ namespace Galaxy.Controllers
             catch (Exception ex)
             {
                 LogUtility.Fatal("Error happend when GetHoldings", ex);
+                return Json(null);
+            }
+        }
+        public ActionResult GetEquitAssetDist([DataSourceRequest]DataSourceRequest request, int productId, String asOfDateStr)
+        {
+            try
+            {
+                DateTime asOfDate = toDate(asOfDateStr);
+                MultipleCategoriesViewModel viewModel = prodcutInfoFetcher.FetchProductEquityAssetDist(productId, asOfDate);
+                var jsonResult = Json(viewModel.Dictionary, JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = Int32.MaxValue;
+                return jsonResult;
+            }
+            catch (Exception ex)
+            {
+                LogUtility.Fatal("Error happend when GetEquitAssetDist", ex);
                 return Json(null);
             }
         }
