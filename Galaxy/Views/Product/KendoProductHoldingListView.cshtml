@@ -67,11 +67,15 @@
         var dataSource = grid.dataSource.data();
         var trUID;
         $.each(dataSource, function (idx, dataItem) {
-            if (dataItem.TradeState == '正常交易') {
-                trUID = dataItem.uid;
-                var indentifer = ">tr[data-uid=\"{UID}\"]".replace("{UID}", trUID);
-                var row = grid.tbody.find(indentifer);
+            trUID = dataItem.uid;
+            var indentifer = ">tr[data-uid=\"{UID}\"]".replace("{UID}", trUID);
+            var row = grid.tbody.find(indentifer);
+
+            if (dataItem.TradeState != '正常交易') {
                 row.addClass("halt-equit-tr");
+            } else {
+                var td = row.find('td:eq(0)');
+                td[0].innerHTML='';
             }
         });
     }
