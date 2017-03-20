@@ -7,29 +7,45 @@
     <title>InstitutionalFinance</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     
-    @Styles.Render("~/AdminLTE/plugins/font-awesome/css")
-    @Styles.Render("~/AdminLTE/plugins/ionicons/css")
-    @Styles.Render("~/AdminLTE/bootstrap/css")
-    @Styles.Render("~/AdminLTE/dist/css")
-    @Styles.Render("~/AdminLTE/dist/css/skins")
+    <link href="~/AdminLTE/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
 
-    @Scripts.Render("~/AdminLTE/plugins/jquery/js")
+    <link href="~/AdminLTE/plugins/ionicons/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/AdminLTE/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/AdminLTE/dist/css/admin-lte.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/AdminLTE/dist/css/skins/_all-skins.css" rel="stylesheet" type="text/css" />
+    
+    <link href="~/AdminLTE/plugins/datatables/css/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="~/AdminLTE/plugins/datatables/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+    
+    
+    <script src="~/AdminLTE/plugins/jquery/js/jQuery-2.1.4.min.js"></script>
+    <script src="~/AdminLTE/plugins/datatables/js/jquery.dataTables.js"></script>
+    <script src="~/AdminLTE/plugins/datatables/js/dataTables.bootstrap.js"></script>
+    
+
     @RenderSection("menu", required: false)
-    @Scripts.Render("~/AdminLTE/bootstrap/js")
-    @Scripts.Render("~/AdminLTE/plugins/slimscroll/js")
-    @Scripts.Render("~/Scripts/Shared/")
-    @Scripts.Render("~/AdminLTE/dist/js")
+    
 
-	<link href="https://kendo.cdn.telerik.com/2017.1.118/styles/kendo.common.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://kendo.cdn.telerik.com/2017.1.118/styles/kendo.common.min.css" rel="stylesheet" type="text/css" />
 	<link href="https://kendo.cdn.telerik.com/2017.1.118/styles/kendo.mobile.all.min.css" rel="stylesheet" type="text/css" />
 	<link href="https://kendo.cdn.telerik.com/2017.1.118/styles/kendo.dataviz.min.css" rel="stylesheet" type="text/css" />
 	<link href="https://kendo.cdn.telerik.com/2017.1.118/styles/kendo.blueopal.min.css" rel="stylesheet" type="text/css" />
-	<link href="https://kendo.cdn.telerik.com/2017.1.118/styles/kendo.dataviz.blueopal.min.css" rel="stylesheet" type="text/css" />
-	@*<script src="https://kendo.cdn.telerik.com/2017.1.118/js/jquery.min.js"></script>*@
-	<script src="https://kendo.cdn.telerik.com/2017.1.118/js/jszip.min.js"></script>
+    <link href="https://kendo.cdn.telerik.com/2017.1.118/styles/kendo.dataviz.blueopal.min.css" rel="stylesheet" type="text/css" />
+    
+    <script src="https://kendo.cdn.telerik.com/2017.1.118/js/jszip.min.js"></script>
 	<script src="https://kendo.cdn.telerik.com/2017.1.118/js/kendo.all.min.js"></script>
-	<script src="https://kendo.cdn.telerik.com/2017.1.118/js/kendo.aspnetmvc.min.js"></script>
-	<script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
+    <script src="https://kendo.cdn.telerik.com/2017.1.118/js/kendo.aspnetmvc.min.js"></script>
+    
+    <script src="~/AdminLTE/bootstrap/js/bootstrap.js"></script>
+    @*<script src="~/AdminLTE/plugins/slimscroll/js/jquery.slimscroll.js"></script>*@
+    <script src="~/Scripts/Shared/_Layout.js"></script>
+    <script src="~/AdminLTE/dist/js/app.js"></script>
+    
+
+    <script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini fixed">
     <div class="wrapper">

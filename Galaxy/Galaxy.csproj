@@ -387,6 +387,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\kendo.modernizr.custom.js" />
     <Content Include="Scripts\Product\datePickerLogic.js" />
+    <Content Include="Scripts\Shared\highstock.src.js" />
     <Content Include="Styles\media\css\dataTables.bootstrap.css" />
     <Content Include="Styles\media\css\dataTables.bootstrap.min.css" />
     <Content Include="Styles\media\css\dataTables.bootstrap4.css" />

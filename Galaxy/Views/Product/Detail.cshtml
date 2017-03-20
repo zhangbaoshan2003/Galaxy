@@ -7,18 +7,16 @@
     @Scripts.Render("~/Scripts/Product/menu.js")
 }
 
-@*@Styles.Render("~/AdminLTE/plugins/daterangepicker/css")*@
-@*@Styles.Render("~/AdminLTE/plugins/morris/css")*@
-@*@Styles.Render("~/AdminLTE/plugins/jvectormap/css")*@
-@Styles.Render("~/AdminLTE/plugins/datepicker/css")
-@*@Styles.Render("~/AdminLTE/plugins/daterangepicker/css")*@
-@Styles.Render("~/AdminLTE/plugins/bootstrap-wysihtml5/css")
-@*@Styles.Render("~/AdminLTE/plugins/datatables/css")*@
+<script src="~/AdminLTE/plugins/jquery/js/jQuery-2.1.4.min.js"></script>
+<script src="~/Scripts/Shared/highstock.js"></script>
+<script src="~/AdminLTE/plugins/datepicker/js/bootstrap-datepicker.js"></script>
 
-@*<link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<link rel="stylesheet" type="text/css" href="~/Styles/media/css/dataTables.jqueryui.css">
-<link rel="stylesheet" type="text/css" href="~/Styles/resources/syntax/shCore.css">*@
-@*<link rel="stylesheet" type="text/css" href="~/Styles/resources/demo.css">*@
+<script src="~/Scripts/Product/productChart.js"></script>
+<script src="~/Scripts/Product/productBtn.js"></script>
+<script src="~/Scripts/Product/datePickerLogic.js"></script>
+
+<link href="~/AdminLTE/plugins/daterangepicker/css/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+<link href="~/AdminLTE/plugins/bootstrap-wysihtml5/css/bootstrap3-wysihtml5.css" rel="stylesheet" type="text/css" />
 
 <style>
     td.details-control {
@@ -502,19 +500,5 @@
 </div>
 
 @section Scripts {
-    @Scripts.Render("~/AdminLTE/plugins/datepicker/js")
-    @*@Scripts.Render("~/AdminLTE/plugins/datatables/js")
-        @Scripts.Render("~/AdminLTE/plugins/jquery-ui/js")*@
-
-    @Scripts.Render("~/Styles/media/js/jquery.dataTables.js")
-    @Scripts.Render("~/Styles/media/js/dataTables.jqueryui.js")
-    @Scripts.Render("~/Styles/resources/syntax/shCore.js")
-    @Scripts.Render("~/Styles/resources/demo.js")
-    @*<script>
-            $.widget.bridge('uibutton', $.ui.button);
-        </script>*@
-    @Scripts.Render("~/Scripts/Product/productChart.js")
-    @Scripts.Render("~/Scripts/Product/productBtn.js")
-    @*@Scripts.Render("~/Scripts/Product/productDataDetail.js")*@
-    @Scripts.Render("~/Scripts/Product/datePickerLogic.js")
+   
 }
