@@ -387,7 +387,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\kendo.modernizr.custom.js" />
     <Content Include="Scripts\Product\datePickerLogic.js" />
-    <Content Include="Scripts\Shared\highstock.src.js" />
     <Content Include="Styles\media\css\dataTables.bootstrap.css" />
     <Content Include="Styles\media\css\dataTables.bootstrap.min.css" />
     <Content Include="Styles\media\css\dataTables.bootstrap4.css" />
@@ -452,6 +451,8 @@
     <Content Include="Styles\resources\examples.php" />
     <Content Include="Styles\resources\syntax\Syntax Highlighter license" />
     <Content Include="Styles\media\images\Sorting icons.psd" />
+    <None Include="Properties\PublishProfiles\FOF.pubxml" />
+    <None Include="Properties\PublishProfiles\Institution.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -474,7 +475,9 @@
     <Content Include="Styles\Elements\General.css" />
     <Content Include="Styles\Elements\Icons.css" />
     <Content Include="Styles\Elements\Modals.css" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

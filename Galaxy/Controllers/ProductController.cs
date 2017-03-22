@@ -54,6 +54,7 @@ namespace Galaxy.Controllers
             return View(product);
         }
 
+        [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult GetNetValues(int productId)
         {
             try

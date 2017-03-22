@@ -10,28 +10,6 @@ namespace Galaxy
             //RegisterLayout(bundles);
 
             RegisterShared(bundles);
-
-            //RegisterAccount(bundles);
-
-            //RegisterHome(bundles);
-
-            //RegisterCharts(bundles);
-
-            //RegisterWidgets(bundles);
-
-            //RegisterElements(bundles);
-
-            //RegisterForms(bundles);
-
-            //RegisterTables(bundles);
-
-            //RegisterCalendar(bundles);
-
-            //RegisterMailbox(bundles);
-
-            //RegisterExamples(bundles);
-
-            //RegisterDocumentation(bundles);
         }
 
         private static void RegisterDocumentation(BundleCollection bundles)
@@ -226,62 +204,6 @@ namespace Galaxy
 
         private static void RegisterShared(BundleCollection bundles)
         {
-            // plugins | bootstrap-slider
-            bundles.Add(new ScriptBundle("~/AdminLTE/plugins/bootstrap-slider/js").Include(
-                                        "~/AdminLTE/plugins/bootstrap-slider/js/bootstrap-slider.js"));
-
-            bundles.Add(new ScriptBundle("~/AdminLTE/dist/js").Include(
-             "~/AdminLTE/dist/js/app.js"));
-
-            // dist
-            bundles.Add(new ScriptBundle("~/AdminLTE/dist/js").Include(
-                "~/AdminLTE/dist/js/app.js"));
-
-             // plugins | datepicker
-            bundles.Add(new ScriptBundle("~/AdminLTE/plugins/datepicker/js").Include(
-                "~/AdminLTE/plugins/datepicker/js/bootstrap-datepicker.js"));
-
-            bundles.Add(new ScriptBundle("~/AdminLTE/bootstrap/js").Include(
-              "~/AdminLTE/bootstrap/js/bootstrap.min.js"));
-
-            // plugins | datatables
-            bundles.Add(new ScriptBundle("~/AdminLTE/plugins/datatables/js").Include(
-                                         "~/AdminLTE/plugins/datatables/js/jquery.dataTables.min.js",
-                                         "~/AdminLTE/plugins/datatables/js/dataTables.bootstrap.min.js"));
-
-            // plugins | jquery
-            bundles.Add(new ScriptBundle("~/AdminLTE/plugins/jquery/js").Include(
-                                         "~/AdminLTE/plugins/jquery/js/jQuery-2.1.4.min.js"));
-
-            // plugins | jquery-validate
-            bundles.Add(new ScriptBundle("~/AdminLTE/plugins/jquery-validate/js").Include(
-                                         "~/AdminLTE/plugins/jquery-validate/js/jquery.validate*"));
-
-            // plugins | jquery-ui
-            bundles.Add(new ScriptBundle("~/AdminLTE/plugins/jquery-ui/js").Include(
-                                         "~/AdminLTE/plugins/jquery-ui/js/jquery-ui.min.js"));
-
-            // plugins | jvectormap
-            bundles.Add(new ScriptBundle("~/AdminLTE/plugins/jvectormap/js").Include(
-                                         "~/AdminLTE/plugins/jvectormap/js/jquery-jvectormap-1.2.2.min.js",
-                                         "~/AdminLTE/plugins/jvectormap/js/jquery-jvectormap-world-mill-en.js"));
-
-            // plugins | flot
-            bundles.Add(new ScriptBundle("~/AdminLTE/plugins/flot/js").Include(
-                                         "~/AdminLTE/plugins/flot/js/jquery.flot.min.js",
-                                         "~/AdminLTE/plugins/flot/js/jquery.flot.resize.min.js",
-                                         "~/AdminLTE/plugins/flot/js/jquery.flot.pie.min.js",
-                                         "~/AdminLTE/plugins/flot/js/jquery.flot.categories.min.js"));
-
-            // plugins | input-mask
-            bundles.Add(new ScriptBundle("~/AdminLTE/plugins/input-mask/js").Include(
-                                         "~/AdminLTE/plugins/input-mask/js/jquery.inputmask.js",
-                                         "~/AdminLTE/plugins/input-mask/js/jquery.inputmask.date.extensions.js",
-                                         "~/AdminLTE/plugins/input-mask/js/jquery.inputmask.extensions.js"));
-
-            bundles.Add(new ScriptBundle("~/AdminLTE/plugins/select2/js").Include(
-                                        "~/AdminLTE/plugins/select2/js/select2.full.min.js"));
-
             bundles.Add(new ScriptBundle("~/Scripts/Shared/").Include(
                 "~/Scripts/Shared/_Layout.js"));
             bundles.Add(new ScriptBundle("~/Scripts/Shared/").Include(

@@ -8,8 +8,8 @@
     @Scripts.Render("~/Scripts/Product/menu.js")
 }
 
-@Styles.Render("~/AdminLTE/plugins/datatables/css")
-<script src="~/Scripts/Product/productData.js"></script>
+@Styles.Render("~/AdminLTE/plugins/datatables/css/jquery.dataTables.min.css")
+@Styles.Render("~/AdminLTE/plugins/datatables/css/dataTables.bootstrap.css")
 
 <div class="row">
     <div class="col-xs-12">
@@ -46,6 +46,8 @@
 </div>
 
 @section Scripts {
-    
+    @Scripts.Render("~/AdminLTE/plugins/datatables/js/jquery.dataTables.js")
+    @Scripts.Render("~/AdminLTE/plugins/datatables/js/dataTables.bootstrap.js")
+    @Scripts.Render("~/Scripts/Product/productData.js")
 }
 
