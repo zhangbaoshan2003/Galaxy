@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1AAE6993-C3BE-472E-B4A3-709E22F4BC81}</ProjectGuid>
+    <ProjectGuid>{70F42B69-570A-4625-AAEE-4ED89AE0EF9B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Galaxy.BAL</RootNamespace>
-    <AssemblyName>Galaxy.BAL</AssemblyName>
+    <RootNamespace>Galaxy.DAL2</RootNamespace>
+    <AssemblyName>Galaxy.DAL2</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -39,23 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interface\IProdcutInfo.cs" />
-    <Compile Include="LogUtility.cs" />
-    <Compile Include="DummyProdcutInfoFetcher.cs" />
-    <Compile Include="ProductDataManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModel\CategoryDataViewModel.cs" />
-    <Compile Include="ViewModel\NetValueStaticsViewModel.cs" />
-    <Compile Include="ViewModel\PorductHoldingViewModel.cs" />
-    <Compile Include="ViewModel\ProductBriefViewModel.cs" />
-    <Compile Include="ViewModel\ProductPerformanceIndexViewModel.cs" />
-    <Compile Include="ViewModel\TimeSeriesDataViewModel.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Galaxy.DAL2\Galaxy.DAL2.csproj">
-      <Project>{70f42b69-570a-4625-aaee-4ed89ae0ef9b}</Project>
-      <Name>Galaxy.DAL2</Name>
-    </ProjectReference>
+    <Compile Include="SQLSession.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

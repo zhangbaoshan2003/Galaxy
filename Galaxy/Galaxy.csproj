@@ -199,8 +199,10 @@
     <Content Include="AdminLTE\bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="AdminLTE\bootstrap\js\bootstrap.js" />
     <Content Include="AdminLTE\bootstrap\js\bootstrap.min.js" />
+    <Content Include="AdminLTE\dist\css\admin-lte-new.css" />
     <Content Include="AdminLTE\dist\css\admin-lte.css" />
     <Content Include="AdminLTE\dist\css\admin-lte.min.css" />
+    <Content Include="AdminLTE\dist\css\skins\admin-lte.css" />
     <Content Include="AdminLTE\dist\css\skins\skin-black-light.css" />
     <Content Include="AdminLTE\dist\css\skins\skin-black-light.min.css" />
     <Content Include="AdminLTE\dist\css\skins\skin-black.css" />
@@ -318,8 +320,8 @@
     <Content Include="AdminLTE\plugins\flot\js\jquery.flot.threshold.min.js" />
     <Content Include="AdminLTE\plugins\flot\js\jquery.flot.time.js" />
     <Content Include="AdminLTE\plugins\flot\js\jquery.flot.time.min.js" />
-    <Content Include="AdminLTE\plugins\font-awesome\css\font-awesome.css" />
-    <Content Include="AdminLTE\plugins\font-awesome\css\font-awesome.min.css" />
+    <Content Include="AdminLTE\plugins\font-awesome\css\font-awesome-new.css" />
+    <Content Include="AdminLTE\plugins\font-awesome\css\font-awesome.min.new.css" />
     <Content Include="AdminLTE\plugins\font-awesome\fonts\fontawesome-webfont.svg" />
     <Content Include="AdminLTE\plugins\fullcalendar\css\fullcalendar.css" />
     <Content Include="AdminLTE\plugins\fullcalendar\css\fullcalendar.min.css" />
@@ -660,7 +662,9 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\kendo.modernizr.custom.js" />
-    <Content Include="Scripts\Product\datePickerLogic.js" />
+    <Content Include="Scripts\Product\datePickerLogicNew.js" />
+    <Content Include="Scripts\Product\fundListInfo.js" />
+    <Content Include="Scripts\Product\productChartNew.js" />
     <Content Include="Styles\media\css\dataTables.bootstrap.css" />
     <Content Include="Styles\media\css\dataTables.bootstrap.min.css" />
     <Content Include="Styles\media\css\dataTables.bootstrap4.css" />
@@ -739,10 +743,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\Product\menu.js" />
-    <Content Include="Scripts\Product\productBtn.js" />
-    <Content Include="Scripts\Product\productChart.js" />
-    <Content Include="Scripts\Product\productDataDetail.js" />
-    <Content Include="Scripts\Product\productData.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\Shared\highstock.js" />

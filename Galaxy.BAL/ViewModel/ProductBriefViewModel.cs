@@ -11,10 +11,14 @@ namespace Galaxy.BAL.ViewModel
         public ProductBriefViewModel() { }
         public int ProductID { get; set; }
         public String Name { get; set; }
+
+        public String Caption { get; set; }
         public DateTime IssueDate { get; set; }
         public String ConsusityBank { get; set; }
         public String Administrator { get; set; }
         public String Consultant { get; set; }
+
+        public String Department { get; set; }
 
         public int? ProductTypeID { get; set; }
 

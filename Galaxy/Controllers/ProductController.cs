@@ -32,7 +32,7 @@ namespace Galaxy.Controllers
         }
 
         private IProdcutInfo prodcutInfoFetcher = new DummyProdcutInfoFetcher();
-        
+        //private IProdcutInfo prodcutInfoFetcher = new ProductDataManager();
         //
         // GET: /Product/
         public ActionResult Index()

@@ -7,16 +7,18 @@
     <title>InstitutionalFinance</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     
-    @Styles.Render("~/AdminLTE/plugins/font-awesome/css/font-awesome.css")
-    @Styles.Render("~/AdminLTE/plugins/ionicons/css/ionicons.css")
-    @Styles.Render("~/AdminLTE/bootstrap/css/bootstrap.css")
-    @Styles.Render("~/AdminLTE/dist/css/admin-lte.css")
-    @Styles.Render("~/AdminLTE/dist/css/skins/_all-skins.css")
+    @Styles.Render("~/AdminLTE/plugins/font-awesome/css/font-awesome.min.new.css")
+    @Styles.Render("~/AdminLTE/plugins/ionicons/css/ionicons.min.css")
+    @Styles.Render("~/AdminLTE/bootstrap/css/bootstrap.min.css")
+    @Styles.Render("~/AdminLTE/dist/css/admin-lte.min.css")
+    @Styles.Render("~/AdminLTE/dist/css/skins/skin-blue.min.css")
 
     @Scripts.Render("~/AdminLTE/plugins/jquery/js/jQuery-2.1.4.min.js")
     @RenderSection("menu", required: false)
-    @Scripts.Render("~/AdminLTE/bootstrap/js/bootstrap.js")
-    @Scripts.Render("~/AdminLTE/plugins/slimscroll/js")
+    @*@Scripts.Render("~/AdminLTE/bootstrap/js/bootstrap.min.js")*@
+    <script src="@Url.Content("~/AdminLTE/bootstrap/js/bootstrap.min.js")"></script>
+
+    @Scripts.Render("~/AdminLTE/plugins/slimscroll/js/jquery.slimscroll.min.js")
     @Scripts.Render("~/Scripts/Shared/_Layout.js")
     @Scripts.Render("~/Scripts/Shared/highstock.js")
     @Scripts.Render("~/AdminLTE/dist/js/app.js")
@@ -28,11 +30,11 @@
     <link href="@Url.Content("~/Content/kendo/2014.3.1119/kendo.dataviz.blueopal.min.css")" rel="stylesheet" type="text/css" />
    
     <script src="@Url.Content("~/Scripts/kendo/2014.3.1119/kendo.all.min.js")"></script>
-    <script src="@Url.Content("~/Scripts/kendo/2014.3.1119/kendo.angular.min.js")"></script>
+    @*<script src="@Url.Content("~/Scripts/kendo/2014.3.1119/kendo.angular.min.js")"></script>*@
     <script src="@Url.Content("~/Scripts/kendo/2014.3.1119/kendo.aspnetmvc.min.js")"></script>
 
 	
-	<script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
+	@*<script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>*@
 </head>
 <body class="hold-transition skin-blue sidebar-mini fixed">
     <div class="wrapper">
