@@ -48,7 +48,7 @@ namespace Galaxy.BAL
             List<ViewModel.ProductBriefViewModel> products = new List<ViewModel.ProductBriefViewModel>();
             using (SQLSession session = new SQLSession("GalaxyDB"))
             {
-                DataTable table = session.SQLQuery(@"select top (10) [l_fund_id]
+                DataTable table = session.SQLQuery(@"select  [l_fund_id]
       ,[vc_fund_name]
       ,[vc_fund_caption]
       ,[l_default_asset]

@@ -14,7 +14,7 @@ namespace Galaxy.BAL
         private static Random random = new Random();
         public ViewModel.MultipleTimeSeriesViewModel FetchProductNetValueDistViewModel(int productId)
         {
-            Thread.Sleep(3000);
+            //Thread.Sleep(3000);
             MultipleTimeSeriesViewModel multipleTime = new MultipleTimeSeriesViewModel();
 
 
@@ -52,7 +52,7 @@ namespace Galaxy.BAL
 
         public List<TimeSeriesDataViewModel> FetchPiggyBackDistViewModel(int productId)
         {
-            Thread.Sleep(3000);
+            //Thread.Sleep(3000);
             List<TimeSeriesDataViewModel> models = new List<TimeSeriesDataViewModel>();
             for (int i = 0; i < 100; i++)
             {
@@ -73,7 +73,7 @@ namespace Galaxy.BAL
 
         public List<CategoryDataViewModel> FetchReturnDistViewModel(int productId, DateTime asOfDate)
         {
-            Thread.Sleep(3000);
+            //Thread.Sleep(3000);
 
             List<CategoryDataViewModel> models = new List<CategoryDataViewModel>();
             int step = 0;
@@ -98,7 +98,7 @@ namespace Galaxy.BAL
 
         public List<CategoryDataViewModel> FetchPnLDistViewModel(int productId, DateTime asOfDate)
         {
-            Thread.Sleep(3000);
+            //Thread.Sleep(3000);
             List<CategoryDataViewModel> models = new List<CategoryDataViewModel>();
             CategoryDataViewModel vm = new CategoryDataViewModel();
             vm.Name = "负收益周数";
@@ -118,7 +118,7 @@ namespace Galaxy.BAL
 
         public List<ProductBriefViewModel> FetchProducts()
         {
-            Thread.Sleep(3000);
+            //Thread.Sleep(3000);
             List<ProductBriefViewModel> vms = new List<ProductBriefViewModel>();
             for (int i = 0; i < 100; i++)
             {
@@ -137,7 +137,7 @@ namespace Galaxy.BAL
 
         public ProductBriefViewModel FetchProduct(int productId, DateTime asOfDate)
         {
-            Thread.Sleep(3000);
+            //Thread.Sleep(3000);
             ProductBriefViewModel vm = new ProductBriefViewModel();
             vm.Name = "元达信资本-履泰2期证券投资基金_" + productId;
             vm.Administrator = "元达信资本";
@@ -199,7 +199,7 @@ namespace Galaxy.BAL
         }
         public MultipleCategoriesViewModel FetchProductFundAssetDist(int productId, DateTime asOfDate)
         {
-            Thread.Sleep(3000);
+            //Thread.Sleep(3000);
             MultipleCategoriesViewModel multipleCategories = new MultipleCategoriesViewModel();
 
             List<CategoryDataViewModel> models = new List<CategoryDataViewModel>();
@@ -241,7 +241,7 @@ namespace Galaxy.BAL
 
         public MultipleCategoriesViewModel FetchProductEquityAssetDist(int productId, DateTime asOfDate)
         {
-            Thread.Sleep(3000);
+            //Thread.Sleep(3000);
             MultipleCategoriesViewModel multipleCategories = new MultipleCategoriesViewModel();
 
             List<CategoryDataViewModel> models = new List<CategoryDataViewModel>();
@@ -295,7 +295,7 @@ namespace Galaxy.BAL
 
         public List<CategoryDataViewModel> FetchCurrentProductFundAssetDist(int productId, DateTime asOfDate)
         {
-            Thread.Sleep(3000);
+            //Thread.Sleep(3000);
             List<CategoryDataViewModel> models = new List<CategoryDataViewModel>();
             CategoryDataViewModel vm = new CategoryDataViewModel();
             vm.Name = "股票";

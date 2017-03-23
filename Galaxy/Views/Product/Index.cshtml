@@ -19,10 +19,9 @@
                     <thead>
                         <tr>
                             <th>产品名称</th>
-                            <th>成立日期</th>
-                            <th>托管银行</th>
-                            <th>投资顾问</th>
-                            <th>管理人</th>
+                            <th>产品全称</th>
+                            <th>产品部门</th>
+                            <th>发布日期</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -31,10 +30,9 @@
                         {
                             <tr>
                                 <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                                <td> @Html.DisplayFor(modelItem => item.Caption)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Department)</td>
                                 <td> @Html.DisplayFor(modelItem => item.IssueDate)</td>
-                                <td>@Html.DisplayFor(modelItem => item.ConsusityBank)</td>
-                                <td> @Html.DisplayFor(modelItem => item.ConsusityBank)</td>
-                                <td> @Html.DisplayFor(modelItem => item.Administrator)</td>
                                 <td>@Html.ActionLink("详细信息", "Detail", new { id = item.ProductID })</td>
                             </tr>
                         }

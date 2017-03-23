@@ -31,8 +31,8 @@ namespace Galaxy.Controllers
             return DateTime.Today;
         }
 
-        private IProdcutInfo prodcutInfoFetcher = new DummyProdcutInfoFetcher();
-        //private IProdcutInfo prodcutInfoFetcher = new ProductDataManager();
+        //private IProdcutInfo prodcutInfoFetcher = new DummyProdcutInfoFetcher();
+        private IProdcutInfo prodcutInfoFetcher = new ProductDataManager();
         //
         // GET: /Product/
         public ActionResult Index()
