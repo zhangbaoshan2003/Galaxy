@@ -1,4 +1,5 @@
-﻿using Galaxy.BAL.Interface;
+﻿using Galaxy.BAL.Exceptions;
+using Galaxy.BAL.Interface;
 using Galaxy.BAL.ViewModel;
 using Galaxy.DAL2;
 using System;
@@ -77,7 +78,25 @@ namespace Galaxy.BAL
 
         public ViewModel.ProductBriefViewModel FetchProduct(int productId, DateTime asOfDate)
         {
-            throw new NotImplementedException();
+            ProductBriefViewModel product = new ProductBriefViewModel();
+
+            String sqlTxt = String.Format(@"SELECT H.vc_inter_code FROM cydb..FundHoldings H LEFT OUTER JOIN cydb..FundPerformance P 
+ON H.l_fund_id=P.l_fund_id AND H.l_date=P.l_date
+AND P.wind_code = H.wind_code
+WHERE H.l_fund_id='{0}' AND H.l_date=(SELECT MAX(l_date) FROM cydb..FundHoldings WHERE l_fund_id='{0}' AND l_date<='{1}' )", productId, asOfDate.ToString("yyyy-MM-dd"));
+            using (SQLSession session = new SQLSession("GalaxyDB"))
+            {
+                DataTable table = session.SQLQuery(sqlTxt);
+                if(table.Rows.Count==0)
+                    throw new NotFundException(productId.ToString(), asOfDate);
+                table.AsEnumerable().ToList().ForEach(tr => {
+                    PorductHoldingViewModel holding = new PorductHoldingViewModel();
+                    holding.SecurityCode = tr.Field<String>("vc_inter_code");
+                    product.Portfolio.Add(holding);
+                });
+            }
+
+            return product;
         }
 
         public ViewModel.MultipleCategoriesViewModel FetchProductEquityAssetDist(int productId, DateTime asOfDate)

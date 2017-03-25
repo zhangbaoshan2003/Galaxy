@@ -12,6 +12,7 @@ using System.Web.Mvc;
 
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
+using Galaxy.BAL.Exceptions;
 
 namespace Galaxy.Controllers
 {
@@ -48,10 +49,18 @@ namespace Galaxy.Controllers
                 return RedirectToAction("Index");
             }
 
-            DateTime asOfDate = toDate(asOfDateStr);
-            ProductBriefViewModel product = prodcutInfoFetcher.FetchProduct(id.Value,asOfDate);
-            ViewBag.ProductId = id.Value;
-            return View(product);
+            try
+            {
+                DateTime asOfDate = toDate(asOfDateStr);
+                ProductBriefViewModel product = prodcutInfoFetcher.FetchProduct(id.Value, asOfDate);
+                ViewBag.ProductId = id.Value;
+                return View(product);
+            }
+            catch (NotFundException ex)
+            {
+                LogUtility.Fatal(ex.Message, ex);
+                throw ex;
+            }
         }
 
         [AcceptVerbs(HttpVerbs.Get)]

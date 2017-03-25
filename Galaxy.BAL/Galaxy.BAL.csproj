@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\NotFundException.cs" />
     <Compile Include="Interface\IProdcutInfo.cs" />
     <Compile Include="LogUtility.cs" />
     <Compile Include="DummyProdcutInfoFetcher.cs" />

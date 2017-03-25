@@ -33,7 +33,7 @@
                                 <td>@Html.DisplayFor(modelItem => item.Caption)</td>
                                 <td>@Html.DisplayFor(modelItem => item.Department)</td>
                                 <td> @Html.DisplayFor(modelItem => item.IssueDateStr)</td>
-                                <td>@Html.ActionLink("详情", "Detail", new { id = item.ProductID })</td>
+                                <td>@Html.ActionLink(item.ProductID.ToString(), "Detail", new { id = item.ProductID })</td>
                             </tr>
                         }
                     </tbody>
