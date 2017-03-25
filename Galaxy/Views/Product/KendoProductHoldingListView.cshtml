@@ -13,7 +13,7 @@
             columns.Bound(c => c.MarketValue).Title("市值").Width(120).Format("{0:c}");
             columns.Bound(c => c.PropotionOfTotalAssets).Title("总资产占比").Width(110).Format("{0:p2}");
             columns.Bound(c => c.PropotionOfTotalEquity).Title("总持仓占比").Width(110).Format("{0:p2}");
-            columns.Bound(c => c.PnL).Title("浮动盈亏").Width(94);
+            columns.Bound(c => c.PnL).Title("浮动盈亏").Width(94).Format("{0:c}");
             columns.Bound(c => c.PnLYield).Title("浮盈率").Width(94).Format("{0:p2}");
             columns.Bound(c => c.TradeState).Title("股票交易状态").Width(110);
             columns.Bound(c => c.LastTradeDate).Title("最近交易日").Format("{0:MM/dd/yyyy}").Width(110);
@@ -22,6 +22,7 @@
         .Scrollable()
         .Sortable()
         .Filterable()
+        .Selectable()
         .Pageable(pageable => pageable
             .Refresh(true)
             .PageSizes(true)
@@ -46,13 +47,13 @@
                 items.Add().Text("停牌信息").Content(
                     "<div class='employee-details'>" +
                         "<ul>" +
-                            "<li><label>停牌前收盘价:</label>#= ClosePriceBeforeHalt #</li>" +
-                            "<li><label>停牌前行业指数:</label>#= IndustryIndexBeforeHalt #</li>" +
-                            "<li><label>最新行业指数:</label>#= IndustryIndexNow #</li>" +
-                            "<li><label>指数涨跌幅:</label>#= PricePerShareEstimated #</li>" +
-                             "<li><label>股票价格预估:</label>#= PricePerShareEstimated #</li>" +
-                              "<li><label>股票市值预估:</label>#= PricePerShareEstimated #</li>" +
-                               "<li><label>市值减少额:</label>#= PricePerShareEstimated #</li>" +
+                            "<li><label>停牌前收盘价:&nbsp&nbsp&nbsp</label>#= kendo.toString(PreClosePrice,\"c2\") #</li>" +
+                            "<li><label>停牌前行业指数:&nbsp&nbsp&nbsp</label>#= IndustryIndexBeforeHalt #</li>" +
+                            "<li><label>最新行业指数:&nbsp&nbsp&nbsp</label>#= IndustryIndexNow #</li>" +
+                            "<li><label>指数涨跌幅:&nbsp&nbsp&nbsp</label>#= kendo.toString(IndustryIndexChangePercent,\"p2\") #</li>" +
+                             "<li><label>股票价格预估:&nbsp&nbsp&nbsp</label>#= kendo.toString(PricePerShareEstimated,\"c2\")  #</li>" +
+                              "<li><label>股票市值预估:&nbsp&nbsp&nbsp</label>#= kendo.toString(MarketValueEstimated,\"c2\")  #</li>" +
+                               "<li><label>市值变动额:&nbsp&nbsp&nbsp</label>#= kendo.toString(MarketValueDecrease,\"c2\")   #</li>" +
                         "</ul>" +
                     "</div>"
                 );
@@ -71,11 +72,11 @@
             var indentifer = ">tr[data-uid=\"{UID}\"]".replace("{UID}", trUID);
             var row = grid.tbody.find(indentifer);
 
-            if (dataItem.TradeState != '正常交易') {
-                row.addClass("halt-equit-tr");
-            } else {
+            if (dataItem.TradeState == '交易') {
                 var td = row.find('td:eq(0)');
-                td[0].innerHTML='';
+                td[0].innerHTML = '';
+            } else {
+                row.addClass(" k-state-selected");
             }
         });
     }

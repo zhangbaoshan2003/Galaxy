@@ -80,18 +80,34 @@ namespace Galaxy.BAL
         {
             ProductBriefViewModel product = new ProductBriefViewModel();
 
-            String sqlTxt = String.Format(@"SELECT H.vc_inter_code FROM cydb..FundHoldings H LEFT OUTER JOIN cydb..FundPerformance P 
+            String sqlTxt = String.Format(@"SELECT H.vc_inter_code,P.IndustriesName,H.Pclose,H.volume,H.Preclose,H.Amount,
+    P.StockRatio,P.FundRatio,H.tradestatus,H.lastestTradeDate,P.idxPriceSus,P.idxPriceNow,L.vc_fund_caption
+FROM cydb..FundHoldings H LEFT OUTER JOIN cydb..FundPerformance P 
 ON H.l_fund_id=P.l_fund_id AND H.l_date=P.l_date
-AND P.wind_code = H.wind_code
-WHERE H.l_fund_id='{0}' AND H.l_date=(SELECT MAX(l_date) FROM cydb..FundHoldings WHERE l_fund_id='{0}' AND l_date<='{1}' )", productId, asOfDate.ToString("yyyy-MM-dd"));
+AND P.wind_code = H.wind_code JOIN cydb..fundinfo L ON L.l_fund_id=H.l_fund_id
+WHERE H.l_fund_id='{0}' AND H.stocktype_name='股票'
+AND H.l_date=(SELECT MAX(l_date) FROM cydb..FundHoldings WHERE l_fund_id='{0}' AND l_date<='{1}' AND Amount IS NOT NULL)", productId, asOfDate.ToString("yyyy-MM-dd"));
             using (SQLSession session = new SQLSession("GalaxyDB"))
             {
                 DataTable table = session.SQLQuery(sqlTxt);
                 if(table.Rows.Count==0)
                     throw new NotFundException(productId.ToString(), asOfDate);
                 table.AsEnumerable().ToList().ForEach(tr => {
+                    product.Caption = tr.Field<String>("vc_fund_caption");
                     PorductHoldingViewModel holding = new PorductHoldingViewModel();
                     holding.SecurityCode = tr.Field<String>("vc_inter_code");
+                    holding.SecurityName = "Unknown";
+                    holding.IndustryName = tr.Field<String>("IndustriesName");
+                    holding.CostPerShare = Convert.ToDouble(tr.Field<decimal?>("Pclose"));
+                    holding.Quantity = Convert.ToDouble(tr.Field<decimal?>("volume"));
+                    holding.PreClosePrice = Convert.ToDouble(tr.Field<decimal?>("Preclose"));
+                    holding.MarketValue = Convert.ToDouble(tr.Field<decimal?>("Amount"));
+                    holding.PropotionOfTotalEquity =Convert.ToDouble( tr.Field<decimal?>("StockRatio"));
+                    holding.PropotionOfTotalAssets = Convert.ToDouble(tr.Field<decimal?>("FundRatio"));
+                    holding.TradeState = tr.Field<String>("tradestatus");
+                    holding.LastTradeDate = tr.Field<DateTime?>("lastestTradeDate");
+                    holding.IndustryIndexBeforeHalt = Convert.ToDouble(tr.Field<decimal?>("idxPriceSus"));
+                    holding.IndustryIndexNow = Convert.ToDouble(tr.Field<decimal?>("idxPriceNow"));
                     product.Portfolio.Add(holding);
                 });
             }

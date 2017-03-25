@@ -175,7 +175,7 @@ namespace Galaxy.BAL
                 holding.IndustryName = "银行";
                 holding.CostPerShare= random.Next(60);
                 holding.Quantity = random.Next();
-                holding.MarketValue = holding.TotalCost + random.Next(100);
+                //holding.MarketValue = holding.TotalCost + random.Next(100);
                 holding.PreClosePrice = random.Next(60);
                 holding.PropotionOfTotalAssets = random.NextDouble();
                 holding.PropotionOfTotalEquity = random.NextDouble();

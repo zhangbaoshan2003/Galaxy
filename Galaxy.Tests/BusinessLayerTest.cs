@@ -11,7 +11,7 @@ namespace Galaxy.Tests
         public void TestFetchProduct()
         {
             ProductDataManager mgr = new ProductDataManager();
-            var product = mgr.FetchProduct(6189, new DateTime(2016, 11, 11));
+            var product = mgr.FetchProduct(6189, new DateTime(2017, 11, 11));
             Assert.IsTrue(product.Portfolio.Count > 0);
             Console.WriteLine(product.Portfolio.Count);
         }

@@ -54,6 +54,7 @@ namespace Galaxy.Controllers
                 DateTime asOfDate = toDate(asOfDateStr);
                 ProductBriefViewModel product = prodcutInfoFetcher.FetchProduct(id.Value, asOfDate);
                 ViewBag.ProductId = id.Value;
+                ViewBag.SubTitle = product.Caption;
                 return View(product);
             }
             catch (NotFundException ex)
