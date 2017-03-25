@@ -30,10 +30,10 @@
                         {
                             <tr>
                                 <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                                <td> @Html.DisplayFor(modelItem => item.Caption)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Caption)</td>
                                 <td>@Html.DisplayFor(modelItem => item.Department)</td>
-                                <td> @Html.DisplayFor(modelItem => item.IssueDate)</td>
-                                <td>@Html.ActionLink("详细信息", "Detail", new { id = item.ProductID })</td>
+                                <td> @Html.DisplayFor(modelItem => item.IssueDateStr)</td>
+                                <td>@Html.ActionLink("详情", "Detail", new { id = item.ProductID })</td>
                             </tr>
                         }
                     </tbody>

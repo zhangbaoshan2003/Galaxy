@@ -14,6 +14,8 @@ namespace Galaxy.BAL.ViewModel
 
         public String Caption { get; set; }
         public DateTime IssueDate { get; set; }
+
+        public String IssueDateStr { get { return IssueDate.ToShortDateString(); } }
         public String ConsusityBank { get; set; }
         public String Administrator { get; set; }
         public String Consultant { get; set; }
