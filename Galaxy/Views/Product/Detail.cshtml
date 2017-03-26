@@ -459,40 +459,41 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-6 no-padding">
-                        <div class="box box-solid box-success">
-                            <div class="box-header">
-                                <i class="fa fa-th"></i>
-                                <h3 class="box-title">基金历年资产配置</h3>
-                                <div class="box-tools pull-right">
-                                    <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
-                                        <i class="fa fa-minus"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="box-body border-radius-none">
-                                <div class="chart" id="fundAssetDistChartContainer"></div>
+                    <div class="box box-solid box-success">
+                        <div class="box-header">
+                            <i class="fa fa-th"></i>
+                            <h3 class="box-title">股票持仓部分</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="box box-solid box-success">
-                            <div class="box-header">
-                                <i class="fa fa-th"></i>
-                                <h3 class="box-title">股票持仓部分</h3>
-                                <div class="box-tools pull-right">
-                                    <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
-                                        <i class="fa fa-minus"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="box-body border-radius-none">
-                                <div class="chart" id="equity_assetDistChartContainer"></div>
-                            </div>
+                        <div class="box-body border-radius-none">
+                            <div class="chart" id="equity_assetDistChartContainer"></div>
                         </div>
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="box box-solid box-success">
+                        <div class="box-header">
+                            <i class="fa fa-th"></i>
+                            <h3 class="box-title">基金历年资产配置</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-sm bg-yellow-gradient" data-widget="collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body border-radius-none">
+                            <div class="chart" id="fundAssetDistChartContainer"></div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                
             </div>
         </div>
     </div>
@@ -501,7 +502,7 @@
 
 @section Scripts {
     @Scripts.Render("~/AdminLTE/plugins/datepicker/js/bootstrap-datepicker.js")
-    @Scripts.Render("~/Scripts/Product/productChartNew.js")
-    @Scripts.Render("~/Scripts/Product/datePickerLogicNew.js")
+    @Scripts.Render("~/Scripts/Product/productChartNew2.js")
+    @Scripts.Render("~/Scripts/Product/datePickerLogicNew2.js")
     @Scripts.Render("~/Scripts/jszip.min.js")
 }

@@ -218,9 +218,9 @@ GLOBAL_ASSET_DIST_CHART = new Highcharts.chart({
             cursor: 'pointer',
             dataLabels: {
                 enabled: true,
-                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                format: '<b>{point.name}</b>',
                 style: {
-                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'green'
                 },
                 connectorColor: 'silver'
             },
@@ -250,7 +250,7 @@ GLOBAL_EQUITY_ASSET_DIST_CHART = new Highcharts.chart({
         renderTo: 'equity_assetDistChartContainer',
         type: 'area',
         width: null,
-        height: 500
+        height: null
     },
     credits: {
         enabled: false
@@ -531,17 +531,17 @@ $(function () {
 
     //var newWidth = ($(document).width() - 440) / 12 * 6;
     $.getJSON(request.replace('{method}', 'GetFuncAssetDist').replace('{pId}', GLOBAL_PROD_ID).replace('{asOfDate}', GLOBAL_AS_OF_DATE), function (data) {
-        var chartBuilder = new CategoryChartBuilder(data, GLOBAL_FUND_DIST_CHART, true, returnDistChartWitdh,200);
+        var chartBuilder = new CategoryChartBuilder(data, GLOBAL_FUND_DIST_CHART, true, returnDistChartWitdh + 500, 400);
         chartBuilder.buildChart();
     });
 
     $.getJSON(request.replace('{method}', 'GetEquitAssetDist').replace('{pId}', GLOBAL_PROD_ID).replace('{asOfDate}', GLOBAL_AS_OF_DATE), function (data) {
-        var chartBuilder = new CategoryChartBuilder(data, GLOBAL_EQUITY_ASSET_DIST_CHART, true, returnDistChartWitdh,200);
+        var chartBuilder = new CategoryChartBuilder(data, GLOBAL_EQUITY_ASSET_DIST_CHART, true, returnDistChartWitdh+500,400);
         chartBuilder.buildChart();
     });
 
     $.getJSON(request.replace('{method}', 'GetCurrentFuncAssetDist').replace('{pId}', GLOBAL_PROD_ID).replace('{asOfDate}', GLOBAL_AS_OF_DATE), function (data) {
-        var chartBuilder = new CategoryChartBuilder(data, GLOBAL_ASSET_DIST_CHART, false, returnDistChartWitdh-100, 200);
+        var chartBuilder = new CategoryChartBuilder(data, GLOBAL_ASSET_DIST_CHART, false, returnDistChartWitdh - 100, 200);
         chartBuilder.buildChart();
     });
 

@@ -18,7 +18,7 @@ function fillPerformanceIndex(data) {
 }
 
 
-var GLOBAL_AS_OF_DATE='1/1/2017';
+var GLOBAL_AS_OF_DATE='4/1/2017';
 var GLOBAL_PROD_ID;
 $(function () {
     var datePicker = $('#reservation').datepicker("setDate", GLOBAL_AS_OF_DATE);

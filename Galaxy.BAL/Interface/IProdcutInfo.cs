@@ -16,7 +16,7 @@ namespace Galaxy.BAL.Interface
         List<CategoryDataViewModel> FetchReturnDistViewModel(int productId,DateTime asOfDate);
         List<CategoryDataViewModel> FetchPnLDistViewModel(int productId,DateTime asOfDate);
         List<ProductBriefViewModel> FetchProducts();
-        ProductBriefViewModel FetchProduct(int productId,DateTime asOfDate);
+        ProductBriefViewModel FetchProduct(int productId,DateTime asOfDate,String securityType);
         MultipleCategoriesViewModel FetchProductEquityAssetDist(int productId, DateTime asOfDate);
         ProductPerformanceIndexViewModel FetchPerformanceViewModel(int productId, DateTime asOfDate);
 

@@ -3,7 +3,7 @@
         .Name("productIndustryDistGrid")
         .Columns(columns =>
         {
-            columns.Bound(c => c.SecurityName).Title("名称");
+            columns.Bound(c => c.IndustryName).Title("名称");
             columns.Bound(c => c.PropotionOfTotalAssets).Title("占比").Format("{0:p2}");
             columns.Bound(c => c.PctChangeCompareToPrev).Title("较上期").Format("{0:p2}");
         })

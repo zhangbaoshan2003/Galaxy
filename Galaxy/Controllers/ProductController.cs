@@ -41,8 +41,8 @@ namespace Galaxy.Controllers
             return DateTime.Today;
         }
 
-        private IProdcutInfo prodcutInfoFetcher = new DummyProdcutInfoFetcher();
-        //private IProdcutInfo prodcutInfoFetcher = new ProductDataManager();
+        //private IProdcutInfo prodcutInfoFetcher = new DummyProdcutInfoFetcher();
+        private IProdcutInfo prodcutInfoFetcher = new ProductDataManager();
         //
         // GET: /Product/
         public ActionResult Index()
@@ -62,7 +62,7 @@ namespace Galaxy.Controllers
             {
                 Session["asOfDate"] = null;
                 DateTime asOfDate = toDate(asOfDateStr);
-                ProductBriefViewModel product = prodcutInfoFetcher.FetchProduct(id.Value, asOfDate);
+                ProductBriefViewModel product = prodcutInfoFetcher.FetchProduct(id.Value, asOfDate,"股票");
                 ViewBag.ProductId = id.Value;
                 ViewBag.SubTitle = product.Caption;
                 return View(product);
@@ -208,8 +208,8 @@ namespace Galaxy.Controllers
             try
             {
                 DateTime asOfDate = toDate(asOfDateStr);
-                ProductBriefViewModel product = prodcutInfoFetcher.FetchProduct(productId, asOfDate);
-                return Json(product.Portfolio.Where(p => p.SecurityType == SecurityTypeEnum.Equity).ToDataSourceResult(request));
+                ProductBriefViewModel product = prodcutInfoFetcher.FetchProduct(productId, asOfDate,"股票");
+                return Json(product.Portfolio.ToDataSourceResult(request));
             }
             catch (Exception ex)
             {
@@ -222,15 +222,29 @@ namespace Galaxy.Controllers
             try
             {
                 DateTime asOfDate = toDate(asOfDateStr);
-                ProductBriefViewModel product = prodcutInfoFetcher.FetchProduct(productId, asOfDate);
-                List<PorductHoldingViewModel> bonds = product.Portfolio.Where(p => p.SecurityType == SecurityTypeEnum.Bond)
-                    .OrderByDescending(p => p.PropotionOfTotalAssets).Take(3)
+                ProductBriefViewModel product = prodcutInfoFetcher.FetchProduct(productId, asOfDate, "国债标准券");
+                List<PorductHoldingViewModel> bonds = product.Portfolio
+                    .OrderByDescending(p => p.PropotionOfTotalAssets).Take(10)
                     .ToList();
+
+                if (bonds.Count > 0)
+                {
+                    var lastUpdatedDate = bonds[0].UpdatedDate.AddDays(-1);
+                    var productPrev = prodcutInfoFetcher.FetchProduct(productId, lastUpdatedDate, "国债标准券");
+                    bonds.ForEach(s =>
+                    {
+                        var prevEquity = productPrev.Portfolio.FirstOrDefault(x => x.SecurityCode == s.SecurityCode);
+                        if (prevEquity != null)
+                        {
+                            s.PropotionOfTotalAssetsPrev = prevEquity.PropotionOfTotalAssets;
+                        }
+                    });
+                }
                 return Json(bonds.ToDataSourceResult(request));
             }
             catch (Exception ex)
             {
-                LogUtility.Fatal("Error happend when GetHoldings", ex);
+                LogUtility.Fatal("Error happend when GetMostValuableBonds", ex);
                 return Json(null);
             }
         }
@@ -240,15 +254,29 @@ namespace Galaxy.Controllers
             try
             {
                 DateTime asOfDate = toDate(asOfDateStr);
-                ProductBriefViewModel product = prodcutInfoFetcher.FetchProduct(productId, asOfDate);
-                List<PorductHoldingViewModel> bonds = product.Portfolio.Where(p => p.SecurityType == SecurityTypeEnum.Equity)
+                ProductBriefViewModel product = prodcutInfoFetcher.FetchProduct(productId, asOfDate, "股票");
+                List<PorductHoldingViewModel> bonds = product.Portfolio
                     .OrderByDescending(p => p.PropotionOfTotalAssets).Take(10)
                     .ToList();
+
+                if (bonds.Count > 0) 
+                {
+                    var lastUpdatedDate = bonds[0].UpdatedDate.AddDays(-1);
+                    var productPrev = prodcutInfoFetcher.FetchProduct(productId, lastUpdatedDate, "股票");
+                    bonds.ForEach(s => 
+                    {
+                        var prevEquity = productPrev.Portfolio.FirstOrDefault(x => x.SecurityCode == s.SecurityCode);
+                        if (prevEquity != null) 
+                        {
+                            s.PropotionOfTotalAssetsPrev = prevEquity.PropotionOfTotalAssets;
+                        }
+                    });
+                }
                 return Json(bonds.ToDataSourceResult(request));
             }
             catch (Exception ex)
             {
-                LogUtility.Fatal("Error happend when GetHoldings", ex);
+                LogUtility.Fatal("Error happend when GetMostValuableEquities", ex);
                 return Json(null);
             }
         }
@@ -257,18 +285,54 @@ namespace Galaxy.Controllers
             try
             {
                 DateTime asOfDate = toDate(asOfDateStr);
-                ProductBriefViewModel product = prodcutInfoFetcher.FetchProduct(productId, asOfDate);
+                ProductBriefViewModel product = prodcutInfoFetcher.FetchProduct(productId, asOfDate,"股票");
                 var q = from p in product.Portfolio
-                        where p.SecurityType == SecurityTypeEnum.Equity
                         orderby p.PropotionOfTotalAssets descending
                         group p by p.IndustryName into gr
                         select new PorductHoldingViewModel
                         {
                             IndustryName = gr.Key,
-                            PropotionOfTotalAssets = gr.Sum(x => x.PropotionOfTotalAssets)
+                            PropotionOfTotalAssets = gr.Sum(x => x.MarketValue)
                         };
 
-                return Json(q.ToList().ToDataSourceResult(request));
+                var list = q.ToList();
+                var totalValue = q.ToList().Sum(x => x.PropotionOfTotalAssets);
+                list.ForEach(p => {
+                    p.PropotionOfTotalAssets = p.PropotionOfTotalAssets / totalValue;
+                });
+
+                //fetch the previous data
+                if(product.Portfolio.Count>0)
+                {
+                    var updateDate= product.Portfolio[0].UpdatedDate.AddDays(-1);
+                    ProductBriefViewModel productPrev = prodcutInfoFetcher.FetchProduct(productId, updateDate, "股票");
+                    var qPrev = from p in productPrev.Portfolio
+                            orderby p.PropotionOfTotalAssets descending
+                            group p by p.IndustryName into gr
+                            select new PorductHoldingViewModel
+                            {
+                                IndustryName = gr.Key,
+                                PropotionOfTotalAssets = gr.Sum(x => x.MarketValue)
+                            };
+
+                    var listPre = qPrev.ToList();
+                    var totalValuePre = qPrev.ToList().Sum(x => x.PropotionOfTotalAssets);
+                    listPre.ForEach(p =>
+                    {
+                        p.PropotionOfTotalAssets = p.PropotionOfTotalAssets / totalValuePre;
+                    });
+
+                    list.ForEach(cur => {
+                        var prevIndeus = listPre.FirstOrDefault(x => x.IndustryName == cur.IndustryName);
+                        if (prevIndeus != null) 
+                        {
+                            cur.PropotionOfTotalAssetsPrev = prevIndeus.PropotionOfTotalAssets;
+                        }
+                    });
+                }
+               
+
+                return Json(list.ToDataSourceResult(request));
             }
             catch (Exception ex)
             {
@@ -277,20 +341,20 @@ namespace Galaxy.Controllers
             }
         }
 
-        public ActionResult GetBondsDist([DataSourceRequest]DataSourceRequest request, int productId, String asOfDateStr)
-        {
-            try
-            {
-                DateTime asOfDate = toDate(asOfDateStr);
-                ProductBriefViewModel product = prodcutInfoFetcher.FetchProduct(productId, asOfDate);
-                return Json(product.Portfolio.ToDataSourceResult(request));
-            }
-            catch (Exception ex)
-            {
-                LogUtility.Fatal("Error happend when GetHoldings", ex);
-                return Json(null);
-            }
-        }
+        //public ActionResult GetBondsDist([DataSourceRequest]DataSourceRequest request, int productId, String asOfDateStr)
+        //{
+        //    try
+        //    {
+        //        DateTime asOfDate = toDate(asOfDateStr);
+        //        ProductBriefViewModel product = prodcutInfoFetcher.FetchProduct(productId, asOfDate);
+        //        return Json(product.Portfolio.ToDataSourceResult(request));
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        LogUtility.Fatal("Error happend when GetHoldings", ex);
+        //        return Json(null);
+        //    }
+        //}
 
         public ActionResult GetEquitAssetDist([DataSourceRequest]DataSourceRequest request, int productId, String asOfDateStr)
         {

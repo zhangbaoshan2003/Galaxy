@@ -8,6 +8,7 @@ namespace Galaxy.BAL.ViewModel
 {
     public class CategoryDataViewModel
     {
+        public DateTime UpdatedDate { get; set; }
         public String Label { get; set; }
         public String Name { get; set; }
         public double Value { get; set; }

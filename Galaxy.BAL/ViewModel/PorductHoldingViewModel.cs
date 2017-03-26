@@ -17,6 +17,8 @@ namespace Galaxy.BAL.ViewModel
     public class PorductHoldingViewModel
     {
         public SecurityTypeEnum SecurityType { get; set; }
+
+        public String SecurityTypeStr { get; set; }
         public String SecurityName { get; set; }
         public String SecurityCode { get; set; }
         public String IndustryName { get; set; }
@@ -35,13 +37,14 @@ namespace Galaxy.BAL.ViewModel
 
         public double? MarketValue { get; set; }
 
-        public double PropotionOfTotalAssets { get; set; }
-        public double PropotionOfTotalAssetsPrev { get; set; }
-        public double PctChangeCompareToPrev
+        public double? PropotionOfTotalAssets { get; set; }
+        public double? PropotionOfTotalAssetsPrev { get; set; }
+        public double? PctChangeCompareToPrev
         {
             get 
             {
-                return PropotionOfTotalAssetsPrev > 0.0 ? (PropotionOfTotalAssets - PropotionOfTotalAssetsPrev) / PropotionOfTotalAssets : 0.0;
+                //return PropotionOfTotalAssetsPrev > 0.0 ? (PropotionOfTotalAssets - PropotionOfTotalAssetsPrev) / PropotionOfTotalAssets : 0.0;
+                return PropotionOfTotalAssets - PropotionOfTotalAssetsPrev;
             }
         }
         public double? PropotionOfTotalEquity { get; set; }

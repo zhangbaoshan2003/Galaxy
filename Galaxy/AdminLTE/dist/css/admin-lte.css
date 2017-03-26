@@ -112,7 +112,7 @@ body {
   position: fixed;
 }
 .fixed .main-header {
-  top: 0;
+  top:  0;
   right: 0;
   left: 0;
 }

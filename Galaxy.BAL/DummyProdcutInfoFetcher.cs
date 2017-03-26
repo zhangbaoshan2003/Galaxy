@@ -135,7 +135,7 @@ namespace Galaxy.BAL
         }
 
 
-        public ProductBriefViewModel FetchProduct(int productId, DateTime asOfDate)
+        public ProductBriefViewModel FetchProduct(int productId, DateTime asOfDate,String securityType)
         {
             //Thread.Sleep(3000);
             ProductBriefViewModel vm = new ProductBriefViewModel();
@@ -192,7 +192,7 @@ namespace Galaxy.BAL
                 holding.ClosePriceBeforeHalt = random.Next(60);
                 holding.IndustryIndexBeforeHalt = random.Next(3000, 3300);
                 holding.IndustryIndexNow = random.Next(3000, 3300);
-
+                holding.SecurityTypeStr = securityType;
                 vm.Portfolio.Add(holding);
             }
             return vm;

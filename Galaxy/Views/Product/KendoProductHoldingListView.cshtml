@@ -1,6 +1,6 @@
 ﻿@(Html.Kendo().Grid<Galaxy.BAL.ViewModel.PorductHoldingViewModel>()
         .Name("productHoldingGrid")
-            .HtmlAttributes(new { style = "height:450px;" })
+            //.HtmlAttributes(new { style = "height:450px;" })
         .Columns(columns =>
         {
             columns.Bound(c => c.SecurityCode).Title("股票代码").Width(94);
