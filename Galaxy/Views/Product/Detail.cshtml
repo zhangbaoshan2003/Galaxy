@@ -9,7 +9,15 @@
 
 @Styles.Render("~/AdminLTE/plugins/datepicker/css/datepicker3.css")
 
+<link href="@Url.Content("~/Content/kendo/2014.3.1119/kendo.common.min.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/kendo/2014.3.1119/kendo.dataviz.min.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/kendo/2014.3.1119/kendo.blueopal.min.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/kendo/2014.3.1119/kendo.dataviz.blueopal.min.css")" rel="stylesheet" type="text/css" />
 
+<script src="@Url.Content("~/Scripts/kendo/2014.3.1119/kendo.all.min.js")"></script>
+<script src="@Url.Content("~/Scripts/kendo/2014.3.1119/kendo.aspnetmvc.min.js")"></script>
+
+@Scripts.Render("~/Scripts/Shared/highstock.js")
 <style>
     td.details-control {
         background: url('/Styles/resources/details_open.png') no-repeat center center;
@@ -495,4 +503,5 @@
     @Scripts.Render("~/AdminLTE/plugins/datepicker/js/bootstrap-datepicker.js")
     @Scripts.Render("~/Scripts/Product/productChartNew.js")
     @Scripts.Render("~/Scripts/Product/datePickerLogicNew.js")
+    @Scripts.Render("~/Scripts/jszip.min.js")
 }

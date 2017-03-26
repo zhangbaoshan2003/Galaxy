@@ -26,7 +26,27 @@ namespace Galaxy.BAL
 
         public List<ViewModel.CategoryDataViewModel> FetchCurrentProductFundAssetDist(int productId, DateTime asOfDate)
         {
-            throw new NotImplementedException();
+            List<CategoryDataViewModel> models = new List<CategoryDataViewModel>();
+
+            String sqlText = @"WITH Pre AS (
+	                    SELECT SUM(volume) AS vol ,assetclass_name,l_date,l_fund_id,ROW_NUMBER() OVER(PARTITION BY assetclass_name ORDER BY l_date) AS rn
+                      FROM [cydb].[dbo].[FundHoldings] WHERE l_fund_id={0} GROUP BY assetclass_name,l_date,l_fund_id  
+                    ),
+                    Cur AS (
+                    SELECT SUM(volume) AS vol ,assetclass_name,l_date,l_fund_id,ROW_NUMBER() OVER(PARTITION BY assetclass_name ORDER BY l_date) AS rn
+                      FROM [cydb].[dbo].[FundHoldings] WHERE l_fund_id={0} GROUP BY assetclass_name,l_date,l_fund_id 
+                    )
+                    SELECT P.vol AS pre_vol,C.vol AS cur_vol,P.rn,C.rn,C.l_date,C.assetclass_name FROM Pre P JOIN Cur C ON P.l_fund_id=C.l_fund_id AND P.assetclass_name=C.assetclass_name AND P.rn=C.rn-1
+                    WHERE C.l_date='{1}'";
+            sqlText = String.Format(sqlText, productId, asOfDate.ToString("yyyy-MM-dd"));
+            using (SQLSession session = new SQLSession("GalaxyDB")) 
+            {
+                DataTable table = session.SQLQuery(sqlText);
+
+
+            }
+
+
         }
 
         public List<ViewModel.TimeSeriesDataViewModel> FetchPiggyBackDistViewModel(int productId)

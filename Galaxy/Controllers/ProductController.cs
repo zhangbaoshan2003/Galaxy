@@ -21,19 +21,28 @@ namespace Galaxy.Controllers
         private DateTime toDate(String dateStr)
         {
             if (String.IsNullOrEmpty(dateStr))
-                return DateTime.Today;
+                if (Session["asOfDate"] == null)
+                {
+                    return DateTime.Today;
+                }
+                else
+                {
+                    dateStr = Session["asOfDate"].ToString();
+                }
 
+           
             DateTime asOfDate = DateTime.Today;
             if (DateTime.TryParseExact(dateStr, "MM/dd/yyyy", null, DateTimeStyles.None, out asOfDate) == true)
             {
+                Session["asOfDate"] = dateStr;
                 return asOfDate;
             }
 
             return DateTime.Today;
         }
 
-        //private IProdcutInfo prodcutInfoFetcher = new DummyProdcutInfoFetcher();
-        private IProdcutInfo prodcutInfoFetcher = new ProductDataManager();
+        private IProdcutInfo prodcutInfoFetcher = new DummyProdcutInfoFetcher();
+        //private IProdcutInfo prodcutInfoFetcher = new ProductDataManager();
         //
         // GET: /Product/
         public ActionResult Index()
@@ -42,7 +51,7 @@ namespace Galaxy.Controllers
             return View(models);
         }
 
-        public ActionResult Detail(int? id,String asOfDateStr)
+        public ActionResult Detail(int? id, String asOfDateStr)
         {
             if (id.HasValue == false)
             {
@@ -51,6 +60,7 @@ namespace Galaxy.Controllers
 
             try
             {
+                Session["asOfDate"] = null;
                 DateTime asOfDate = toDate(asOfDateStr);
                 ProductBriefViewModel product = prodcutInfoFetcher.FetchProduct(id.Value, asOfDate);
                 ViewBag.ProductId = id.Value;
@@ -76,17 +86,17 @@ namespace Galaxy.Controllers
             }
             catch (Exception ex)
             {
-                LogUtility.Fatal("Error happend when fetching product net value distribution",ex);
+                LogUtility.Fatal("Error happend when fetching product net value distribution", ex);
                 return Json(null);
             }
         }
 
-        public ActionResult GetFuncAssetDist(int productId,String asOfDateStr)
+        public ActionResult GetFuncAssetDist(int productId, String asOfDateStr)
         {
             try
             {
                 DateTime asOfDate = toDate(asOfDateStr);
-                MultipleCategoriesViewModel viewModel = prodcutInfoFetcher.FetchProductFundAssetDist(productId,asOfDate);
+                MultipleCategoriesViewModel viewModel = prodcutInfoFetcher.FetchProductFundAssetDist(productId, asOfDate);
                 var jsonResult = Json(viewModel.Dictionary, JsonRequestBehavior.AllowGet);
                 jsonResult.MaxJsonLength = Int32.MaxValue;
                 return jsonResult;
@@ -144,7 +154,7 @@ namespace Galaxy.Controllers
                 return Json(null);
             }
         }
-        public ActionResult GetPiggyBackDist(int productId,String asOfDateStr)
+        public ActionResult GetPiggyBackDist(int productId, String asOfDateStr)
         {
             try
             {
@@ -160,12 +170,12 @@ namespace Galaxy.Controllers
             }
         }
 
-        public ActionResult GetReturnDist(int productId,String asOfDateStr)
+        public ActionResult GetReturnDist(int productId, String asOfDateStr)
         {
             try
             {
                 DateTime asOfDate = toDate(asOfDateStr);
-                List<CategoryDataViewModel> viewModel = prodcutInfoFetcher.FetchReturnDistViewModel(productId,asOfDate);
+                List<CategoryDataViewModel> viewModel = prodcutInfoFetcher.FetchReturnDistViewModel(productId, asOfDate);
                 var jsonResult = Json(viewModel, JsonRequestBehavior.AllowGet);
                 jsonResult.MaxJsonLength = Int32.MaxValue;
                 return jsonResult;
@@ -177,12 +187,12 @@ namespace Galaxy.Controllers
             }
         }
 
-        public ActionResult GetPnlDist(int productId,String asOfDateStr)
+        public ActionResult GetPnlDist(int productId, String asOfDateStr)
         {
             try
             {
                 DateTime asOfDate = toDate(asOfDateStr);
-                List<CategoryDataViewModel> viewModel = prodcutInfoFetcher.FetchPnLDistViewModel(productId,asOfDate);
+                List<CategoryDataViewModel> viewModel = prodcutInfoFetcher.FetchPnLDistViewModel(productId, asOfDate);
                 var jsonResult = Json(viewModel, JsonRequestBehavior.AllowGet);
                 jsonResult.MaxJsonLength = Int32.MaxValue;
                 return jsonResult;
@@ -193,13 +203,13 @@ namespace Galaxy.Controllers
                 return Json(null);
             }
         }
-        public ActionResult GetHoldings([DataSourceRequest]DataSourceRequest request,int productId,String asOfDateStr)
+        public ActionResult GetHoldings([DataSourceRequest]DataSourceRequest request, int productId, String asOfDateStr)
         {
             try
             {
                 DateTime asOfDate = toDate(asOfDateStr);
                 ProductBriefViewModel product = prodcutInfoFetcher.FetchProduct(productId, asOfDate);
-                return Json(product.Portfolio.Where(p=>p.SecurityType==SecurityTypeEnum.Equity).ToDataSourceResult(request));
+                return Json(product.Portfolio.Where(p => p.SecurityType == SecurityTypeEnum.Equity).ToDataSourceResult(request));
             }
             catch (Exception ex)
             {
@@ -214,7 +224,7 @@ namespace Galaxy.Controllers
                 DateTime asOfDate = toDate(asOfDateStr);
                 ProductBriefViewModel product = prodcutInfoFetcher.FetchProduct(productId, asOfDate);
                 List<PorductHoldingViewModel> bonds = product.Portfolio.Where(p => p.SecurityType == SecurityTypeEnum.Bond)
-                    .OrderByDescending(p=>p.PropotionOfTotalAssets).Take(3)
+                    .OrderByDescending(p => p.PropotionOfTotalAssets).Take(3)
                     .ToList();
                 return Json(bonds.ToDataSourceResult(request));
             }
@@ -257,7 +267,7 @@ namespace Galaxy.Controllers
                             IndustryName = gr.Key,
                             PropotionOfTotalAssets = gr.Sum(x => x.PropotionOfTotalAssets)
                         };
-                        
+
                 return Json(q.ToList().ToDataSourceResult(request));
             }
             catch (Exception ex)
@@ -298,6 +308,6 @@ namespace Galaxy.Controllers
                 return Json(null);
             }
         }
-        
-	}
+
+    }
 }
