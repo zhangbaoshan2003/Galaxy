@@ -1,0 +1,20 @@
+﻿@(Html.Kendo().Grid<Galaxy.BAL.ViewModel.ProductBriefViewModel>()
+        .Name("productSummaryGrid")
+        .Columns(columns =>
+        {
+            columns.Bound(c => c.EquityMarketValue).Title("证券市值").Format("{0:c}");
+            columns.Bound(c => c.BondMarketValue).Title("债券市值").Format("{0:c}");
+            columns.Bound(c => c.FundMarketValue).Title("基金市值").Format("{0:c}");
+            columns.Bound(c => c.FutureMarketValue).Title("期货市值").Format("{0:c}");
+            columns.Bound(c => c.CashValue).Title("现金余额").Format("{0:c}");
+            columns.Bound(c => c.TotalAssetMarketValue).Title("资产总值").Format("{0:c}");
+            columns.Bound(c => c.ProductQuantity).Title("产品份额").Format("{0:n0}");
+            columns.Bound(c => c.NetValueAnaunced).Title("已公布净值").Format("{0:n2}");
+        })
+        .DataSource(dataSource => dataSource
+            .Ajax()
+                                .Read(read => read.Action("GetDetail", "Product", new { productId = @ViewBag.ProductId }))
+            .PageSize(20)
+        )
+)
+

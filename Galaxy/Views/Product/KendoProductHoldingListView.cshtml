@@ -18,17 +18,17 @@
             columns.Bound(c => c.TradeState).Title("股票交易状态").Width(110);
             columns.Bound(c => c.LastTradeDate).Title("最近交易日").Format("{0:MM/dd/yyyy}").Width(110);
         })
-        //.HtmlAttributes(new { style = "height: 550px;" })
+        .HtmlAttributes(new { style = "height: 450px;" })
              .ToolBar(tools => tools.Excel())
         .Scrollable()
         .Sortable()
         .Filterable()
         .Selectable()
         //.Groupable()
-        .Pageable(pageable => pageable
-            .Refresh(true)
-            .PageSizes(true)
-            .ButtonCount(5))
+        //.Pageable(pageable => pageable
+        //    .Refresh(true)
+        //    .PageSizes(false)
+        //    .ButtonCount(5))
         .DataSource(dataSource => dataSource
             .Ajax()
             .Aggregates(arg => {

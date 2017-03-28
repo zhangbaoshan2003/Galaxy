@@ -73,6 +73,24 @@ namespace Galaxy.Controllers
                 throw ex;
             }
         }
+        public ActionResult GetDetail([DataSourceRequest]DataSourceRequest request, int productId, String asOfDateStr)
+        {
+            try
+            {
+                List<ProductBriefViewModel> listpProducts= new List<ProductBriefViewModel>();
+
+                DateTime asOfDate = toDate(asOfDateStr);
+                ProductBriefViewModel product = prodcutInfoFetcher.FetchProduct(productId, asOfDate, "股票");
+                listpProducts.Add(product);
+                var jsonResult = Json(listpProducts.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+                return jsonResult;
+            }
+            catch (Exception ex)
+            {
+                LogUtility.Fatal("Error happend when GetEquitAssetDist", ex);
+                return Json(null);
+            }
+        }
 
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult GetNetValues(int productId)

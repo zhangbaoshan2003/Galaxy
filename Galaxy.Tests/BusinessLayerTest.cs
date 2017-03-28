@@ -11,7 +11,8 @@ namespace Galaxy.Tests
         public void TestFetchProduct()
         {
             ProductDataManager mgr = new ProductDataManager();
-            var product = mgr.FetchProduct(6189, new DateTime(2017, 11, 11), "股票");
+            var product = mgr.FetchProduct(6027, new DateTime(2017, 11, 11), "股票");
+            Assert.IsTrue(product.TotalAssetMarketValue>0.0);
             Assert.IsTrue(product.Portfolio.Count > 0);
             Console.WriteLine(product.Portfolio.Count);
         }
@@ -20,7 +21,7 @@ namespace Galaxy.Tests
         public void TestFetchAssetDis()
         {
             ProductDataManager mgr = new ProductDataManager();
-            var product = mgr.FetchCurrentProductFundAssetDist(6189, new DateTime(2017, 11, 11));
+            var product = mgr.FetchCurrentProductFundAssetDist(6027, new DateTime(2017, 11, 11));
             Assert.IsTrue(product.Count > 0);
             Console.WriteLine(product.Count);
         }
@@ -29,13 +30,18 @@ namespace Galaxy.Tests
         public void TestFetchEquitIndustryDist()
         {
             ProductDataManager mgr = new ProductDataManager();
-            var model = mgr.FetchProductEquityAssetDist(6189, new DateTime(2017, 11, 11));
+            var model = mgr.FetchProductEquityAssetDist(6027, new DateTime(2017, 11, 11));
             Assert.IsTrue(model.Dictionary.Keys.Count > 0);
             Console.WriteLine(model.Dictionary.Values.Count>0);
+        }
 
-            //var totalCount = model.Dictionary.Values.Count;
-            //var oneCount = model.Dictionary["工业"].Capacity;
-            //Assert.IsTrue(totalCount == oneCount * model.Dictionary.Keys.Count);
+        [TestMethod]
+        public void TestFetchProductNetValueDistViewModel()
+        {
+            ProductDataManager mgr = new ProductDataManager();
+            var model = mgr.FetchProductNetValueDistViewModel(6027);
+            Assert.IsTrue(model.Dictionary.Keys.Count > 0);
+            Console.WriteLine(model.Dictionary.Values.Count > 0);
         }
     }
 }

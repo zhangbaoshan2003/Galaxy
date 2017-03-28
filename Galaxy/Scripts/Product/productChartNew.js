@@ -242,10 +242,10 @@ GLOBAL_ASSET_DIST_CHART = new Highcharts.chart({
 GLOBAL_EQUITY_ASSET_DIST_CHART = new Highcharts.chart({
     chart: {
         // Edit chart spacing
-        spacingBottom: 0,
+        spacingBottom: 5,
         spacingTop: 5,
         spacingLeft: 5,
-        spacingRight: 5,
+        spacingRight: 0,
         backgroundColor: null,
         renderTo: 'equity_assetDistChartContainer',
         type: 'area',
@@ -536,7 +536,9 @@ $(function () {
     });
 
     $.getJSON(request.replace('{method}', 'GetEquitAssetDist').replace('{pId}', GLOBAL_PROD_ID).replace('{asOfDate}', GLOBAL_AS_OF_DATE), function (data) {
-        var chartBuilder = new CategoryChartBuilder(data, GLOBAL_EQUITY_ASSET_DIST_CHART, true, returnDistChartWitdh+500,400);
+        var containerWidth = ($(document).width() - 350) / 12 * 12;
+
+        var chartBuilder = new CategoryChartBuilder(data, GLOBAL_EQUITY_ASSET_DIST_CHART, true, containerWidth,300);
         chartBuilder.buildChart();
     });
 

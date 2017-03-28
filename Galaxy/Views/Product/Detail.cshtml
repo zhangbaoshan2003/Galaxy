@@ -16,6 +16,11 @@
 
 <script src="@Url.Content("~/Scripts/kendo/2014.3.1119/kendo.all.min.js")"></script>
 <script src="@Url.Content("~/Scripts/kendo/2014.3.1119/kendo.aspnetmvc.min.js")"></script>
+<script src="@Url.Content("~/Scripts/cultures/kendo.culture.zh-CN.js")"></script>
+
+<script>
+    kendo.culture("zh-CN");
+</script>
 
 @Scripts.Render("~/Scripts/Shared/highstock.js")
 <style>
@@ -35,7 +40,7 @@
 
 <input type="hidden" id="hidenProductId" value="@ViewBag.ProductId" />
 
-<div class="row" style="font-size: 14px ">
+<div class="row" >
     <div class="nav-tabs-custom tab-danger ">
         <ul class="nav nav-tabs">
             <li class="active"><a href="#tab_1" data-toggle="tab" id="btnTabOne">股票持仓</a></li>
@@ -55,7 +60,7 @@
         </ul>
         <div class="tab-content">
             <div class="tab-pane active" id="tab_1">
-                <div class="box box-solid box-info" style="font-size: 12px;">
+                <div class="box box-solid box-info" >
                     <div class="box-header">
                         <i class="fa fa-th"></i>
                         <h3 class="box-title">持仓汇总</h3>
@@ -66,75 +71,10 @@
                         </div>
                     </div>
                     <div class="box-body border-radius-none">
-                        <table class="display compact table table-bordered table-striped table-hover table-condensed ">
-                            <thead>
-                                <tr>
-                                    <th>证券市值</th>
-                                    <th>资金余额</th>
-                                    <th>资产总值</th>
-                                    <th>产品份额</th>
-                                    <th>持仓比例</th>
-                                    <th>前一日持仓比例</th>
-                                    <th>持仓比例变化</th>
-                                    <th>已公布净值</th>
-                                    <th>净值变动</th>
-                                    <th>前一日估值</th>
-                                    <th>与前一日估值比较</th>
-                                    <th>预警线</th>
-                                    <th>止损线</th>
-                                    <th>预估净值</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(model => model.EquityMarketValue)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.MoneyLeft)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.AssetMarketValue)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.ProductQuantity)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.PropertionOfEquity)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.PropertionOfEquityPrevDay)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.ChangeOfEuqityPropertion)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.NetValueEstimated)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.NetValueAnanced)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.ChangeOfNetValue)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.NetValueEstimatedPreDay)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.ChangeOfNetValueEstimated)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.ThresholdOfWarning)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(model => model.TreshholdOfStopLoss)
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        @Html.Partial("kendoProductBriefView")    
                     </div>
                 </div>
-                <div class="box box-solid box-warning" style="font-size: 12px;">
+                <div class="box box-solid box-warning" style="height: 100%">
                     @Html.Partial("KendoProductHoldingListView")
                 </div>
             </div>
@@ -502,7 +442,7 @@
 
 @section Scripts {
     @Scripts.Render("~/AdminLTE/plugins/datepicker/js/bootstrap-datepicker.js")
-    @Scripts.Render("~/Scripts/Product/productChartNew2.js")
+    @Scripts.Render("~/Scripts/Product/productChartNew.js")
     @Scripts.Render("~/Scripts/Product/datePickerLogicNew2.js")
     @Scripts.Render("~/Scripts/jszip.min.js")
 }

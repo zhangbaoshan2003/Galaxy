@@ -71,8 +71,18 @@ namespace Galaxy.BAL.ViewModel
 
         #region market value  
         public double EquityMarketValue { get; set; }
-        public double MoneyLeft { get; set; }
-        public double AssetMarketValue { get; set; }
+
+        public String EquityMarketValueStr
+        {
+            get { return EquityMarketValue.ToString("C"); }
+        }
+
+        
+        public double BondMarketValue { get; set; }
+        public double FundMarketValue { get; set; }
+        public double FutureMarketValue { get; set; }
+        public double CashValue { get; set; }
+        public double TotalAssetMarketValue { get; set; }
         public double ProductQuantity { get; set; }
         public double PropertionOfEquity { get; set; }
         public double PropertionOfEquityPrevDay { get; set; }
@@ -87,27 +97,27 @@ namespace Galaxy.BAL.ViewModel
             }
         }
 
-        public double NetValueEstimated
-        {
-            get
-            {
-                return ProductQuantity>0.0?AssetMarketValue/ProductQuantity:
-                0.0;
-            }
-        }
+        //public double NetValueEstimated
+        //{
+        //    get
+        //    {
+        //        return ProductQuantity>0.0?AssetMarketValue/ProductQuantity:
+        //        0.0;
+        //    }
+        //}
 
-        public double NetValueAnanced { get; set; }
-        public double ChangeOfNetValue { get { return NetValueEstimated - NetValueAnanced; }}
+        public double NetValueAnaunced { get; set; }
+        //public double ChangeOfNetValue { get { return NetValueEstimated - NetValueAnanced; }}
         public double NetValueEstimatedPreDay { get; set; }
-        public double ChangeOfNetValueEstimated
-        {
-            get
-            {
-                return NetValueEstimatedPreDay > 0.0
-                    ? (NetValueEstimated - NetValueEstimatedPreDay)/NetValueEstimatedPreDay
-                    : 0.0;
-            }
-        }
+        //public double ChangeOfNetValueEstimated
+        //{
+        //    get
+        //    {
+        //        return NetValueEstimatedPreDay > 0.0
+        //            ? (NetValueEstimated - NetValueEstimatedPreDay)/NetValueEstimatedPreDay
+        //            : 0.0;
+        //    }
+        //}
         public double TreshholdOfWarning { get; set; }
         public double TreshholdOfStopLoss { get; set; }
 

@@ -23,7 +23,7 @@
     @Scripts.Render("~/AdminLTE/dist/js/app.js")
 
 </head>
-<body class="hold-transition skin-blue sidebar-mini fixed">
+<body class="hold-transition skin-blue sidebar-mini fixed" style="font-size: 12px ">
     <div class="wrapper">
         <header class="main-header ">
             <a href="@Url.Action("Index", "Product")" class="logo">
@@ -92,13 +92,13 @@
                                                 </h4>
                                                 <p>产品1净值信息提醒1</p>
                                             </a>
-                                        </li>                                     
+                                        </li>
                                     </ul>
                                 </li>
                                 <li class="footer"><a href="#">查看全部信息</a></li>
                             </ul>
                         </li>
-                      
+
                         <li class="dropdown tasks-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-flag-o"></i>
@@ -198,7 +198,7 @@
                 </form>
                 <ul class="sidebar-menu">
                     <li class="header">主菜单栏</li>
-                    
+
                     <li id="left-sidebar-menu-product">
                         <a href="@Url.Action("Index", "Product")">
                             <i class="fa fa-th"></i> <span>产品信息</span>
@@ -230,7 +230,7 @@
                                 <ul class="treeview-menu">
                                     <li id="left-sidebar-menu-charts-chartjs"><a href="@Url.Action("ChartJs", "Charts")"><i class="fa fa-circle-o text-blue"></i>产品相关系数</a></li>
                                     <li id="left-sidebar-menu-charts-morris"><a href="@Url.Action("Morris", "Charts")"><i class="fa fa-circle-o text-maroon"></i> 策略相关系数</a></li>
-                                 
+
                                 </ul>
                             </li>
                         </ul>
@@ -311,7 +311,7 @@
                             产品3净值跌破0.7，提示信息接收
                         </p>
                     </div>
-                   
+
                 </form>
             </div>
         </aside>

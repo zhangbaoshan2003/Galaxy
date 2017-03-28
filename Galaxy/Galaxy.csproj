@@ -658,6 +658,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\cultures\kendo.culture.zh-CN.js" />
     <Content Include="Scripts\jszip.min.js" />
     <Content Include="Scripts\kendo.modernizr.custom.js" />
     <Content Include="Scripts\kendo\2014.3.1119\angular.min.js" />
@@ -807,7 +808,8 @@
     <Content Include="Scripts\kendo\2014.3.1119\messages\kendo.messages.zh-TW.min.js" />
     <Content Include="Scripts\Product\datePickerLogicNew2.js" />
     <Content Include="Scripts\Product\fundListInfo.js" />
-    <Content Include="Scripts\Product\productChartNew2.js" />
+    <Content Include="Scripts\Product\productChartNew.js" />
+    <Content Include="Scripts\Shared\kendo.culture.zh-CN.js" />
     <Content Include="Styles\media\css\dataTables.bootstrap.css" />
     <Content Include="Styles\media\css\dataTables.bootstrap.min.css" />
     <Content Include="Styles\media\css\dataTables.bootstrap4.css" />
@@ -1056,6 +1058,7 @@
     <Content Include="Scripts\kendo\2014.3.1119\kendo.view.min.js.map" />
     <Content Include="Scripts\kendo\2014.3.1119\kendo.web.min.js.map" />
     <Content Include="Scripts\kendo\2014.3.1119\kendo.window.min.js.map" />
+    <Content Include="Views\Product\kendoProductBriefView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

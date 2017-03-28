@@ -17,7 +17,41 @@ namespace Galaxy.BAL
 
         public ViewModel.MultipleTimeSeriesViewModel FetchProductNetValueDistViewModel(int productId)
         {
-            throw new NotImplementedException();
+            MultipleTimeSeriesViewModel multipleTime = new MultipleTimeSeriesViewModel();
+            List<TimeSeriesDataViewModel> netValueModels= new List<TimeSeriesDataViewModel>();
+            List<TimeSeriesDataViewModel> indexModels = new List<TimeSeriesDataViewModel>();
+
+            String sqlText = String.Format(@"WITH A AS
+            (
+	            SELECT H.c_nav,H.l_fund_id,l_date FROM cydb..his_fundasset H WHERE H.l_fund_id={0} AND c_nav>0.0 
+            ),
+            I AS (
+	            SELECT Pclose,WindCode,TradingDay,(SELECT TOP(1) Pclose FROM cydb..AIndexEODPrices WHERE WindCode='000300.SH' AND TradingDay>=(SELECT MIN(l_date) FROM A)) AS BenchMark
+	             FROM cydb..AIndexEODPrices WHERE WindCode='000300.SH' AND TradingDay>=(SELECT MIN(l_date) FROM A)
+            )
+            SELECT A.l_fund_id,A.l_date,I.TradingDay,Pclose/BenchMark AS Index300,A.c_nav FROM I JOIN A ON A.l_date=I.TradingDay",productId);
+
+            using (SQLSession session = new SQLSession("GalaxyDB"))
+            {
+                DataTable table = session.SQLQuery(sqlText);
+                table.AsEnumerable().ToList().ForEach(tr =>
+                {
+                    TimeSeriesDataViewModel model = new TimeSeriesDataViewModel();
+                    model.Name = "沪深300指数";
+                    model.ReportedDataTime = tr.Field<DateTime>("TradingDay");
+                    model.ReportedNetValue = Convert.ToDouble(tr.Field<decimal>("Index300"));
+                    indexModels.Add(model);
+
+                    model = new TimeSeriesDataViewModel();
+                    model.Name = "净值";
+                    model.ReportedDataTime = tr.Field<DateTime>("l_date");
+                    model.ReportedNetValue = Convert.ToDouble(tr.Field<decimal>("c_nav"));
+                    netValueModels.Add(model);
+                });
+            }
+            multipleTime.addTimeSeries("沪深300指数", netValueModels);
+            multipleTime.addTimeSeries("净值", indexModels);
+            return multipleTime;
         }
 
         public ViewModel.MultipleCategoriesViewModel FetchProductFundAssetDist(int productId, DateTime asOfDate)
@@ -153,6 +187,53 @@ AND H.l_date=(SELECT MAX(l_date) FROM cydb..FundHoldings WHERE l_fund_id='{0}' A
                 });
             }
 
+            //fill in product info
+            sqlTxt = String.Format(@"SELECT TOP 1 [l_date]
+                  ,[l_fund_id]
+                  ,[vc_currency_no]
+                  ,[en_current_cash]
+                  ,[en_basic_frozen_balance]
+                  ,[en_buy_balance]
+                  ,[en_sale_balance]
+                  ,[en_other_expense]
+                  ,[en_other_profit]
+                  ,[en_stock_asset]
+                  ,[en_bond_asset]
+                  ,[en_fund_asset]
+                  ,[en_warrant_asset]
+                  ,[en_hg_asset]
+                  ,[en_other_asset]
+                  ,[en_futures_asset]
+                  ,[en_futures_balance]
+                  ,[en_futures_deposit]
+                  ,[en_futures_prepare]
+                  ,[en_fund_share]
+                  ,[en_fund_value]
+                  ,[en_unit_dividends]
+                  ,[en_bond_interest]
+                  ,[en_option_asset]
+                  ,[en_foreign_asset]
+                  ,[c_nav]
+                  ,[c_cash_flow1]
+                  ,[c_cash_flow2]
+                  ,[c_remarks]
+                  ,[updatetime]
+                FROM [cydb].[dbo].[his_fundasset] WHERE l_fund_id={0} AND l_date<='{1}' ORDER BY l_date DESC", productId,asOfDate.ToString("yyyy-MM-dd"));
+            using (SQLSession session = new SQLSession("GalaxyDB"))
+            {
+                DataTable table = session.SQLQuery(sqlTxt);
+                table.AsEnumerable().ToList().ForEach(tr =>
+                {
+                    product.EquityMarketValue = Convert.ToDouble(tr.Field<Decimal>("en_stock_asset"));
+                    product.FundMarketValue = Convert.ToDouble(tr.Field<Decimal>("en_fund_asset"));
+                    product.BondMarketValue = Convert.ToDouble(tr.Field<Decimal>("en_bond_asset"));
+                    product.FutureMarketValue = Convert.ToDouble(tr.Field<Decimal>("en_futures_asset"));
+                    product.TotalAssetMarketValue = Convert.ToDouble(tr.Field<Decimal>("en_fund_value"));
+                    product.ProductQuantity = Convert.ToDouble(tr.Field<Decimal>("en_fund_share"));
+                    product.NetValueAnaunced = Convert.ToDouble(tr.Field<Decimal>("c_nav"));
+                });
+            }
+
             return product;
         }
 
@@ -180,7 +261,15 @@ GROUP BY IndustriesName,CONVERT(VARCHAR(20),DATEPART(MONTH,l_date))+'/01/'+CONVE
                         vm.Label = "0" + vm.Label;
                     }
                     vm.UpdatedDate = DateTime.ParseExact(vm.Label, "MM/dd/yyyy", null);
-                    vm.Value = Convert.ToDouble(tr.Field<Decimal>("amount"));
+                    if (tr.Field<Decimal?>("amount").HasValue)
+                    {
+                        vm.Value = Convert.ToDouble(tr.Field<Decimal>("amount"));
+                    }
+                    else
+                    {
+                        vm.Value = 0.0;
+                    }
+
                     models.Add(vm);
                 });
             }

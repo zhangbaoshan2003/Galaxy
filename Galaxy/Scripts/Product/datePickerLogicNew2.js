@@ -56,15 +56,15 @@ $(function () {
             chartBuilder.buildChart();
         });
 
-        $.getJSON(request.replace('{method}', 'GetFuncAssetDist').replace('{pId}', GLOBAL_PROD_ID).replace('{asOfDate}', GLOBAL_AS_OF_DATE), function (data) {
-            var chartBuilder = new CategoryChartBuilder(data, GLOBAL_FUND_DIST_CHART, true);
-            chartBuilder.buildChart();
-        });
+        //$.getJSON(request.replace('{method}', 'GetFuncAssetDist').replace('{pId}', GLOBAL_PROD_ID).replace('{asOfDate}', GLOBAL_AS_OF_DATE), function (data) {
+        //    var chartBuilder = new CategoryChartBuilder(data, GLOBAL_FUND_DIST_CHART, true);
+        //    chartBuilder.buildChart();
+        //});
 
-        $.getJSON(request.replace('{method}', 'GetEquitAssetDist').replace('{pId}', GLOBAL_PROD_ID).replace('{asOfDate}', GLOBAL_AS_OF_DATE), function (data) {
-            var chartBuilder = new CategoryChartBuilder(data, GLOBAL_EQUITY_ASSET_DIST_CHART, true);
-            chartBuilder.buildChart();
-        });
+        //$.getJSON(request.replace('{method}', 'GetEquitAssetDist').replace('{pId}', GLOBAL_PROD_ID).replace('{asOfDate}', GLOBAL_AS_OF_DATE), function (data) {
+        //    var chartBuilder = new CategoryChartBuilder(data, GLOBAL_EQUITY_ASSET_DIST_CHART, true);
+        //    chartBuilder.buildChart();
+        //});
 
         $.getJSON(request.replace('{method}', 'GetCurrentFuncAssetDist').replace('{pId}', GLOBAL_PROD_ID).replace('{asOfDate}', GLOBAL_AS_OF_DATE), function (data) {
             var chartBuilder = new CategoryChartBuilder(data, GLOBAL_ASSET_DIST_CHART, false);
