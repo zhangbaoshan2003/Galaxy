@@ -295,7 +295,7 @@ GLOBAL_FUND_DIST_CHART = new Highcharts.chart({
         renderTo: 'fundAssetDistChartContainer',
         type: 'column',
         width: null,
-        height: 500
+        height: null
     },
     credits: {
         enabled: false
@@ -531,7 +531,8 @@ $(function () {
 
     //var newWidth = ($(document).width() - 440) / 12 * 6;
     $.getJSON(request.replace('{method}', 'GetFuncAssetDist').replace('{pId}', GLOBAL_PROD_ID).replace('{asOfDate}', GLOBAL_AS_OF_DATE), function (data) {
-        var chartBuilder = new CategoryChartBuilder(data, GLOBAL_FUND_DIST_CHART, true, returnDistChartWitdh + 500, 400);
+        var containerWidth = ($(document).width() - 350) / 12 * 12;
+        var chartBuilder = new CategoryChartBuilder(data, GLOBAL_FUND_DIST_CHART, true, containerWidth, 300);
         chartBuilder.buildChart();
     });
 

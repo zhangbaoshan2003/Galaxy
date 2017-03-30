@@ -8,12 +8,12 @@ function fillPerformanceIndex(data) {
     $('#lblAnualReturn').text((data.AnnualReturn*100.0).toFixed(2) + '%');
 
     $('#lblRelativeReturn').text((data.RelativeReturn * 100.0).toFixed(2) + '%');
-    $('#lblBeta').text(toPercentage(data.Beta));
-    $('#lblVol').text(toPercentage(data.Volitility));
+    $('#lblBeta').text((data.Beta*100.0).toFixed(2));
+    $('#lblVol').text((data.Volitility*100.0).toFixed(2));
     $('#lblMaxWithdraw').text(toPercentage(data.MaxWithdraw));
-    $('#lblSharp').text(toPercentage(data.SharpRatio));
+    $('#lblSharp').text(data.SharpRatio.toFixed(2));
     $('#lblRiskToReturn').text(toPercentage(data.RiskToReturn));
-    $('#lblConOfIndex').text(toPercentage(data.ConvarianceOfIndex));
+    $('#lblConOfIndex').text(data.ConvarianceOfIndex.toFixed(2));
     $('#lblNumOfStrategy').text(data.OrderOfSimilarStragtigy);
 }
 

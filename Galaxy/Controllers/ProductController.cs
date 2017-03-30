@@ -62,7 +62,7 @@ namespace Galaxy.Controllers
             {
                 Session["asOfDate"] = null;
                 DateTime asOfDate = toDate(asOfDateStr);
-                ProductBriefViewModel product = prodcutInfoFetcher.FetchProduct(id.Value, asOfDate,"股票");
+                ProductBriefViewModel product = prodcutInfoFetcher.FetchProduct(id.Value, asOfDate, "股票");
                 ViewBag.ProductId = id.Value;
                 ViewBag.SubTitle = product.Caption;
                 return View(product);
