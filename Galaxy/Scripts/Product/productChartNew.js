@@ -22,8 +22,22 @@ GLOBAL_NETVALUE_CHART = new Highcharts.stockChart({
         height: null
     },
 
+    colors: ['green', 'red', '#00CCFF'],
+
     rangeSelector: {
         selected: 1
+    },
+
+    plotOptions: {
+        series: {
+            shadow: true
+        },
+        candlestick: {
+            lineColor: '#404048'
+        },
+        map: {
+            shadow: false
+        }
     },
 
     credits: {
@@ -89,6 +103,8 @@ GLOBAL_RETURN_DIST_CHART = new Highcharts.chart({
         text: null
     },
 
+    colors: ['green', 'red', '#00CCFF'],
+
     xAxis: {
         type: 'category',
         labels: {
@@ -134,6 +150,8 @@ GLOBAL_PNL_DIST_CHART = new Highcharts.chart({
         text: null
     },
 
+    colors: ['green', 'darkRed', '#00CCFF'],
+
     xAxis: {
         type: 'category',
         labels: {
@@ -159,7 +177,7 @@ GLOBAL_PNL_DIST_CHART = new Highcharts.chart({
                 enabled: false,
                 format: '<b>{point.name}</b>: {point.percentage:.1f} %',
                 style: {
-                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'red'
                 },
                 connectorColor: 'silver'
             },

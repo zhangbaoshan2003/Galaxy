@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Galaxy.BAL;
 
@@ -53,5 +54,18 @@ namespace Galaxy.Tests
             Assert.IsTrue(model.Dictionary.Keys.Count > 0);
             Console.WriteLine(model.Dictionary.Values.Count > 0);
         }
+
+        [TestMethod]
+        public void TestFetchReturnDistModel()
+        {
+            ProductDataManager mgr = new ProductDataManager();
+            var model = mgr.FetchPnLDistViewModel(6178, new DateTime(2017, 11, 11));
+            var positiveDays = model.Where(x => x.Name == "正收益天数").First().Value;
+            var negativeDays = model.Where(x => x.Name == "负收益天数").First().Value;
+
+            Assert.IsTrue(positiveDays>negativeDays);
+        }
+
+       
     }
 }

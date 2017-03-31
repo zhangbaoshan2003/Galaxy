@@ -49,8 +49,8 @@ namespace Galaxy.BAL
                     netValueModels.Add(model);
                 });
             }
-            multipleTime.addTimeSeries("沪深300指数", netValueModels);
-            multipleTime.addTimeSeries("净值", indexModels);
+            multipleTime.addTimeSeries("沪深300指数", indexModels);
+            multipleTime.addTimeSeries("净值", netValueModels);
             return multipleTime;
         }
 
@@ -168,6 +168,17 @@ namespace Galaxy.BAL
             List<CategoryDataViewModel> models = new List<CategoryDataViewModel>();
             var totalReturns = this.FetchProductNetValueDistViewModel(productId);
             var netValues = totalReturns.Dictionary["净值"];
+            var minValues = netValues.Where(x => (x.ReportedNetValue - 1) < -0.1).Count();
+            //if (minValues > 0)
+            //{
+            //    CategoryDataViewModel model = new CategoryDataViewModel();
+            //    model.Name = "收益分布";
+            //    model.Label = "<-0.1";
+            //    model.Value = minValues;
+            //    models.Add(model);
+            //}
+
+
             int step = 0;
             for (double i = -0.1; i <= 0.1; i += 0.02)
             {
@@ -183,6 +194,19 @@ namespace Galaxy.BAL
                 }
                 models.Add(model);
             }
+
+            var maxValues = netValues.Where(x => (x.ReportedNetValue - 1) > 0.1).Count();
+            //if (minValues > 0)
+            //{
+            //    CategoryDataViewModel model = new CategoryDataViewModel();
+            //    model.Name = "收益分布";
+            //    model.Label = ">0.1";
+            //    model.Value = maxValues;
+            //    models.Add(model);
+            //}
+
+            models[0].Value += minValues;
+            models[models.Count - 1].Value += maxValues;
 
             return models;
         }
