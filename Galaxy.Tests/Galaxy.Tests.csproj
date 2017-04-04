@@ -94,6 +94,7 @@
     <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="Database\GalaxyDBTest.cs" />
     <Compile Include="BusinessLayerTest.cs" />
+    <Compile Include="CachedDataManagerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />

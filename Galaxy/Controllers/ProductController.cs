@@ -42,7 +42,8 @@ namespace Galaxy.Controllers
         }
 
         //private IProdcutInfo prodcutInfoFetcher = new DummyProdcutInfoFetcher();
-        private IProdcutInfo prodcutInfoFetcher = new ProductDataManager();
+        //private IProdcutInfo prodcutInfoFetcher = new ProductDataManager();
+        private IProdcutInfo prodcutInfoFetcher = new CachedDataManager();
         //
         // GET: /Product/
         public ActionResult Index()
