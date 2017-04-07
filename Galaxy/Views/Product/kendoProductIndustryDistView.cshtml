@@ -10,6 +10,5 @@
         .DataSource(dataSource => dataSource
             .Ajax()
                                 .Read(read => read.Action("GetIndustryDistView", "Product", new { productId = @ViewBag.ProductId }))
-            .PageSize(20)
         )
 )

@@ -107,6 +107,7 @@ namespace Galaxy.DAL2
         public DataTable SQLQuery(string commandText)
         {
             SqlCommand sqlCommand = CreateSQLCommand(commandText);
+            sqlCommand.CommandTimeout = 10*60;
             SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlCommand);
             DataTable dataTable = new DataTable();
 

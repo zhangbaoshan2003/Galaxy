@@ -11,6 +11,5 @@
         .DataSource(dataSource => dataSource
             .Ajax()
                                 .Read(read => read.Action("GetMostValuableBonds", "Product", new { productId = @ViewBag.ProductId }))
-            .PageSize(20)
         )
 )

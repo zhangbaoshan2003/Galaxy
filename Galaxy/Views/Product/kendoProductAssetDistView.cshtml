@@ -9,6 +9,5 @@
         .DataSource(dataSource => dataSource
             .Ajax()
                         .Read(read => read.Action("GetFuncAssetDistAsOf", "Product", new { productId = @ViewBag.ProductId }))
-            .PageSize(20)
         )
 )
